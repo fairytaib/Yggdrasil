@@ -10,8 +10,7 @@ def checkFamilyTree(sender, instance, created, **kwargs):
     """
     if created:
         user = instance.owner
-        # Check if the user has a FamilyTree
         family_tree, created_tree = FamilyTree.objects.get_or_create(
             owner=user
             )
-        family_tree.persons.add(instance)
+        family_tree.person.add(instance)
