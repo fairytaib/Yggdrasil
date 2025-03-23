@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 
 
@@ -22,7 +23,12 @@ class FamilyTree(models.Model):
 
 class Person(models.Model):
     """ A person model """
-    name = models.CharField(max_length=100)
+    owner = models.ForeignKey(
+        User, on_delete=models.CASCADE,
+        related_name='persons'
+    )
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
     birth_date = models.DateField(null=True, blank=True)
     death_date = models.DateField(null=True, blank=True)
     bio = models.TextField(default="I am me!", blank=True)
@@ -36,3 +42,6 @@ class Person(models.Model):
         'self', on_delete=models.CASCADE,
         related_name='partners', blank=True, null=True
         )
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
