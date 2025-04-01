@@ -2,5 +2,5 @@ from . import views
 from django.urls import path
 
 urlpatterns = [
-    path("", views.family_list, name="family-view"),
+    path("", views.get_owner, name="get_owner"),
 ]

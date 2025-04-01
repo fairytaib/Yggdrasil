@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 
-def family_list(request):
-    families = Person.objects.all()
+def get_owner(request):
+    owner = Person.objects.filter(owner=request.user).first()
     return render(request, 'familytree/family-list.html',
-                  {'families': families})
+                  {'owner': owner})
