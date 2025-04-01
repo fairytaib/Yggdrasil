@@ -1,9 +1,58 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block content %}
-    <h1>Family List</h1>
-    <ul>
-        {% for person in families %}
-            <p>{{ person.first_name }}</p>
-        {% endfor %}
-    </ul>
+  <div id="parents-container">
+    {% if owner.parents.all|length == 1 %}
+      <button>Display Parent</button>
+      <button>Add Parent</button>
+    {% elif owner.parents.all %}
+      <button>Display Parents</button>
+    {% else %}
+      <button>Add Parent</button>
+    {% endif %}
+  </div>
+  <div id="middle-section">
+    <div id="siblings-container">
+      {% if owner.siblings.all|length == 1 %}
+        <button>Display Sibling</button>
+        <button>Add Sibling</button>
+      {% elif owner.siblings.all %}
+        <button>Display Siblings</button>
+      {% else %}
+        <button>Add Sibling</button>
+      {% endif %}
+    </div>
+    <div id="owner-info-container">
+      <img src="" alt="you" />
+      <div id="owner-info">
+        <p>
+          Name: <span id="first-name">{{ owner.first_name }}</span> <span id="last-name">{{ owner.last_name }}</span>
+        </p>
+        <p>
+          Birthday: <span id="birthday">{{ owner.birthday }}</span>
+        </p>
+      </div>
+
+      <div id="spouse-container">
+        {% if owner.spouse.all|length == 1 %}
+          <button>Display Spouse</button>
+          <button>Add Spouse</button>
+        {% elif owner.spouse.all %}
+          <button>Display Spouses</button>
+        {% else %}
+          <button>Add Spouse</button>
+        {% endif %}
+      </div>
+    </div>
+
+    <div id="children-container">
+      {% if owner.parents.all|length == 1 %}
+        <button>Display Parent</button>
+        <button>Add Parent</button>
+      {% elif owner.parents.all %}
+        <button>Display Parents</button>
+      {% else %}
+        <button>Add Parent</button>
+      {% endif %}
+    </div>
+  </div>
 {% endblock %}
