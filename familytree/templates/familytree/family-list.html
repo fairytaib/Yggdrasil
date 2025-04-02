@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
   <div id="parents-container">
     {% if owner.parents.all|length == 1 %}
@@ -22,7 +23,7 @@
       {% endif %}
     </div>
     <div id="owner-info-container">
-      <img src="" alt="you" />
+      <img src="{% static 'images/default-image.png' %}" alt="you" class="profile-image"/>
       <div id="owner-info">
         <p>
           Name: <span id="first-name">{{ owner.first_name }}</span> <span id="last-name">{{ owner.last_name }}</span>
@@ -31,28 +32,26 @@
           Birthday: <span id="birthday">{{ owner.birthday }}</span>
         </p>
       </div>
-
-      <div id="spouse-container">
-        {% if owner.spouse.all|length == 1 %}
-          <button>Display Spouse</button>
-          <button>Add Spouse</button>
-        {% elif owner.spouse.all %}
-          <button>Display Spouses</button>
-        {% else %}
-          <button>Add Spouse</button>
-        {% endif %}
-      </div>
     </div>
-
-    <div id="children-container">
-      {% if owner.parents.all|length == 1 %}
-        <button>Display Parent</button>
-        <button>Add Parent</button>
-      {% elif owner.parents.all %}
-        <button>Display Parents</button>
+    <div id="spouse-container">
+      {% if owner.spouse.all|length == 1 %}
+        <button>Display Spouse</button>
+        <button>Add Spouse</button>
+      {% elif owner.spouse.all %}
+        <button>Display Spouses</button>
       {% else %}
-        <button>Add Parent</button>
+        <button>Add Spouse</button>
       {% endif %}
     </div>
+  </div>
+  <div id="children-container">
+    {% if owner.parents.all|length == 1 %}
+      <button>Display Children</button>
+      <button>Add Children</button>
+    {% elif owner.parents.all %}
+      <button>Display Children</button>
+    {% else %}
+      <button>Add Children</button>
+    {% endif %}
   </div>
 {% endblock %}
