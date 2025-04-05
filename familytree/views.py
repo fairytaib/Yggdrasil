@@ -9,10 +9,25 @@ from django.urls import reverse
 
 
 def get_owner(request):
-    """Display the users own Data"""
+    """Display the user's current person in focus with view-switching (POV)"""
     owner = Person.objects.filter(owner=request.user).first()
-    return render(request, 'familytree/family-list.html',
-                  {'owner': owner})
+    view_mode = request.GET.get("view", "descendants")  # default = Partner + Children
+
+    context = {
+        "owner": owner,
+        "view_mode": view_mode,
+    }
+
+    if view_mode == "descendants":
+        context["partner"] = owner.partner
+        context["children"] = owner.children.all()
+    else:  # "ancestors"
+        parents = owner.parents.all()
+        siblings = Person.objects.filter(parents__in=parents).exclude(id=owner.id).distinct()
+        context["parents"] = parents
+        context["siblings"] = siblings
+
+    return render(request, 'familytree/family-list.html', context)
 
 
 def get_family_members(request):
@@ -75,3 +90,35 @@ def add_family_member(request):
         'relation': relation,
         'owner_person': owner_person
     })
+
+
+def family_view(request, person_id):
+    person = get_object_or_404(Person, id=person_id)
+    view_mode = request.GET.get("view", "descendants")
+    # default = Partner + Children
+
+    context = {
+        "owner": person,
+        "view_mode": view_mode,
+    }
+
+    if view_mode == "partner":
+        context["partner"] = person.partner
+        return render(request, "familytree/view-partner.html", context)
+    elif view_mode == "parents":
+        context["parents"] = person.parents.all()
+        return render(request, "familytree/view-parents.html", context)
+    elif view_mode == "children":
+        context["children"] = person.children.all()
+        return render(request, "familytree/view-children.html", context)
+    elif view_mode == "siblings":
+        parents = person.parents.all()
+        siblings = Person.objects.filter(
+            parents__in=parents
+            ).exclude(id=person.id).distinct()
+        context["siblings"] = siblings
+        context["parents"] = parents
+        return render(request, "familytree/view-siblings.html", context)
+
+    # Fallback to descendants view
+    return render(request, "familytree/family-list.html", context)

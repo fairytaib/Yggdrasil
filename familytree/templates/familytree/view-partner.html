@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
-{% comment %} Own CSS {% endcomment %}
+{% comment %}Own CSS{% endcomment %}
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 {% endblock %}
 {% block content %}
   <div id="parents-container">
@@ -12,7 +12,7 @@
     {% elif owner.parents.all %}
       <a href="{% url 'family_view' owner.id %}?view=parents" class="btn btn-outline-success">Parents</a>
     {% else %}
-    <a href="{% url 'add_family_member' %}?relation=parent&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Parent</a>
+      <a href="{% url 'add_family_member' %}?relation=parent&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Parent</a>
     {% endif %}
   </div>
   <div id="middle-section">
@@ -25,7 +25,7 @@
       {% endif %}
     </div>
     <div id="owner-info-container">
-      <img src="{% static 'images/default-image.png' %}" alt="you" class="profile-image"/>
+      <img src="{% static 'images/default-image.png' %}" alt="you" class="profile-image" />
       <div id="owner-info">
         <p>
           Name: <span id="first-name">{{ owner.first_name }}</span> <span id="last-name">{{ owner.last_name }}</span>
@@ -36,10 +36,19 @@
       </div>
     </div>
     <div id="spouse-container">
-      {% if owner.partner %}
-      <a href="{% url 'family_view' owner.id %}?view=partner" class="btn btn-outline-success">Partner</a>
+      {% if partner %}
+        <img src="{% static 'images/default-image.png' %}" alt="partner" class="profile-image" />
+        <div id="partner">
+          <p>
+            Name: <span>{{ partner.first_name }}</span> <span>{{ partner.last_name }}</span>
+          </p>
+          <p>
+            Birthday: <span>{{ partner.birth_date }}</span>
+          </p>
+        </div>
       {% else %}
-      <a href="{% url 'add_family_member' %}?relation=partner&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Partner</a>
+        <p>No partner added yet.</p>
+        <a href="{% url 'add_family_member' %}?relation=partner&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Partner</a>
       {% endif %}
     </div>
   </div>
