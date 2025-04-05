@@ -45,3 +45,11 @@ class Person(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+    def siblings(self):
+        """Get all siblings of the person.
+        Exclude the person itself from the list.
+        """
+        return Person.objects.filter(
+            parents__in=self.parents.all()
+            ).exclude(id=self.id).distinct()

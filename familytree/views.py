@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Person, FamilyTree
 from django.contrib.auth.models import User
+from django.contrib import messages
 from .forms import PersonForm
 from django.shortcuts import redirect
+from django.urls import reverse
 # Create your views here.
 
 
@@ -47,9 +49,21 @@ def add_family_member(request):
                 elif relation == "partner":
                     owner_person.partner = person
                     owner_person.save()
-
                     person.partner = owner_person
                     person.save()
+                elif relation == "sibling":
+                    if not owner_person.parents.exists():
+                        messages.error(
+                            request,
+                            "Please tell us about your parents first."
+                            )
+                        return redirect(
+                            f"{reverse(
+                                'add_family_member'
+                                )}?relation=parent&owner_id={owner_person.id}")
+                    else:
+                        for parent in owner_person.parents.all():
+                            person.parents.add(parent)
 
                 return redirect('get_owner')
 
