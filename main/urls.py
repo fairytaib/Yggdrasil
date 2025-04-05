@@ -18,6 +18,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path("family-view", include("familytree.urls"), name="familytree"),
+    path("family-view/", include("familytree.urls")),
     path('', admin.site.urls),
 ]

@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
+{% comment %} Own CSS {% endcomment %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
 {% block content %}
   <div id="parents-container">
     {% if owner.parents.all|length == 1 %}
       <button>Display Parent</button>
-      <button>Add Parent</button>
+      <a href="{% url 'add_family_member' %}?relation=parent&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Parent</a>
     {% elif owner.parents.all %}
       <button>Display Parents</button>
     {% else %}
-      <button>Add Parent</button>
+    <a href="{% url 'add_family_member' %}?relation=parent&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Parent</a>
     {% endif %}
   </div>
   <div id="middle-section">
@@ -34,24 +38,21 @@
       </div>
     </div>
     <div id="spouse-container">
-      {% if owner.spouse.all|length == 1 %}
+      {% if owner.partner %}
         <button>Display Spouse</button>
-        <button>Add Spouse</button>
-      {% elif owner.spouse.all %}
-        <button>Display Spouses</button>
       {% else %}
-        <button>Add Spouse</button>
+      <a href="{% url 'add_family_member' %}?relation=partner&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Partner</a>
       {% endif %}
     </div>
   </div>
   <div id="children-container">
     {% if owner.parents.all|length == 1 %}
       <button>Display Children</button>
-      <button>Add Children</button>
+      <a href="{% url 'add_family_member' %}?relation=child&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Child</a>
     {% elif owner.parents.all %}
       <button>Display Children</button>
     {% else %}
-      <button>Add Children</button>
+    <a href="{% url 'add_family_member' %}?relation=child&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Child</a>
     {% endif %}
   </div>
 {% endblock %}
