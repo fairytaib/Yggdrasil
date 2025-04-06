@@ -1,11 +1,25 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Person, FamilyTree
-from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import PersonForm
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+
+
+@login_required
+def add_self(request):
+    if request.method == "POST":
+        form = PersonForm(request.POST)
+        if form.is_valid():
+            person = form.save(commit=False)
+            person.owner = request.user
+            person.save()
+            return redirect("family_view", person_id=person.id)
+    else:
+        form = PersonForm()
+    return render(request, "familytree/add-self.html", {"form": form})
 
 
 def get_owner(request):

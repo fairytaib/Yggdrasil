@@ -132,6 +132,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
+LOGIN_REDIRECT_URL = '/family-view/add-self/'
+
+ACCOUNT_SIGNUP_REDIRECT_URL = '/family-view/add-self/'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

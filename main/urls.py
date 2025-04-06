@@ -34,5 +34,5 @@ urlpatterns = [
     path("impressum/",
          TemplateView.as_view(template_name="impressum.html"),
          name="impressum"),
-    path("family_view/", include("familytree.urls")),
+    path("family-view/", include("familytree.urls")),
 ]

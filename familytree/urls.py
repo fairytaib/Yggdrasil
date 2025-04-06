@@ -7,10 +7,10 @@ urlpatterns = [
         "add_family_member/",
         views.add_family_member, name="add_family_member"
         ),
+    path('add-self/', views.add_self, name='add_self'),
     path(
         'family-view/<int:person_id>/',
         views.family_view,
         name='family_view'
         ),
-
 ]

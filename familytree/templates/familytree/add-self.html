@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5 text-center">
+    <h2>Erzähl uns, wer du bist</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Speichern</button>
+    </form>
+  </div>
+{% endblock %}
