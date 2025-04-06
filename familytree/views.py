@@ -11,22 +11,10 @@ from django.urls import reverse
 def get_owner(request):
     """Display the user's current person in focus with view-switching (POV)"""
     owner = Person.objects.filter(owner=request.user).first()
-    view_mode = request.GET.get("view", "descendants")  # default = Partner + Children
 
     context = {
         "owner": owner,
-        "view_mode": view_mode,
     }
-
-    if view_mode == "descendants":
-        context["partner"] = owner.partner
-        context["children"] = owner.children.all()
-    else:  # "ancestors"
-        parents = owner.parents.all()
-        siblings = Person.objects.filter(parents__in=parents).exclude(id=owner.id).distinct()
-        context["parents"] = parents
-        context["siblings"] = siblings
-
     return render(request, 'familytree/family-list.html', context)
 
 
@@ -94,8 +82,7 @@ def add_family_member(request):
 
 def family_view(request, person_id):
     person = get_object_or_404(Person, id=person_id)
-    view_mode = request.GET.get("view", "descendants")
-    # default = Partner + Children
+    view_mode = request.GET.get("view", "partner")
 
     context = {
         "owner": person,
