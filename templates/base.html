@@ -2,6 +2,12 @@
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
+{% url 'contact' as contact_url %}
+{% url 'datenschutz' as datenschutz_url %}
+{% url 'demo' as 'demo_url' %}
+{% url 'impressum' as impressum_url %}
+{% url 'home' as home_url %}
+{% url 'family_view' person.id as 'family_view_url' %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,18 +25,40 @@
   </head>
   <body>
     <header>
-      {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
-        </li>
-      {% else %}
-        <li class="nav-item">
-          <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page" href="{% url 'account_signup' %}">Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">Login</a>
-        </li>
-      {% endif %}
+      <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'home' %}">Logo</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if request.path == demo_url %}active{% endif %}" aria-current="page" href="{% url 'demo' %}">Demo</a>
+              </li>
+              {% if user.is_authenticated and person %}
+                {% url 'family_view' person.id as family_view_url %}
+                <li class="nav-item">
+                  <a class="nav-link {% if request.path == family_view_url %}active{% endif %}" aria-current="page" href="{{ family_view_url }}">View Family</a>
+                </li>
+              {% endif %}
+              {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                  <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page" href="{% url 'account_signup' %}">Register</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">Login</a>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
 
     <main>
@@ -49,7 +77,17 @@
       {% endblock %}
     </main>
 
-    <footer></footer>
+    <footer class="footer text-center">
+      <div class="container">
+        <p class="footer-text">© {{ year }} Yggdrasil – The Tree of Family. Alle Rechte vorbehalten.</p>
+        <nav class="footer-nav">
+          <a href="{% url 'impressum' %}">Impressum</a> |
+          <a href="{% url 'datenschutz' %}">Datenschutz</a> |
+          <a href="{% url 'contact' %}">Kontakt</a>
+        </nav>
+      </div>
+    </footer>
+
     {% comment %}Bootstrap JS CDN{% endcomment %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-YUe2LzesAfftltw+PEaao2tjU/QATaW/rOitAq67e0CT0Zi2VVRL0oC4+gAaeBKu" crossorigin="anonymous"></script>
   </body>
