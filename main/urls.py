@@ -16,9 +16,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
 
 urlpatterns = [
-    path("", include("familytree.urls")),
+    path("", TemplateView.as_view(template_name="home.html"), name="home"),
     path("accounts/", include("allauth.urls")),
     path('admin/', admin.site.urls),
+    path("contact/",
+         TemplateView.as_view(template_name="contact.html"),
+         name="contact"),
+    path("datenschutz/",
+         TemplateView.as_view(template_name="datenschutz.html"),
+         name="datenschutz"),
+    path("demo/",
+         TemplateView.as_view(template_name="demo.html"), name="demo"),
+
+    path("impressum/",
+         TemplateView.as_view(template_name="impressum.html"),
+         name="impressum"),
+    path("family_view/", include("familytree.urls")),
 ]
