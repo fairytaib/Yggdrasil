@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path("family-view/", include("familytree.urls")),
-    path('', admin.site.urls),
+    path("", include("familytree.urls")),
+    path("accounts/", include("allauth.urls")),
+    path('admin/', admin.site.urls),
 ]
