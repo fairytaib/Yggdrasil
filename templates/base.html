@@ -2,6 +2,7 @@
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
+{% url 'add_self' as add_self_url %}
 {% url 'contact' as contact_url %}
 {% url 'datenschutz' as datenschutz_url %}
 {% url 'demo' as 'demo_url' %}
@@ -41,6 +42,10 @@
                 {% url 'family_view' person.id as family_view_url %}
                 <li class="nav-item">
                   <a class="nav-link {% if request.path == family_view_url %}active{% endif %}" aria-current="page" href="{{ family_view_url }}">View Family</a>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                  <a class="nav-link {% if request.path == add_self_url %}active{% endif %}" aria-current="page" href="{{ add_self_url }}">Start your family tree</a>
                 </li>
               {% endif %}
               {% if user.is_authenticated %}

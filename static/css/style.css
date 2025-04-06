@@ -4,13 +4,13 @@
     box-sizing: border-box;
 }
 
-body{
+/* body{
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
+} */
 
 #parents-container, #children-container{
     display: flex;

@@ -45,6 +45,19 @@ def add_family_member(request):
     owner_person_id = request.GET.get('owner_id')
     owner_person = get_object_or_404(Person, id=owner_person_id)
 
+    if request.method == 'GET':
+        if relation == "sibling" and not owner_person.parents.exists():
+            messages.info(
+                request,
+                """Please add at least one parent first,
+                before you can add a sibling"""
+            )
+            return redirect(
+                f"{reverse(
+                    'add_family_member'
+                    )}?relation=parent&owner_id={owner_person.id}"
+            )
+
     if request.method == 'POST':
         form = PersonForm(request.POST)
         if form.is_valid():
@@ -96,7 +109,7 @@ def add_family_member(request):
 
 def family_view(request, person_id):
     person = get_object_or_404(Person, id=person_id)
-    view_mode = request.GET.get("view", "partner")
+    view_mode = request.GET.get("view")
 
     context = {
         "owner": person,
