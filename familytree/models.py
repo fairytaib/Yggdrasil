@@ -28,7 +28,8 @@ class Person(models.Model):
         User, on_delete=models.CASCADE,
         related_name='persons'
     )
-    featured_image = CloudinaryField('image', default='placeholder')
+    featured_image = CloudinaryField('image', default='placeholder',
+                                     blank=True, null=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     birth_date = models.DateField(null=True, blank=True)

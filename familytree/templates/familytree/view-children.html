@@ -33,6 +33,7 @@
         <p>
           Birthday: <span id="birthday">{{ owner.birthday }}</span>
         </p>
+        <a href="{% url 'edit_person' person.id %}" class="btn btn-outline-primary">Edit Person</a>
       </div>
     </div>
     <div id="spouse-container">
@@ -60,6 +61,7 @@
             <p>
                 Birthday: <span id="birthday">{{ child.birthday }}</span>
             </p>
+            <a href="{% url 'edit_person' person.id %}" class="btn btn-outline-primary">Edit Person</a>
             </div>
         </div>
         {% endfor %}

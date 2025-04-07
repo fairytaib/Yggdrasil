@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2>Edit Person</h2>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="id_featured_image" class="form-label">Change Image:</label>
+        {{ form.featured_image }}
+      </div>
+    
+      <div class="mb-3">
+        <label for="id_first_name" class="form-label">First Name</label>
+        {{ form.first_name }}
+      </div>
+    
+      <div class="mb-3">
+        <label for="id_last_name" class="form-label">Last Name</label>
+        {{ form.last_name }}
+      </div>
+
+      <div class="mb-3">
+        <label for="id_birth_date" class="form-label">Birth date</label>
+        {{ form.birth_date }}
+      </div>
+
+      <div class="mb-3">
+        <label for="id_death_date" class="form-label">Death date</label>
+        {{ form.death_date }}
+      </div>
+
+      <div class="mb-3">
+        <label for="id_bio" class="form-label">About me</label>
+        {{ form.bio }}
+      </div>
+
+    <button type="submit" class="btn btn-success">Save Changes</button>
+    <a href="{% url 'family_view' person.id %}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock %}

@@ -40,8 +40,25 @@ def get_family_members(request):
                   {'family_members': family_members})
 
 
+@login_required
+def edit_person(request, person_id):
+    person = get_object_or_404(Person, id=person_id, owner=request.user)
+    if request.method == 'POST':
+        form = PersonForm(request.POST, request.FILES, instance=person)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Person updated successfully!")
+            return redirect('family_view', person_id=person.id)
+    else:
+        form = PersonForm(instance=person)
+
+    return render(
+        request, 'familytree/edit-person.html',
+        {'form': form, 'person': person})
+
+
 def add_family_member(request):
-    relation = request.GET.get('relation')  # parent, child, partner
+    relation = request.GET.get('relation')
     owner_person_id = request.GET.get('owner_id')
     owner_person = get_object_or_404(Person, id=owner_person_id)
 

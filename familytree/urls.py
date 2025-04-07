@@ -8,6 +8,7 @@ urlpatterns = [
         views.add_family_member, name="add_family_member"
         ),
     path('add-self/', views.add_self, name='add_self'),
+    path('edit/<int:person_id>/', views.edit_person, name='edit_person'),
     path(
         'family-view/<int:person_id>/',
         views.family_view,
