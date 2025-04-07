@@ -10,10 +10,10 @@
       {% for parent in parents %}
         <div id="owner-info-container">
           {% if "placeholder" in person.featured_image.url %}
-        <img class="card-img-top" src="{% static 'images/default-image.png' %}"
+        <img class="card-img-top profile-image" src="{% static 'images/default-image.png' %}"
            alt="placeholder image">
         {% else %}
-        <img class="card-img-top" src=" {{ person.featured_image.url }}" alt="{{ post.title }}">
+        <img class="card-img-top profile-image" src=" {{ person.featured_image.url }}" alt="{{ person.first_name }}">
         {% endif %}
           <div id="owner-info">
             <p>
@@ -38,10 +38,10 @@
     </div>
     <div id="owner-info-container">
       {% if "placeholder" in person.featured_image.url %}
-        <img class="card-img-top" src="{% static 'images/default-image.png' %}"
+        <img class="card-img-top profile-image" src="{% static 'images/default-image.png' %}"
            alt="placeholder image">
         {% else %}
-        <img class="card-img-top" src=" {{ person.featured_image.url }}" alt="{{ post.title }}">
+        <img class="card-img-top profile-image" src=" {{ person.featured_image.url }}" alt="{{ person.first_name }}">
         {% endif %}
       <div id="owner-info">
         <p>
