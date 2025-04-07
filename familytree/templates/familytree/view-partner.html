@@ -51,7 +51,7 @@
           <p>
             Birthday: <span>{{ partner.birth_date }}</span>
           </p>
-          <a href="{% url 'edit_person' person.id %}" class="btn btn-outline-primary">Edit Person</a>
+          <a href="{% url 'edit_person' partner.id %}" class="btn btn-outline-primary">Edit Person</a>
         </div>
       {% else %}
         <p>No partner added yet.</p>

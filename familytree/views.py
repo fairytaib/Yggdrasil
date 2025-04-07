@@ -57,6 +57,19 @@ def edit_person(request, person_id):
         {'form': form, 'person': person})
 
 
+@login_required
+def delete_person(request, person_id):
+    person = get_object_or_404(Person, id=person_id, owner=request.user)
+
+    if request.method == "POST":
+        person.delete()
+        messages.success(request, "Person was successfully deleted.")
+        return redirect('get_owner')
+
+    return render(request,
+                  'familytree/delete-person.html', {'person': person})
+
+
 def add_family_member(request):
     relation = request.GET.get('relation')
     owner_person_id = request.GET.get('owner_id')

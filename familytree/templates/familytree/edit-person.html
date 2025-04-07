@@ -41,6 +41,7 @@
       </div>
 
     <button type="submit" class="btn btn-success">Save Changes</button>
+    <a href="{% url 'delete_person' person.id %}" class="btn btn-danger mt-3">Delete Person</a>
     <a href="{% url 'family_view' person.id %}" class="btn btn-secondary">Cancel</a>
   </form>
 </div>
