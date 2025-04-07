@@ -47,7 +47,12 @@
     {% if children %}
         {% for child in children %}
         <div id="owner-info-container">
-            <img src="{% static 'images/default-image.png' %}" alt="you" class="profile-image" />
+            {% if "placeholder" in person.featured_image.url %}
+        <img class="card-img-top" src="{% static 'images/default-image.png' %}"
+           alt="placeholder image">
+        {% else %}
+        <img class="card-img-top" src=" {{ person.featured_image.url }}" alt="{{ post.title }}">
+        {% endif %}
             <div id="owner-info">
             <p>
                 Name: <span id="first-name">{{ child.first_name }}</span> <span id="last-name">{{ child.last_name }}</span>
