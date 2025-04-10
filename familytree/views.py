@@ -22,6 +22,7 @@ def add_self(request):
     return render(request, "familytree/add-self.html", {"form": form})
 
 
+@login_required
 def get_owner(request):
     """Display the user's current person in focus with view-switching (POV)"""
     owner = Person.objects.filter(owner=request.user).first()
@@ -32,6 +33,7 @@ def get_owner(request):
     return render(request, 'familytree/family-list.html', context)
 
 
+@login_required
 def get_family_members(request):
     """Display the users family members"""
     family_tree = get_object_or_404(FamilyTree, owner=request.user)
@@ -41,35 +43,6 @@ def get_family_members(request):
 
 
 @login_required
-def edit_person(request, person_id):
-    person = get_object_or_404(Person, id=person_id, owner=request.user)
-    if request.method == 'POST':
-        form = PersonForm(request.POST, request.FILES, instance=person)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Person updated successfully!")
-            return redirect('family_view', person_id=person.id)
-    else:
-        form = PersonForm(instance=person)
-
-    return render(
-        request, 'familytree/edit-person.html',
-        {'form': form, 'person': person})
-
-
-@login_required
-def delete_person(request, person_id):
-    person = get_object_or_404(Person, id=person_id, owner=request.user)
-
-    if request.method == "POST":
-        person.delete()
-        messages.success(request, "Person was successfully deleted.")
-        return redirect('get_owner')
-
-    return render(request,
-                  'familytree/delete-person.html', {'person': person})
-
-
 def add_family_member(request):
     relation = request.GET.get('relation')
     owner_person_id = request.GET.get('owner_id')
@@ -91,9 +64,11 @@ def add_family_member(request):
     if request.method == 'POST':
         form = PersonForm(request.POST)
         if form.is_valid():
-            if relation == "partner" and owner_person.partner:
+            if relation == "partner" and (owner_person.partner or person.partner):
+
                 form.add_error(None, "This person already has a partner.")
-            elif relation == "parent" and owner_person == 2:
+            elif relation == "parent" and owner_person.parents.count() == 2:
+
                 form.add_error(
                     None,
                     "This person has already two parents reigstered.")
@@ -137,8 +112,46 @@ def add_family_member(request):
     })
 
 
+@login_required
+def edit_person(request, person_id):
+    person = get_object_or_404(Person, id=person_id, owner=request.user)
+
+    if request.method == 'POST':
+        form = PersonForm(request.POST, request.FILES, instance=person)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Person updated successfully!")
+
+            # Redirect zur POV des Users, nicht zur bearbeiteten Person
+            pov = Person.objects.filter(owner=request.user).first()
+            if pov:
+                return redirect('family_view', person_id=pov.id)
+            else:
+                return redirect('add_self')
+    else:
+        form = PersonForm(instance=person)
+
+    return render(request,
+                  'familytree/edit-person.html',
+                  {'form': form, 'person': person})
+
+
+@login_required
+def delete_person(request, person_id):
+    person = get_object_or_404(Person, id=person_id, owner=request.user)
+
+    if request.method == "POST":
+        person.delete()
+        messages.success(request, "Person was successfully deleted.")
+        return redirect('get_owner')
+
+    return render(request,
+                  'familytree/delete-person.html', {'person': person})
+
+
+@login_required
 def family_view(request, person_id):
-    person = get_object_or_404(Person, id=person_id)
+    person = get_object_or_404(Person, id=person_id, owner=request.user)
     view_mode = request.GET.get("view")
 
     context = {

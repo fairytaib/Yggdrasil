@@ -6,11 +6,11 @@
 {% endblock %}
 {% block content %}
   <div id="parents-container">
-    {% if owner.parents.all|length == 1 %}
-      <a href="{% url 'family_view' owner.id %}?view=parents" class="btn btn-outline-success">Parents</a>
+    {% if person.parents.all|length == 1 %}
+      <a href="{% url 'family_view' person.id %}?view=parents" class="btn btn-outline-success">Parents</a>
       <a href="{% url 'add_family_member' %}?relation=parent&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Parent</a>
-    {% elif owner.parents.all %}
-      <a href="{% url 'family_view' owner.id %}?view=parents" class="btn btn-outline-success">Parents</a>
+    {% elif person.parents.all %}
+      <a href="{% url 'family_view' person.id %}?view=parents" class="btn btn-outline-success">Parents</a>
     {% else %}
       <a href="{% url 'add_family_member' %}?relation=parent&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Parent</a>
     {% endif %}
@@ -19,14 +19,14 @@
     <div id="siblings-container">
       {% if siblings %}
         {% for sibling in siblings %}
-          <div id="owner-info-container">
+          <div id="person-info-container">
             {% if "placeholder" in person.featured_image.url %}
         <img class="card-img-top profile-image" src="{% static 'images/default-image.png' %}"
            alt="placeholder image">
         {% else %}
         <img class="card-img-top profile-image" src=" {{ person.featured_image.url }}" alt="{{ person.first_name }}">
         {% endif %}
-            <div id="owner-info">
+            <div id="person-info">
               <p>
                 Name: <span id="first-name">{{ sibling.first_name }}</span> <span id="last-name">{{ sibling.last_name }}</span>
               </p>
@@ -39,34 +39,34 @@
         {% endfor %}
       {% endif %}
     </div>
-    <div id="owner-info-container">
+    <div id="person-info-container">
       {% if "placeholder" in person.featured_image.url %}
         <img class="card-img-top profile-image" src="{% static 'images/default-image.png' %}"
            alt="placeholder image">
         {% else %}
         <img class="card-img-top profile-image" src=" {{ person.featured_image.url }}" alt="{{ person.first_name }}">
         {% endif %}
-      <div id="owner-info">
+      <div id="person-info">
         <p>
-          Name: <span id="first-name">{{ owner.first_name }}</span> <span id="last-name">{{ owner.last_name }}</span>
+          Name: <span id="first-name">{{ person.first_name }}</span> <span id="last-name">{{ person.last_name }}</span>
         </p>
         <p>
-          Birthday: <span id="birthday">{{ owner.birthday }}</span>
+          Birthday: <span id="birthday">{{ person.birthday }}</span>
         </p>
         <a href="{% url 'edit_person' person.id %}" class="btn btn-outline-primary">Edit Person</a>
       </div>
     </div>
     <div id="spouse-container">
-      {% if owner.partner %}
-        <a href="{% url 'family_view' owner.id %}?view=partner" class="btn btn-outline-success">Partner</a>
+      {% if person.partner %}
+        <a href="{% url 'family_view' person.id %}?view=partner" class="btn btn-outline-success">Partner</a>
       {% else %}
         <a href="{% url 'add_family_member' %}?relation=partner&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Partner</a>
       {% endif %}
     </div>
   </div>
   <div id="children-container">
-    {% if owner.children.all|length > 0 %}
-      <a href="{% url 'family_view' owner.id %}?view=children" class="btn btn-outline-success">Children</a>
+    {% if person.children.all|length > 0 %}
+      <a href="{% url 'family_view' person.id %}?view=children" class="btn btn-outline-success">Children</a>
       <a href="{% url 'add_family_member' %}?relation=child&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Child</a>
     {% else %}
       <a href="{% url 'add_family_member' %}?relation=child&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Child</a>
