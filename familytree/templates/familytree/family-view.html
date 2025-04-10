@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% comment %}Own CSS{% endcomment %}
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/style.css' %}" />
@@ -8,14 +9,27 @@
   {% if owner %}
     <div id="parents-container">
       {% if owner.parents.all|length == 1 %}
-        <a href="{% url 'family_view' owner.id %}?view=parents" class="btn btn-outline-success">Parents</a>
+
+        {% if view_mode and persons %}
+          <div class="relation-display">
+            <h4>{{ view_mode|title }} of {{ owner.first_name }}</h4>
+            
+            {% for person in persons %}
+              {% include 'familytree/_person-card.html' with person=person %}
+            {% endfor %}
+          
+          </div>
+        {% endif %}
+
         <a href="{% url 'add_family_member' %}?relation=parent&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Parent</a>
-      {% elif owner.parents.all %}
+
+        {% elif owner.parents.all %}
         <a href="{% url 'family_view' owner.id %}?view=parents" class="btn btn-outline-success">Parents</a>
-      {% else %}
+        {% else %}
         <a href="{% url 'add_family_member' %}?relation=parent&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Parent</a>
       {% endif %}
     </div>
+
     <div id="middle-section">
       <div id="siblings-container">
         {% if owner.siblings|length > 0 %}
@@ -25,23 +39,8 @@
           <a href="{% url 'add_family_member' %}?relation=sibling&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Sibling</a>
         {% endif %}
       </div>
-      <div id="owner-info-container">
-        {% if "placeholder" in person.featured_image.url %}
-        <img class="card-img-top profile-image" src="{% static 'images/default-image.png' %}"
-           alt="placeholder image">
-        {% else %}
-        <img class="card-img-top profile-image" src=" {{ person.featured_image.url }}" alt="{{ person.first_name }}">
-        {% endif %}
-        <div id="owner-info">
-          <p>
-            Name: <span id="first-name">{{ owner.first_name }}</span> <span id="last-name">{{ owner.last_name }}</span>
-          </p>
-          <p>
-            Birthday: <span id="birthday">{{ owner.birthday }}</span>
-          </p>
-          <a href="{% url 'edit_person' person.id %}" class="btn btn-outline-primary">Edit Person</a>
-        </div>
-      </div>
+
+      {% include 'familytree/_person-card.html' with person=owner %}
       <div id="spouse-container">
         {% if owner.partner %}
           <a href="{% url 'family_view' owner.id %}?view=partner" class="btn btn-outline-success">Display Partner</a>
@@ -50,6 +49,7 @@
         {% endif %}
       </div>
     </div>
+
     <div id="children-container">
       {% if owner.children.all|length > 0 %}
         <a href="{% url 'family_view' owner.id %}?view=children" class="btn btn-outline-success">Children</a>
@@ -59,9 +59,9 @@
       {% endif %}
     </div>
   {% else %}
-    <div id="no-owner-container">
-      <p>Please register yourself first.</p>
-      <a href="{% url 'add_self' %}" class="btn btn-outline-success">Add Family Member</a>
-    </div>
+  <div id="no-owner-container">
+    <p>Please register yourself first.</p>
+    <a href="{% url 'add_self' %}" class="btn btn-outline-success">Add Family Member</a>
+  </div>
   {% endif %}
 {% endblock %}

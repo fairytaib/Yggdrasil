@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <h2>Viewing: {{ view_mode|title }}</h2>
+
+  {% if persons %}
+    {% for person in persons %}
+      {% include "familytree/_person_card.html" with person=person %}
+    {% endfor %}
+  {% else %}
+    <p>No {{ view_mode }} available.</p>
+  {% endif %}
+
+  <hr>
+
+  <h3>Current POV: {{ owner.first_name }} {{ owner.last_name }}</h3>
+  {% include "familytree/_person_card.html" with person=owner %}
+{% endblock %}

@@ -157,25 +157,16 @@ def family_view(request, person_id):
     context = {
         "owner": person,
         "view_mode": view_mode,
+        "persons": [],
     }
 
-    if view_mode == "partner":
-        context["partner"] = person.partner
-        return render(request, "familytree/view-partner.html", context)
+    if view_mode == "partner" and person.partner:
+        context["persons"] = [person.partner]
     elif view_mode == "parents":
-        context["parents"] = person.parents.all()
-        return render(request, "familytree/view-parents.html", context)
+        context["persons"] = person.parents.all()
     elif view_mode == "children":
-        context["children"] = person.children.all()
-        return render(request, "familytree/view-children.html", context)
+        context["persons"] = person.children.all()
     elif view_mode == "siblings":
-        parents = person.parents.all()
-        siblings = Person.objects.filter(
-            parents__in=parents
-            ).exclude(id=person.id).distinct()
-        context["siblings"] = siblings
-        context["parents"] = parents
-        return render(request, "familytree/view-siblings.html", context)
+        context["persons"] = person.siblings()
 
-    # Fallback to descendants view
-    return render(request, "familytree/family-list.html", context)
+    return render(request, "familytree/family-view.html", context)
