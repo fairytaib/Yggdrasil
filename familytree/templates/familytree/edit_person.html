@@ -6,20 +6,20 @@
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-  <h2>Edit Person</h2>
-  <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="mb-3">
+  <div class="container mt-5">
+    <h2>Edit Person</h2>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="mb-3">
         <label for="id_featured_image" class="form-label">Change Image:</label>
         {{ form.featured_image }}
       </div>
-    
+
       <div class="mb-3">
         <label for="id_first_name" class="form-label">First Name</label>
         {{ form.first_name }}
       </div>
-    
+
       <div class="mb-3">
         <label for="id_last_name" class="form-label">Last Name</label>
         {{ form.last_name }}
@@ -40,9 +40,11 @@
         {{ form.bio }}
       </div>
 
-    <button type="submit" class="btn btn-success">Save Changes</button>
-    <a href="{% url 'delete_person' person.id %}" class="btn btn-danger mt-3">Delete Person</a>
-    <a href="{% url 'family_view' person.id %}" class="btn btn-secondary">Cancel</a>
-  </form>
-</div>
+      <button type="submit" class="btn btn-success">Save Changes</button>
+      {% if person.owner == request.user %}
+        <a href="{% url 'delete_person' person.id %}" class="btn btn-danger">Delete</a>
+      {% endif %}
+      <a href="{% url 'family_view' person.id %}" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
 {% endblock %}

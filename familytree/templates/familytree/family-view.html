@@ -8,42 +8,49 @@
 {% block content %}
   {% if owner %}
     <div id="parents-container">
-      {% if owner.parents.all|length == 1 %}
+      <div id="parents-list" style="display: none; margin-top: 1rem;">
+        {% for parent in owner.parents.all %}
+          {% include 'familytree/_person_card.html' with person=parent %}
+        {% endfor %}
+      </div>
 
-        {% if view_mode and persons %}
-          <div class="relation-display">
-            <h4>{{ view_mode|title }} of {{ owner.first_name }}</h4>
-            
-            {% for person in persons %}
-              {% include 'familytree/_person-card.html' with person=person %}
-            {% endfor %}
-          
-          </div>
-        {% endif %}
-
+      {% if owner.parents.all|length == 0 %}
         <a href="{% url 'add_family_member' %}?relation=parent&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Parent</a>
-
-        {% elif owner.parents.all %}
-        <a href="{% url 'family_view' owner.id %}?view=parents" class="btn btn-outline-success">Parents</a>
-        {% else %}
+      {% elif owner.parents.all|length == 1 %}
+        <button class="btn btn-outline-success" onclick="toggleSection('parents-list')">Display Parents</button>
         <a href="{% url 'add_family_member' %}?relation=parent&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Parent</a>
+      {% else %}
+        <button class="btn btn-outline-success" onclick="toggleSection('parents-list')">Display Parents</button>
       {% endif %}
     </div>
 
     <div id="middle-section">
       <div id="siblings-container">
+        <div id="sibling-list" style="display: none; margin-top: 1rem;">
+          {% for sibling in owner.siblings.all %}
+            {% include 'familytree/_person_card.html' with person=sibling %}
+          {% endfor %}
+        </div>
+
         {% if owner.siblings|length > 0 %}
-          <a href="{% url 'family_view' owner.id %}?view=siblings" class="btn btn-outline-success">Siblings</a>
+          <button class="btn btn-outline-success" onclick="toggleSection('sibling-list')">Display Siblings</button>
           <a href="{% url 'add_family_member' %}?relation=sibling&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Sibling</a>
         {% else %}
           <a href="{% url 'add_family_member' %}?relation=sibling&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Sibling</a>
         {% endif %}
       </div>
 
-      {% include 'familytree/_person-card.html' with person=owner %}
-      <div id="spouse-container">
+      {% include 'familytree/_person_card.html' with person=owner %}
+
+      <div id="partner-container">
+        <div id="partner-list" style="display: none; margin-top: 1rem;">
+          {% for partner in owner.partners.all %}
+            {% include 'familytree/_person_card.html' with person=partner %}
+          {% endfor %}
+        </div>
+
         {% if owner.partner %}
-          <a href="{% url 'family_view' owner.id %}?view=partner" class="btn btn-outline-success">Display Partner</a>
+          <button class="btn btn-outline-success" onclick="toggleSection('partner-list')">Display Partner</button>
         {% else %}
           <a href="{% url 'add_family_member' %}?relation=partner&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Partner</a>
         {% endif %}
@@ -51,17 +58,26 @@
     </div>
 
     <div id="children-container">
+      <div id="children-list" style="display: none; margin-top: 1rem;">
+        {% for child in owner.children.all %}
+          {% include 'familytree/_person_card.html' with person=child %}
+        {% endfor %}
+      </div>
+
       {% if owner.children.all|length > 0 %}
-        <a href="{% url 'family_view' owner.id %}?view=children" class="btn btn-outline-success">Children</a>
+        <button class="btn btn-outline-success" onclick="toggleSection('children-list')">Display Children</button>
         <a href="{% url 'add_family_member' %}?relation=child&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Child</a>
       {% else %}
         <a href="{% url 'add_family_member' %}?relation=child&owner_id={{ owner.id }}" class="btn btn-outline-success">Add Child</a>
       {% endif %}
     </div>
   {% else %}
-  <div id="no-owner-container">
-    <p>Please register yourself first.</p>
-    <a href="{% url 'add_self' %}" class="btn btn-outline-success">Add Family Member</a>
-  </div>
+    <div id="no-owner-container">
+      <p>Please register yourself first.</p>
+      <a href="{% url 'add_self' %}" class="btn btn-outline-success">Add Family Member</a>
+    </div>
   {% endif %}
+{% endblock %}
+{% block javascript %}
+  <script src="{% static 'javascript/family_view.js' %}"></script>
 {% endblock %}

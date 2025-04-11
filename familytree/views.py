@@ -24,13 +24,10 @@ def add_self(request):
 
 @login_required
 def get_owner(request):
-    """Display the user's current person in focus with view-switching (POV)"""
     owner = Person.objects.filter(owner=request.user).first()
-
-    context = {
-        "owner": owner,
-    }
-    return render(request, 'familytree/family-list.html', context)
+    if owner:
+        return redirect("family_view", person_id=owner.id)
+    return redirect("add_self")
 
 
 @login_required
@@ -132,7 +129,7 @@ def edit_person(request, person_id):
         form = PersonForm(instance=person)
 
     return render(request,
-                  'familytree/edit-person.html',
+                  'familytree/edit_person.html',
                   {'form': form, 'person': person})
 
 
@@ -146,7 +143,7 @@ def delete_person(request, person_id):
         return redirect('get_owner')
 
     return render(request,
-                  'familytree/delete-person.html', {'person': person})
+                  'familytree/delete_person.html', {'person': person})
 
 
 @login_required
