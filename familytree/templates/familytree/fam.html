@@ -18,6 +18,6 @@
 
   <hr>
 
-  <h3>Current POV: {{ owner.first_name }} {{ owner.last_name }}</h3>
-  {% include "familytree/_person_card.html" with person=owner %}
+  <h3>Current POV: {{ person.first_name }} {{ person.last_name }}</h3>
+  {% include "familytree/_person_card.html" with person=person %}
 {% endblock %}

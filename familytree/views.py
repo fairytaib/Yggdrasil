@@ -9,6 +9,19 @@ from django.contrib.auth.decorators import login_required
 
 
 @login_required
+def get_owner(request):
+    try:
+        family_tree = FamilyTree.objects.get(owner=request.user)
+        if family_tree.main_person:
+            return redirect("family_view",
+                            person_id=family_tree.main_person.id)
+    except FamilyTree.DoesNotExist:
+        pass
+
+    return redirect("add_self")
+
+
+@login_required
 def add_self(request):
     if request.method == "POST":
         form = PersonForm(request.POST)
@@ -16,37 +29,31 @@ def add_self(request):
             person = form.save(commit=False)
             person.owner = request.user
             person.save()
+            form.save_m2m()
+
+            # Erzeuge FamilyTree und setze die Person als main_person
+            family_tree, created = FamilyTree.objects.get_or_create(
+                owner=request.user)
+            family_tree.person.add(person)
+
+            if family_tree.main_person is None:
+                family_tree.main_person = person
+                family_tree.save()
+
             return redirect("family_view", person_id=person.id)
     else:
         form = PersonForm()
-    return render(request, "familytree/add-self.html", {"form": form})
-
-
-@login_required
-def get_owner(request):
-    owner = Person.objects.filter(owner=request.user).first()
-    if owner:
-        return redirect("family_view", person_id=owner.id)
-    return redirect("add_self")
-
-
-@login_required
-def get_family_members(request):
-    """Display the users family members"""
-    family_tree = get_object_or_404(FamilyTree, owner=request.user)
-    family_members = Person.objects.filter(family_tree=family_tree)
-    return render(request, 'familytree/family-list.html',
-                  {'family_members': family_members})
+    return render(request, "familytree/add_self.html", {"form": form})
 
 
 @login_required
 def add_family_member(request):
     relation = request.GET.get('relation')
-    owner_person_id = request.GET.get('owner_id')
-    owner_person = get_object_or_404(Person, id=owner_person_id)
+    person_id = request.GET.get('person_id')
+    main_person = get_object_or_404(Person, id=person_id)
 
     if request.method == 'GET':
-        if relation == "sibling" and not owner_person.parents.exists():
+        if relation == "sibling" and not main_person.parents.exists():
             messages.info(
                 request,
                 """Please add at least one parent first,
@@ -55,36 +62,43 @@ def add_family_member(request):
             return redirect(
                 f"{reverse(
                     'add_family_member'
-                    )}?relation=parent&owner_id={owner_person.id}"
+                    )}?relation=parent&person_id={main_person.id}"
             )
 
     if request.method == 'POST':
-        form = PersonForm(request.POST)
+        form = PersonForm(request.POST, request.FILES)
         if form.is_valid():
-            if relation == "partner" and (owner_person.partner or person.partner):
-
+            if relation == "partner" and main_person.partner:
                 form.add_error(None, "This person already has a partner.")
-            elif relation == "parent" and owner_person.parents.count() == 2:
-
+            elif relation == "parent" and main_person == 2:
                 form.add_error(
                     None,
                     "This person has already two parents reigstered.")
             else:
-                person = form.save(commit=False)
-                person.owner = request.user
-                person.save()
+                new_person = form.save(commit=False)
+                new_person.owner = request.user
+                new_person.save()
+                form.save_m2m()
+
+                family_tree, created = FamilyTree.objects.get_or_create(
+                    owner=request.user)
+                family_tree.person.add(new_person)
+
+                if family_tree.main_person is None:
+                    family_tree.main_person = new_person
+                    family_tree.save()
 
                 if relation == "parent":
-                    owner_person.parents.add(person)
+                    main_person.parents.add(new_person)
                 elif relation == "child":
-                    person.parents.add(owner_person)
+                    new_person.parents.add(main_person)
                 elif relation == "partner":
-                    owner_person.partner = person
-                    owner_person.save()
-                    person.partner = owner_person
-                    person.save()
+                    main_person.partner = new_person
+                    main_person.save()
+                    new_person.partner = main_person
+                    new_person.save()
                 elif relation == "sibling":
-                    if not owner_person.parents.exists():
+                    if not main_person.parents.exists():
                         messages.error(
                             request,
                             "Please tell us about your parents first."
@@ -92,21 +106,32 @@ def add_family_member(request):
                         return redirect(
                             f"{reverse(
                                 'add_family_member'
-                                )}?relation=parent&owner_id={owner_person.id}")
+                                )}?relation=parent&person_id={main_person.id}")
                     else:
-                        for parent in owner_person.parents.all():
-                            person.parents.add(parent)
+                        for parent in main_person.parents.all():
+                            new_person.parents.add(parent)
 
-                return redirect('get_owner')
+                return redirect('family_view', person_id=main_person.id)
 
+            return redirect('family_view', person_id=new_person.id)
     else:
         form = PersonForm()
 
-    return render(request, 'familytree/add-family-member.html', {
-        'form': form,
-        'relation': relation,
-        'owner_person': owner_person
-    })
+    return render(request, 'familytree/add_family_member.html', {
+                            'form': form,
+                            'relation': relation,
+                            'main_person': main_person,
+                        })
+
+
+@login_required
+def get_family_members(request):
+    """Display the users family members"""
+    family_tree = get_object_or_404(FamilyTree, owner=request.user,
+                                    main_person=request.user)
+    family_members = Person.objects.filter(family_tree=family_tree)
+    return render(request, 'familytree/family_view.html',
+                  {'family_members': family_members})
 
 
 @login_required
@@ -136,34 +161,34 @@ def edit_person(request, person_id):
 @login_required
 def delete_person(request, person_id):
     person = get_object_or_404(Person, id=person_id, owner=request.user)
+    owner_person = Person.objects.filter(owner=request.user).first()
+
+    if person.id == owner_person.id:
+        messages.error(request, "Du kannst dich selbst nicht löschen.")
+        return redirect('get_owner')
 
     if request.method == "POST":
         person.delete()
         messages.success(request, "Person was successfully deleted.")
         return redirect('get_owner')
 
-    return render(request,
-                  'familytree/delete_person.html', {'person': person})
+    return render(request, 'familytree/delete_person.html', {'person': person})
 
 
 @login_required
-def family_view(request, person_id):
+def view_family(request, person_id):
     person = get_object_or_404(Person, id=person_id, owner=request.user)
-    view_mode = request.GET.get("view")
+    family_tree = get_object_or_404(FamilyTree, owner=request.user)
 
     context = {
-        "owner": person,
-        "view_mode": view_mode,
+        "person": person,
+        "family_tree": family_tree,
         "persons": [],
     }
 
-    if view_mode == "partner" and person.partner:
-        context["persons"] = [person.partner]
-    elif view_mode == "parents":
-        context["persons"] = person.parents.all()
-    elif view_mode == "children":
-        context["persons"] = person.children.all()
-    elif view_mode == "siblings":
-        context["persons"] = person.siblings()
+    context["persons"].append(person.partner)
+    context["persons"].extend(person.parents.all())
+    context["persons"].extend(person.children.all())
+    context["persons"].extend(person.siblings())
 
-    return render(request, "familytree/family-view.html", context)
+    return render(request, "familytree/family_view.html", context)

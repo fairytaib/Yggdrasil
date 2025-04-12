@@ -41,7 +41,7 @@
       </div>
 
       <button type="submit" class="btn btn-success">Save Changes</button>
-      {% if person.owner == request.user %}
+      {% if person.person == request.user %}
         <a href="{% url 'delete_person' person.id %}" class="btn btn-danger">Delete</a>
       {% endif %}
       <a href="{% url 'family_view' person.id %}" class="btn btn-secondary">Cancel</a>

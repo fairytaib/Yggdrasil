@@ -38,15 +38,17 @@
               <li class="nav-item">
                 <a class="nav-link {% if request.path == demo_url %}active{% endif %}" aria-current="page" href="{% url 'demo' %}">Demo</a>
               </li>
-              {% if user.is_authenticated and person %}
-                {% url 'family_view' person.id as family_view_url %}
-                <li class="nav-item">
-                  <a class="nav-link {% if request.path == family_view_url %}active{% endif %}" aria-current="page" href="{{ family_view_url }}">View Family</a>
-                </li>
-              {% else %}
-                <li class="nav-item">
-                  <a class="nav-link {% if request.path == add_self_url %}active{% endif %}" aria-current="page" href="{{ add_self_url }}">Start your family tree</a>
-                </li>
+              {% if user.is_authenticated %}
+                {% if person %}
+                  {% url 'family_view' person.id as family_view_url %}
+                  <li class="nav-item">
+                    <a class="nav-link {% if request.path == family_view_url %}active{% endif %}" aria-current="page" href="{{ family_view_url }}">View Family</a>
+                  </li>
+                {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link {% if request.path == add_self_url %}active{% endif %}" aria-current="page" href="{{ add_self_url }}">Start your family tree</a>
+                  </li>
+                {% endif %}
               {% endif %}
               {% if user.is_authenticated %}
                 <li class="nav-item">

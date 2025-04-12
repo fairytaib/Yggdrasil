@@ -12,7 +12,7 @@
           {% if user.is_authenticated %}
             <h3 class="card-title mb-4 text-center">Add Family Member</h3>
             
-            <form id="commentForm" method="post">
+            <form id="commentForm" method="post" enctype="multipart/form-data">
               {% csrf_token %}
               {{ form|crispy }}
 

@@ -17,6 +17,13 @@ class FamilyTree(models.Model):
         'Person',
         related_name='persons'
         )
+    main_person = models.OneToOneField(
+        'Person',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='main_of_tree'
+    )
 
     def __str__(self):
         return f"{self.owner.username} Family Tree"
