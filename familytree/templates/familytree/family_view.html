@@ -10,7 +10,7 @@
     <div id="parents-container">
       <div id="parents-list" style="display: none; margin-top: 1rem;">
         {% for parent in person.parents.all %}
-          {% include 'familytree/_person_card.html' with person=parent %}
+          {% include 'familytree/_person_card.html' with person=parent pov_id=person.id %}
         {% endfor %}
       </div>
 
@@ -28,7 +28,7 @@
       <div id="siblings-container">
         <div id="sibling-list" style="display: none; margin-top: 1rem;">
           {% for sibling in person.siblings.all %}
-            {% include 'familytree/_person_card.html' with person=sibling %}
+            {% include 'familytree/_person_card.html' with person=sibling pov_id=person.id %}
           {% endfor %}
         </div>
 
@@ -40,12 +40,12 @@
         {% endif %}
       </div>
 
-      {% include 'familytree/_person_card.html' with person=person %}
+      {% include 'familytree/_person_card.html' with person=person pov_id=person.id %}
 
       <div id="partner-container">
         <div id="partner-list" style="display: none; margin-top: 1rem;">
           {% for partner in person.partners.all %}
-            {% include 'familytree/_person_card.html' with person=partner %}
+            {% include 'familytree/_person_card.html' with person=partner pov_id=person.id %}
           {% endfor %}
         </div>
 
@@ -60,7 +60,7 @@
     <div id="children-container">
       <div id="children-list" style="display: none; margin-top: 1rem;">
         {% for child in person.children.all %}
-          {% include 'familytree/_person_card.html' with person=child %}
+          {% include 'familytree/_person_card.html' with person=child pov_id=person.id %}
         {% endfor %}
       </div>
 

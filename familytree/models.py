@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.db.models import SET_NULL
 
 
 # Create your models here.
@@ -49,7 +50,7 @@ class Person(models.Model):
         )
 
     partner = models.ForeignKey(
-        'self', on_delete=models.CASCADE,
+        'self', on_delete=SET_NULL,
         related_name='partners', blank=True, null=True
         )
 

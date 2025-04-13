@@ -135,7 +135,7 @@ def get_family_members(request):
 
 
 @login_required
-def edit_person(request, person_id):
+def edit_person(request, pov_id, person_id):
     person = get_object_or_404(Person, id=person_id, owner=request.user)
 
     if request.method == 'POST':
@@ -143,36 +143,37 @@ def edit_person(request, person_id):
         if form.is_valid():
             form.save()
             messages.success(request, "Person updated successfully!")
-
-            # Redirect zur POV des Users, nicht zur bearbeiteten Person
-            pov = Person.objects.filter(owner=request.user).first()
-            if pov:
-                return redirect('family_view', person_id=pov.id)
-            else:
-                return redirect('add_self')
+            return redirect('family_view', person_id=pov_id)
     else:
         form = PersonForm(instance=person)
 
-    return render(request,
-                  'familytree/edit_person.html',
-                  {'form': form, 'person': person})
+    return render(request, 'familytree/edit_person.html', {
+        'form': form,
+        'person': person,
+        'pov_id': pov_id
+    })
 
 
 @login_required
-def delete_person(request, person_id):
+def delete_person(request, pov_id, person_id):
     person = get_object_or_404(Person, id=person_id, owner=request.user)
-    owner_person = Person.objects.filter(owner=request.user).first()
 
-    if person.id == owner_person.id:
-        messages.error(request, "Du kannst dich selbst nicht löschen.")
-        return redirect('get_owner')
+    is_deleting_pov = (person.id == pov_id)  # prüfen mit geladenem Objekt, sicherer
 
     if request.method == "POST":
+        if is_deleting_pov:
+            person.delete()
+            messages.success(request, "POV was deleted – returning to main view.")
+            return redirect('get_owner')  # nicht mehr zu gelöschtem POV weiterleiten
+
         person.delete()
         messages.success(request, "Person was successfully deleted.")
-        return redirect('get_owner')
+        return redirect('family_view', person_id=pov_id)
 
-    return render(request, 'familytree/delete_person.html', {'person': person})
+    return render(request, 'familytree/delete_person.html', {
+        'person': person,
+        'pov_id': pov_id
+    })
 
 
 @login_required

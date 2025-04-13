@@ -41,10 +41,8 @@
       </div>
 
       <button type="submit" class="btn btn-success">Save Changes</button>
-      {% if person.person == request.user %}
-        <a href="{% url 'delete_person' person.id %}" class="btn btn-danger">Delete</a>
-      {% endif %}
-      <a href="{% url 'family_view' person.id %}" class="btn btn-secondary">Cancel</a>
+      <a href="{% url 'delete_person' pov_id person.id %}" class="btn btn-outline-danger">Delete</a>
+      <a href="{% url 'family_view' pov_id %}" class="btn btn-secondary">Cancel</a>
     </form>
   </div>
 {% endblock %}
