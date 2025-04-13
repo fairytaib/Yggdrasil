@@ -15,4 +15,6 @@ urlpatterns = [
         views.view_family,
         name='family_view'
         ),
+    path("view_details/<int:person_id>/",
+         views.view_details, name="view_details"),
 ]

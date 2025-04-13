@@ -193,3 +193,14 @@ def view_family(request, person_id):
     context["persons"].extend(person.siblings())
 
     return render(request, "familytree/family_view.html", context)
+
+
+@login_required
+def view_details(request, person_id):
+    person = get_object_or_404(Person, id=person_id, owner=request.user)
+
+    context = {
+        "person": person,
+    }
+
+    return render(request, "familytree/view_details.html", context)

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div class="person-container">
+    {% if person %}
+      {% if 'placeholder' in person.featured_image.url %}
+        <img class="card-img-top profile-image" src="{% static 'images/default-image.png' %}" alt="placeholder image" />
+      {% else %}
+        <img class="card-img-top profile-image" src="{{ person.featured_image.url }}" alt="{{ person.first_name }}" />
+      {% endif %}
+      <p>{{ person.first_name }}</p>
+      <p>{{ person.last_name }}</p>
+      <p>{{ person.birth_date }}</p>
+      {% if person.death_date %}
+        <p>{{ person.death_date }}</p>
+      {% endif %}
+      <p>{{ person.bio }}</p>
+      <p>Children</p>
+      <ul>
+        {% for child in person.children.all %}
+          <li>{{ child.first_name }} {{ child.last_name }}</li>
+        {% endfor %}
+      </ul>
+      {% if person.partner %}
+        <p>Partner: {{ person.partner.first_name }} {{ person.partner.last_name }}</p>
+      {% else %}
+        <p>No partner yet</p>
+      {% endif %}
+    {% endif %}
+  </div>
+{% endblock %}

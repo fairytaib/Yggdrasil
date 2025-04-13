@@ -136,7 +136,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 LOGIN_REDIRECT_URL = '/family_view/'
 
-ACCOUNT_SIGNUP_REDIRECT_URL = '/family_view/add_self/'
+ACCOUNT_SIGNUP_REDIRECT_URL = '/'
 
 
 # Internationalization
