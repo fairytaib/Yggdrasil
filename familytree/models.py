@@ -5,12 +5,10 @@ from django.db.models import SET_NULL
 import pycountry
 from multiselectfield import MultiSelectField
 
+
 COUNTRY_CHOICES = [
     (country.alpha_2, country.name) for country in pycountry.countries
     ]
-
-
-# Create your models here.
 
 
 class FamilyTree(models.Model):
@@ -54,7 +52,6 @@ class Person(models.Model):
         null=True,
         verbose_name="Country of Birth"
         )
-    nationality = models.CharField(max_length=100, blank=True)
     language = MultiSelectField(
         choices=COUNTRY_CHOICES,
         blank=True,
