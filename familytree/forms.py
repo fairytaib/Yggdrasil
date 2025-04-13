@@ -4,18 +4,20 @@ from datetime import date
 from django.core.exceptions import ValidationError
 from PIL import Image
 
+
 class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
         fields = (
             'featured_image', 'first_name', 'last_name',
-            'birth_place', 'birth_country', 'nationality',
+            'birth_place', 'birth_country',
             'language', 'occupation', 'hobbies', 'nickname',
             'birth_date', 'death_date', 'bio'
         )
 
         widgets = {
-            'featured_image': forms.FileInput(attrs={'class': 'form-control-file'}),
+            'featured_image': forms.FileInput(
+                attrs={'class': 'form-control-file'}),
             'birth_date': forms.DateInput(attrs={'type': 'date'}),
             'death_date': forms.DateInput(attrs={'type': 'date'}),
             'language': forms.SelectMultiple(attrs={'class': 'form-control'}),
@@ -44,19 +46,19 @@ class PersonForm(forms.ModelForm):
     def clean_featured_image(self):
         image = self.cleaned_data.get('featured_image')
 
-        if image:
-            try:
-                # Prüfe, ob es sich um ein valides Bild handelt
-                img = Image.open(image)
-                img.verify()
-            except Exception:
-                raise ValidationError("Uploaded file is not a valid image.")
+        if not image or not hasattr(image, 'file') or image.size == 0:
+            return None
 
-            # Optional: erlaubte Formate beschränken
-            allowed_types = ['jpeg', 'png', 'gif']
-            if img.format.lower() not in allowed_types:
-                raise ValidationError(
-                    f"Only {', '.join(allowed_types)} images are allowed.")
+        try:
+            img = Image.open(image)
+            img.verify()
+        except Exception:
+            raise ValidationError("Uploaded file is not a valid image.")
+
+        allowed_types = ['jpeg', 'png', 'gif', 'jpg', 'webp']
+        if img.format.lower() not in allowed_types:
+            raise ValidationError(
+                f"Only {', '.join(allowed_types)} images are allowed.")
 
         return image
 
