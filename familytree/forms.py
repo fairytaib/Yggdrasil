@@ -3,6 +3,16 @@ from .models import Person
 from datetime import date
 from django.core.exceptions import ValidationError
 from PIL import Image
+import re
+
+
+def validate_name_field(value, field_label="This field"):
+    """Validates a name-like field: no numbers or special characters."""
+    pattern = r"^[a-zA-ZäöüÄÖÜß'\- ]+$"
+    if not re.match(pattern, value):
+        raise ValidationError(
+            f"{field_label} must not contain numbers or special characters.")
+    return value
 
 
 class PersonForm(forms.ModelForm):
@@ -78,3 +88,27 @@ class PersonForm(forms.ModelForm):
             raise forms.ValidationError(
                 "Death date cannot be in the future.")
         return death_date
+
+    def clean_first_name(self):
+        first_name = self.cleaned_data.get('first_name')
+        return validate_name_field(first_name, "First name")
+
+    def clean_last_name(self):
+        last_name = self.cleaned_data.get('last_name')
+        return validate_name_field(last_name, "Last name")
+
+    def birth_place(self):
+        birth_place = self.cleaned_data.get('birth_place')
+        return validate_name_field(birth_place, "Birth place")
+
+    def clean_occupation(self):
+        occupation = self.cleaned_data.get('occupation')
+        return validate_name_field(occupation, "Occupation")
+
+    def clean_hobbies(self):
+        hobbies = self.cleaned_data.get('hobbies')
+        return validate_name_field(hobbies, "Hobbies")
+
+    def clean_nickname(self):
+        nickname = self.cleaned_data.get('nickname')
+        return validate_name_field(nickname, "Nickname")
