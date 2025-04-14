@@ -8,8 +8,10 @@
   {% endif %}
   <div class="person-info">
     <p>Name: {{ person.first_name }} {{ person.last_name }}</p>
-    <p>Birthday: {{ person.birth_date }}</p>
-  </div>
+    {% if person.birth_date %}
+      <p>Birthday: {{ person.birth_date }}</p>
+    {% endif %}
+    </div>
   <a href="{% url 'view_details' person.id %}" class="btn btn-outline-primary">View Details</a>
   <a href="{% url 'edit_person' pov_id person.id %}" class="btn btn-outline-primary">Edit Person</a>
   {% if person.id != pov_id %}
