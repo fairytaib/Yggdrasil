@@ -1,6 +1,50 @@
+:root {
+    --primary-color: #ae8c1a;
+}
+
 .logo-image {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     margin-bottom: 10px;
+}
+
+.navbar {
+    background-color: rgba(255, 248, 230, 0.9);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Merriweather', serif;
+}
+
+.navbar a {
+    color: #4B3B2A !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: var(--primary-color) !important;
+    text-decoration: underline;
+}
+
+footer {
+    background-color: rgba(255, 248, 230, 0.95);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    font-size: 0.95rem;
+    color: #4B3B2A;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 3rem;
+}
+
+footer a {
+    color: #b66a3b;
+    margin: 0 0.5rem;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }

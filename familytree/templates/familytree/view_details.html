@@ -9,7 +9,7 @@
   <div class="person-container">
     {% if person %}
       {% if 'placeholder' in person.featured_image.url %}
-      <img class="card-img-top profile-image" src="{% static 'images/default-image.png' %}" alt="placeholder image" />
+      <img class="card-img-top profile-image" src="{% static 'images/user_default_images/default-image.png.png' %}" alt="placeholder image" />
       {% else %}
         <img class="card-img-top profile-image" src="{{ person.featured_image.url }}" alt="{{ person.first_name }}" />
       {% endif %}

@@ -32,7 +32,7 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/yggdrasil_logo.png' %}" alt="Yggdrasil Homepage" class="logo-image" /></a>
+          <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logos/yggdrasil_logo.png' %}" alt="Yggdrasil Homepage" class="logo-image" /></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
           <div class="collapse navbar-collapse" id="navbarText">
@@ -45,11 +45,11 @@
                 <a class="nav-link {% if request.path == demo_url %}active{% endif %}" href="{% url 'demo' %}">Demo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% if request.path == faq %}active{% endif %}" href="{% url 'faq' %}">FAQ</a>
+                <a class="nav-link {% if request.path == people_of_history_url %}active{% endif %}" href="{{ people_of_history_url }}">People of History</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% if request.path == people_of_history_url %}active{% endif %}" href="{{ people_of_history_url }}">People of History</a>
-              </li>               
+                <a class="nav-link {% if request.path == faq %}active{% endif %}" href="{% url 'faq' %}">FAQ</a>
+              </li>
               {% if user.is_authenticated %}
                 {% if person %}
                   {% url 'family_view' person.id as family_view_url %}
