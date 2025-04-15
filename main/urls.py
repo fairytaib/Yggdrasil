@@ -30,9 +30,13 @@ urlpatterns = [
          name="datenschutz"),
     path("demo/",
          TemplateView.as_view(template_name="demo.html"), name="demo"),
-
+    path("faq/",
+         TemplateView.as_view(template_name="faq.html"), name="faq"),
     path("impressum/",
          TemplateView.as_view(template_name="impressum.html"),
          name="impressum"),
     path("family_view/", include("familytree.urls")),
+    path('people_of_history/',
+         include("peopleOfHistory.urls"),
+         name="people_of_history"),
 ]
