@@ -7,6 +7,7 @@
 {% endblock %}
 {% block content %}
   {% if person %}
+    {% comment %}Display Parents{% endcomment %}
     <div id="parents-container">
       <div id="parents-list" style="display: none; margin-top: 1rem;">
         {% for parent in person.parents.all %}
@@ -23,7 +24,7 @@
         <button class="btn btn-outline-success" onclick="toggleSection('parents-list')">Display Parents</button>
       {% endif %}
     </div>
-
+    {% comment %}Display Siblings{% endcomment %}
     <div id="middle-section">
       <div id="siblings-container">
         <div id="sibling-list" style="display: none; margin-top: 1rem;">
@@ -39,9 +40,9 @@
           <a href="{% url 'add_family_member' %}?relation=sibling&person_id={{ person.id }}" class="btn btn-outline-success">Add Sibling</a>
         {% endif %}
       </div>
-
+      {% comment %}Display Pov-Person{% endcomment %}
       {% include 'familytree/_person_card.html' with person=person pov_id=person.id %}
-
+      {% comment %}Display Partner{% endcomment %}
       <div id="partner-container">
         <div id="partner-list" style="display: none; margin-top: 1rem;">
           {% for partner in person.partners.all %}
@@ -57,6 +58,7 @@
       </div>
     </div>
 
+    {% comment %}Display Children{% endcomment %}
     <div id="children-container">
       <div id="children-list" style="display: none; margin-top: 1rem;">
         {% for child in person.children.all %}
@@ -71,6 +73,7 @@
         <a href="{% url 'add_family_member' %}?relation=child&person_id={{ person.id }}" class="btn btn-outline-success">Add Child</a>
       {% endif %}
     </div>
+    {% comment %}Redirect to add self if Person doesnt exist{% endcomment %}
   {% else %}
     <div id="no-person-container">
       <p>Please register yourself first.</p>
@@ -78,6 +81,7 @@
     </div>
   {% endif %}
 {% endblock %}
+{% comment %}JavaScript for toggling sections{% endcomment %}
 {% block javascript %}
   <script src="{% static 'javascript/family_view.js' %}"></script>
 {% endblock %}
