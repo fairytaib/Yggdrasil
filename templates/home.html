@@ -1,11 +1,94 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 {% block extra_css %}
+
 {% endblock %}
 
 {% block content %}
-  <div class="container mt-5 text-center">
-    <h1>Welcome to Startview</h1>
-    <p>This will be eddited later on.</p>
+  <div class="container text-center hero-section">
+    <h1 class="hero-title">Welcome to Yggdrasil</h1>
+    <p class="hero-subtitle">
+      Discover your roots. Preserve your story. <br />
+      A private space to build your family tree — and walk through it.
+    </p>
+    <a href="{% url 'account_signup' %}" class="btn btn-primary hero-btn">Start Your Journey</a>
+  </div>
+  <div class="container my-5 py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-10 text-center">
+        <h2 class="mb-4">What is Yggdrasil?</h2>
+        <p class="lead">
+          In Norse mythology, <strong>Yggdrasil</strong> is the great Tree of Life — its roots reach into the past, its branches stretch toward the future.
+        </p>
+        <p>Inspired by this timeless symbol, Yggdrasil is a digital space where you can explore your own family story — one connection, one memory, one relationship at a time.</p>
+        <p>Whether you're tracing your lineage, preserving stories for future generations, or simply mapping out the people who shaped your life — Yggdrasil gives you a clean, private, and intuitive way to visualize your family tree.</p>
+      </div>
+    </div>
+  </div>
+  <div class="container my-5 py-5 bg-light rounded">
+    <div class="row text-center mb-4">
+      <div class="col">
+        <h2>Explore the Features</h2>
+        <p class="text-muted">Simple. Private. Beautifully connected.</p>
+      </div>
+    </div>
+
+    <div class="row text-center">
+      <div class="col-md-3 mb-4">
+        <div>
+          <i class="bi bi-diagram-3-fill" style="font-size: 2rem;"></i>
+          <h5 class="mt-2">Visual Tree</h5>
+          <p class="text-muted">See your family as a living, branching structure — clean and focused.</p>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div>
+          <i class="bi bi-person-lock" style="font-size: 2rem;"></i>
+          <h5 class="mt-2">Privacy First</h5>
+          <p class="text-muted">Your data stays yours. No public sharing, no exposure.</p>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div>
+          <i class="bi bi-arrow-left-right" style="font-size: 2rem;"></i>
+          <h5 class="mt-2">Switch Perspectives</h5>
+          <p class="text-muted">Jump between generations. Explore through any family member's view.</p>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div>
+          <i class="bi bi-link-45deg" style="font-size: 2rem;"></i>
+          <h5 class="mt-2">Breadcrumb Navigation</h5>
+          <p class="text-muted">Never lose track. Move through the tree with one click.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row text-center mt-4">
+      <div class="col">
+        <a href="{% url 'demo' %}" class="btn btn-outline-primary btn-lg px-5">Try the Demo</a>
+        <p class="text-muted mt-2" style="font-size: 0.9rem;">No sign-up needed. Just explore.</p>
+      </div>
+    </div>
+  </div>
+  <div class="container my-5 py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-10 text-center">
+        <h2 class="mb-4">Why it Matters</h2>
+        <p class="lead mb-4">We live fast. We move cities. We lose names, faces, stories.</p>
+        <p class="mb-3">But behind every one of us is a quiet forest of lives that shaped our own. Parents, siblings, distant cousins. Joys, losses, migrations, hopes.</p>
+        <p class="mb-3">
+          <strong>Yggdrasil</strong> is a place to remember, to reflect, to reconnect. A place to preserve the story of your family — not for algorithms, not for strangers, but for yourself and those who come after you.
+        </p>
+        <p class="text-muted fst-italic mt-4">"We don't inherit the past. We carry it forward."</p>
+      </div>
+    </div>
+  </div>
+  <div class="container my-5 py-5 text-center">
+    <h2 class="mb-4">Start your Tree Today</h2>
+    <p class="lead mb-4">Your story matters. And it begins with a single connection.</p>
+    <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg px-5 me-3">Create an Account</a>
+    <a href="{% url 'demo' %}" class="btn btn-outline-secondary btn-lg px-5">Explore the Demo</a>
+    <p class="text-muted mt-3" style="font-size: 0.9rem;">No commitment. Just curiosity.</p>
   </div>
 {% endblock %}
