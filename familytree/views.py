@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def get_owner(request):
+    """Redirect to the main person of the family tree."""
     try:
         family_tree = FamilyTree.objects.get(owner=request.user)
         if family_tree.main_person:
@@ -23,6 +24,7 @@ def get_owner(request):
 
 @login_required
 def add_self(request):
+    """Add the main person to the family tree."""
     if request.method == "POST":
         form = PersonForm(request.POST)
         if form.is_valid():
@@ -48,6 +50,7 @@ def add_self(request):
 
 @login_required
 def add_family_member(request):
+    """Add a family member to the family tree."""
     relation = request.GET.get('relation')
     person_id = request.GET.get('person_id')
     main_person = get_object_or_404(Person, id=person_id)
@@ -136,6 +139,7 @@ def get_family_members(request):
 
 @login_required
 def edit_person(request, pov_id, person_id):
+    """Edit a person in the family tree."""
     person = get_object_or_404(Person, id=person_id, owner=request.user)
 
     if request.method == 'POST':
@@ -156,9 +160,10 @@ def edit_person(request, pov_id, person_id):
 
 @login_required
 def delete_person(request, pov_id, person_id):
+    """Delete a person from the family tree."""
     person = get_object_or_404(Person, id=person_id, owner=request.user)
 
-    is_deleting_pov = (person.id == pov_id)  # prüfen mit geladenem Objekt, sicherer
+    is_deleting_pov = (person.id == pov_id)
 
     if request.method == "POST":
         if is_deleting_pov:
@@ -178,6 +183,7 @@ def delete_person(request, pov_id, person_id):
 
 @login_required
 def view_family(request, person_id):
+    """Display the family tree of a person."""
     person = get_object_or_404(Person, id=person_id, owner=request.user)
     family_tree = get_object_or_404(FamilyTree, owner=request.user)
 
@@ -197,6 +203,7 @@ def view_family(request, person_id):
 
 @login_required
 def view_details(request, person_id):
+    """Display the details of a person."""
     person = get_object_or_404(Person, id=person_id, owner=request.user)
 
     context = {

@@ -8,8 +8,10 @@ urlpatterns = [
         views.add_family_member, name="add_family_member"
         ),
     path('add_self/', views.add_self, name='add_self'),
-    path('pov/<int:pov_id>/delete/<int:person_id>/', views.delete_person, name='delete_person'),
-    path('pov/<int:pov_id>/edit/<int:person_id>/', views.edit_person, name='edit_person'),
+    path('pov/<int:pov_id>/delete/<int:person_id>/',
+         views.delete_person, name='delete_person'),
+    path('pov/<int:pov_id>/edit/<int:person_id>/',
+         views.edit_person, name='edit_person'),
     path(
         'family_view/<int:person_id>/',
         views.view_family,
