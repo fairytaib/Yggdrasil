@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
+{% block form_media %}
+  {{ form.media }}
+{% endblock %}
 {% block content %}
   <div class="container mt-5 text-center">
     <h2>Tell us about you!</h2>
-    <form method="post">
+    <form id="person-Form" method="post" enctype="multipart/form-data">
       {% csrf_token %}
-      {{ form.as_p }}
+      {{ form|crispy }}
       <button type="submit" class="btn btn-primary">Save</button>
     </form>
   </div>
