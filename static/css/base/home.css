@@ -59,7 +59,7 @@
 }
 
 #end-container{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/static/images/backgrounds/home/roots.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/static/images/backgrounds/home/roots.png');
     backdrop-filter: blur(8px);
     background-size: cover;
     background-repeat: no-repeat;
