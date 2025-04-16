@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url('/static/images/backgrounds/familytree/seed.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    font-family: 'Merriweather', serif;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.98);
+    border-radius: 20px;
+    box-shadow: 0 12px 24px rgba(100, 80, 50, 0.1);
+    border-bottom: 6px solid #8e6f3e;
+}
+
+.card-title {
+    color: #5d432c;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #a87d4c;
+    border-color: #a87d4c;
+}
+
+.btn-primary:hover {
+    background-color: #8e6f3e;
+    border-color: #8e6f3e;
+}
+
+.btn-secondary {
+    background-color: #d8c3a5;
+    border-color: #d8c3a5;
+    color: #4a3b2a;
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+    border-radius: 8px;
+    border: 1px solid #c9b79e;
+    padding: 0.5rem;
+}
