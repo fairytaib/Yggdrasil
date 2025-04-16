@@ -2,55 +2,71 @@
 {% load static %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/familytree/view_details.css' %}" />
 {% endblock %}
 
 {% block content %}
-  <div class="person-container">
+  <div class="detail-container">
     {% if person %}
-      {% if 'placeholder' in person.featured_image.url %}
-      <img class="card-img-top profile-image" src="{% static 'images/user_default_images/default-image.png.png' %}" alt="placeholder image" />
-      {% else %}
-        <img class="card-img-top profile-image" src="{{ person.featured_image.url }}" alt="{{ person.first_name }}" />
-      {% endif %}
+      <div class="detail-card">
+        <div class="text-center mb-4">
+          {% if 'placeholder' in person.featured_image.url %}
+            <img class="detail-image" src="{% static 'images/user_default_images/default-image.png' %}" alt="placeholder image" />
+          {% else %}
+            <img class="detail-image" src="{{ person.featured_image.url }}" alt="{{ person.first_name }}" />
+          {% endif %}
+          <h2 class="person-name mt-3">{{ person.first_name }} {{ person.last_name }}</h2>
+        </div>
 
-      <p><strong>Name:</strong> {{ person.first_name }} {{ person.last_name }}</p>
-
-      {% if person.nickname %}
-        <p><strong>Nickname:</strong> {{ person.nickname }}</p>
-      {% endif %}
-
-      {% if person.birth_place %}
-        <p><strong>Birthplace:</strong> {{ person.birth_place }}</p>
-      {% endif %}
-
-      {% if person.birth_country %}
-        <p><strong>Birth Country:</strong> {{ person.get_birth_country_display }}</p>
-      {% endif %}
-
-      {% if person.language %}
-        <p><strong>Languages:</strong> {{ person.get_language_display }}</p>
-      {% endif %}
-
-      {% if person.birth_date %}
-        <p><strong>Birth Date:</strong> {{ person.birth_date }}</p>
-      {% endif %}
-
-      {% if person.death_date %}
-        <p><strong>Death Date:</strong> {{ person.death_date }}</p>
-      {% endif %}
-
-      {% if person.occupation %}
-        <p><strong>Occupation:</strong> {{ person.occupation }}</p>
-      {% endif %}
-
-      {% if person.hobbies %}
-        <p><strong>Hobbies:</strong> {{ person.hobbies }}</p>
-      {% endif %}
-
-      {% if person.bio %}
-        <p><strong>Bio:</strong> {{ person.bio }}</p>
-      {% endif %}
+        <div class="detail-info">
+          {% if person.nickname %}
+            <p>
+              <strong>Nickname:</strong> {{ person.nickname }}
+            </p>
+          {% endif %}
+          {% if person.birth_place %}
+            <p>
+              <strong>Birthplace:</strong> {{ person.birth_place }}
+            </p>
+          {% endif %}
+          {% if person.birth_country %}
+            <p>
+              <strong>Birth Country:</strong> {{ person.get_birth_country_display }}
+            </p>
+          {% endif %}
+          {% if person.language %}
+            <p>
+              <strong>Languages:</strong> {{ person.get_language_display }}
+            </p>
+          {% endif %}
+          {% if person.birth_date %}
+            <p>
+              <strong>Birth Date:</strong> {{ person.birth_date }}
+            </p>
+          {% endif %}
+          {% if person.death_date %}
+            <p>
+              <strong>Death Date:</strong> {{ person.death_date }}
+            </p>
+          {% endif %}
+          {% if person.occupation %}
+            <p>
+              <strong>Occupation:</strong> {{ person.occupation }}
+            </p>
+          {% endif %}
+          {% if person.hobbies %}
+            <p>
+              <strong>Hobbies:</strong> {{ person.hobbies }}
+            </p>
+          {% endif %}
+          {% if person.bio %}
+            <div class="bio-section mt-4">
+              <h5>Bio</h5>
+              <p>{{ person.bio }}</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
     {% endif %}
   </div>
 {% endblock %}

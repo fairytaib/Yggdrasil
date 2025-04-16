@@ -2,22 +2,6 @@
     --primary-color: #ae8c1a;
 }
 
-html,
-body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-}
-
-.wrapper {
-    flex: 1;
-}
-
 .logo-image {
     width: 50px;
     height: 50px;
@@ -46,15 +30,13 @@ body {
 
 footer {
     background-color: rgba(255, 248, 230, 0.95);
-    padding: 1rem 1rem;
+    padding: 1.5rem 1rem;
     text-align: center;
     font-family: 'Merriweather', serif;
     font-size: 0.95rem;
     color: #4B3B2A;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     margin-top: 3rem;
-    box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
-    border-top: 1px solid #ddd5c5;
 }
 
 footer a {

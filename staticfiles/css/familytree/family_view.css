@@ -4,10 +4,6 @@
     box-sizing: border-box;
 }
 
-body {
-    height: 100vh;
-    background: linear-gradient(to bottom, #fdf7ec, #f3e5c1);
-}
 
 #parents-container, #children-container{
     display: flex;

@@ -1,20 +1,23 @@
 {% load static %}
-
-<div class="person-container">
+<div class="person-card shadow-sm">
   {% if "placeholder" in person.featured_image.url %}
-    <img class="card-img-top profile-image" src="{% static 'images/user_default_images/user_default_images/user_default_images/user_default_images/default-image.png.png.png.png.png' %}" alt="placeholder image" />
+    <img class="profile-image" src="{% static 'images/user_default_images/default-image.png' %}" alt="placeholder image" />
   {% else %}
-    <img class="card-img-top profile-image" src="{{ person.featured_image.url }}" alt="{{ person.first_name }}" />
+    <img class="profile-image" src="{{ person.featured_image.url }}" alt="{{ person.first_name }}" />
   {% endif %}
-  <div class="person-info">
-    <p>Name: {{ person.first_name }} {{ person.last_name }}</p>
+
+  <div class="person-info text-center">
+    <h5>{{ person.first_name }} {{ person.last_name }}</h5>
     {% if person.birth_date %}
-      <p>Birthday: {{ person.birth_date }}</p>
+      <p class="text-muted">Born: {{ person.birth_date }}</p>
     {% endif %}
-    </div>
-  <a href="{% url 'view_details' person.id %}" class="btn btn-outline-primary">View Details</a>
-  <a href="{% url 'edit_person' pov_id person.id %}" class="btn btn-outline-primary">Edit Person</a>
-  {% if person.id != pov_id %}
-    <a href="{% url 'family_view' person.id %}" class="btn btn-outline-primary">Change POV</a>
-  {% endif %}
+  </div>
+
+  <div class="person-actions">
+    <a href="{% url 'view_details' person.id %}" class="btn btn-outline-primary btn-sm">View Details</a>
+    <a href="{% url 'edit_person' pov_id person.id %}" class="btn btn-outline-primary btn-sm">Edit</a>
+    {% if person.id != pov_id %}
+      <a href="{% url 'family_view' person.id %}" class="btn btn-outline-secondary btn-sm">Change POV</a>
+    {% endif %}
+  </div>
 </div>

@@ -1,17 +1,47 @@
-.person-container{
-    min-width: 50%;
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #f0f0f0;
-    margin: 20px;
-}
-
-.profile-image{
+.person-card {
+    background-color: #f5ebd4;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin: 1rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    transition: transform 0.2s ease;
+  }
+  
+  .person-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .profile-image {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    margin-bottom: 10px;
-}
+    object-fit: cover;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .person-info h5 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .person-info p {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 1rem;
+  }
+  
+  .person-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .person-actions a {
+    border-radius: 2rem;
+    padding: 0.4rem 1rem;
+  }
+  
