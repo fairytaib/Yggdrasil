@@ -73,7 +73,7 @@ def add_family_member(request):
         if form.is_valid():
             if relation == "partner" and main_person.partner:
                 form.add_error(None, "This person already has a partner.")
-            elif relation == "parent" and main_person == 2:
+            elif relation == "parent" and main_person.parents.count() >= 2:
                 form.add_error(
                     None,
                     "This person has already two parents reigstered.")
