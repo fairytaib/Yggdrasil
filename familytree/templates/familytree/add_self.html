@@ -13,7 +13,7 @@
       <div class="col-md-6 col-lg-5">
         <div class="card shadow-sm border-0">
           <div class="card-body p-4">
-            <h2 class="text-center">Tell us about you!</h2>
+            <h2 class="card-title text-center">Tell us about you!</h2>
             <form id="person-Form" method="post" enctype="multipart/form-data">
               {% csrf_token %}
               {{ form|crispy }}

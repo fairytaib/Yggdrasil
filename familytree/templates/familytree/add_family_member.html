@@ -28,9 +28,11 @@
 
                 <div class="d-grid mt-3">
                   <button id="submitButton" type="submit" class="btn btn-primary btn-lg">Submit</button>
-                  <button id="unknownParentBtn" class="btn btn-warning mt-2" type="button">
-                    Parent Unknown
-                  </button>                  
+                  {% if relation == 'parent' %}
+                    <button id="unknownParentBtn" class="btn btn-warning mt-2" type="button">
+                      Parent Unknown
+                    </button>   
+                  {% endif %}
                   <a href="{% url 'family_view' main_person.id %}" class="btn btn-secondary mt-2">Cancel</a>
                 </div>
               </form>
