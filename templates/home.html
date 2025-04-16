@@ -25,7 +25,9 @@
       </div>
     </div>
   </div>
-  <div class="container my-5 py-5 bg-light rounded">
+
+  {% comment %} Expore Features Section {% endcomment %}
+  <div class="container my-5 py-5 bg-light rounded" id="feature-section">
     <div class="row text-center mb-4">
       <div class="col">
         <h2>Explore the Features</h2>
@@ -66,7 +68,7 @@
 
     <div class="row text-center mt-4">
       <div class="col">
-        <a href="{% url 'demo' %}" class="btn btn-outline-primary btn-lg px-5">Try the Demo</a>
+        <a href="{% url 'demo' %}" class="btn bg-success btn-lg px-5">Try the Demo</a>
         <p class="text-muted mt-2" style="font-size: 0.9rem;">No sign-up needed. Just explore.</p>
       </div>
     </div>
@@ -84,11 +86,11 @@
       </div>
     </div>
   </div>
-  <div class="container my-5 py-5 text-center">
+  <div class="container my-5 py-5 text-center" id="end-container">
     <h2 class="mb-4">Start your Tree Today</h2>
     <p class="lead mb-4">Your story matters. And it begins with a single connection.</p>
     <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg px-5 me-3">Create an Account</a>
-    <a href="{% url 'demo' %}" class="btn btn-outline-secondary btn-lg px-5">Explore the Demo</a>
+    <a href="{% url 'demo' %}" class="btn btn-secondary btn-lg px-5">Explore the Demo</a>
     <p class="text-muted mt-3" style="font-size: 0.9rem;">No commitment. Just curiosity.</p>
   </div>
 {% endblock %}

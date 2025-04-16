@@ -33,7 +33,7 @@
     border-radius: 2rem;
 }
 
-#feature-section{
+#feature-section {
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/static/images/backgrounds/home/trunk.png');
     backdrop-filter: blur(8px);
     background-size: cover;
@@ -44,14 +44,36 @@
     border-radius: 1rem;
 }
 
-#feature-section h2{
-    color: white
+#feature-section h2,
+#feature-section p,
+#feature-section a {
+    color: white !important
 }
 
+#feature-section h5 {
+    color: var(--sub-color);
+}
 
 .undertitle {
     color: var(--sub-color);
 }
+
+#end-container{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/static/images/backgrounds/home/roots.png');
+    backdrop-filter: blur(8px);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    padding: 6rem 2rem;
+    border-radius: 1rem;
+}
+
+#end-container h2,
+#end-container p {
+    color: white !important
+}
+
 
 @media (max-width: 768px) {
     .hero-title {
