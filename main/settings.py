@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'multiselectfield',
+    'django_select2',
     "familytree",
     "peopleOfHistory",
 ]

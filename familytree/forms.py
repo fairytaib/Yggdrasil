@@ -1,6 +1,7 @@
 from django import forms
 from .models import Person
 from datetime import date
+from django_select2.forms import Select2MultipleWidget
 from django.core.exceptions import ValidationError
 from PIL import Image
 import re
@@ -39,7 +40,7 @@ class PersonForm(forms.ModelForm):
                 attrs={'class': 'form-control-file'}),
             'birth_date': forms.DateInput(attrs={'type': 'date'}),
             'death_date': forms.DateInput(attrs={'type': 'date'}),
-            'language': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'language': Select2MultipleWidget(attrs={'class': 'form-control'}),
         }
 
     def __init__(self, *args, **kwargs):

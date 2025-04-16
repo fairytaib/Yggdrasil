@@ -1,0 +1,47 @@
+.detail-container {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1rem;
+    background-color: #fdf7ec;
+}
+
+.detail-card {
+    background-color: white;
+    padding: 2rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    font-family: 'Merriweather', serif;
+}
+
+.detail-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.person-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.detail-info p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+}
+
+.bio-section {
+    padding-top: 1.5rem;
+    border-top: 1px solid #e3d9c4;
+}
+
+.bio-section h5 {
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}

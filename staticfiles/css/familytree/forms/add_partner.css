@@ -1,0 +1,49 @@
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+        url('/static/images/backgrounds/familytree/growing-fruits.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    font-family: 'Merriweather', serif;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.96);
+    border-radius: 18px;
+    box-shadow: 0 12px 36px rgba(0, 50, 0, 0.12);
+    border-top: 8px solid #4caf50;
+    /* grüner Akzent oben */
+}
+
+.card-title {
+    color: #2e7d32;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 1.75rem;
+}
+
+.btn-primary {
+    background-color: #43a047;
+    border-color: #43a047;
+}
+
+.btn-primary:hover {
+    background-color: #2e7d32;
+    border-color: #2e7d32;
+}
+
+.btn-secondary {
+    background-color: #a5d6a7;
+    border-color: #a5d6a7;
+    color: #1b5e20;
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+    border-radius: 8px;
+    border: 1px solid #c8e6c9;
+    padding: 0.5rem;
+}

@@ -10,6 +10,38 @@ COUNTRY_CHOICES = [
     (country.alpha_2, country.name) for country in pycountry.countries
     ]
 
+LANGUAGE_CHOICES = [
+    ('ar', 'Arabic'),
+    ('bn', 'Bengali'),
+    ('de', 'German'),
+    ('el', 'Greek'),
+    ('en', 'English'),
+    ('es', 'Spanish'),
+    ('fa', 'Persian'),
+    ('fr', 'French'),
+    ('hi', 'Hindi'),
+    ('id', 'Indonesian'),
+    ('it', 'Italian'),
+    ('ja', 'Japanese'),
+    ('jv', 'Javanese'),
+    ('ko', 'Korean'),
+    ('ms', 'Malay'),
+    ('nl', 'Dutch'),
+    ('pl', 'Polish'),
+    ('pt', 'Portuguese'),
+    ('ro', 'Romanian'),
+    ('ru', 'Russian'),
+    ('sv', 'Swedish'),
+    ('sw', 'Swahili'),
+    ('ta', 'Tamil'),
+    ('th', 'Thai'),
+    ('tr', 'Turkish'),
+    ('uk', 'Ukrainian'),
+    ('ur', 'Urdu'),
+    ('vi', 'Vietnamese'),
+    ('zh', 'Chinese'),
+]
+
 
 class FamilyTree(models.Model):
     """ A family tree model """
@@ -53,10 +85,10 @@ class Person(models.Model):
         verbose_name="Country of Birth"
         )
     language = MultiSelectField(
-        choices=COUNTRY_CHOICES,
+        choices=LANGUAGE_CHOICES,
         blank=True,
         null=True,
-        max_choices=5,
+        max_choices=15,
         max_length=50,
         verbose_name="Languages spoken"
     )
