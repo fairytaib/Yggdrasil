@@ -29,11 +29,16 @@ class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
         fields = (
-            'featured_image', 'first_name', 'last_name',
+            'featured_image', 'first_name', 'last_name', 'nickname',
+            'birth_date',
             'birth_place', 'birth_country',
-            'language', 'occupation', 'hobbies', 'nickname',
-            'birth_date', 'death_date', 'bio'
+            'language', 'occupation', 'hobbies',
+            'death_date', 'bio'
         )
+
+        labels = {
+            'featured_image': 'Profile Picture',
+        }
 
         widgets = {
             'featured_image': forms.FileInput(
