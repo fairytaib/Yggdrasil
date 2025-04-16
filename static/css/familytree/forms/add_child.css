@@ -1,0 +1,49 @@
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url('/static/images/backgrounds/familytree/offspring.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    font-family: 'Merriweather', serif;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 12px 32px rgba(0, 50, 0, 0.08);
+    border-left: 8px solid #8bc34a;
+    /* junger Spross-Grün */
+}
+
+.card-title {
+    color: #4d7c0f;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #65a30d;
+    border-color: #65a30d;
+}
+
+.btn-primary:hover {
+    background-color: #4d7c0f;
+    border-color: #4d7c0f;
+}
+
+.btn-secondary {
+    background-color: #a3d580;
+    border-color: #a3d580;
+    color: #2e4e1f;
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+    border-radius: 8px;
+    border: 1px solid #a6d4a6;
+    padding: 0.5rem;
+}

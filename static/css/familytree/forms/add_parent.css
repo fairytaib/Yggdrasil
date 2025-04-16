@@ -1,0 +1,52 @@
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url('/static/images/backgrounds/familytree/old-oak.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    font-family: 'Merriweather', serif;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.92);
+    border-radius: 16px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    color: #4a3d2f;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+
+.btn-primary {
+    background-color: #6b4e2a;
+    border-color: #6b4e2a;
+}
+
+.btn-primary:hover {
+    background-color: #5a3f20;
+    border-color: #5a3f20;
+}
+
+.btn-secondary {
+    background-color: #b59d79;
+    border-color: #b59d79;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #9e8563;
+    border-color: #9e8563;
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+}

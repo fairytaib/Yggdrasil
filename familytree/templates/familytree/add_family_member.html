@@ -1,36 +1,41 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block extra_css %}
+  {% if relation == 'parent' %}
+    <link rel="stylesheet" href="{% static 'css/familytree/forms/add_parent.css' %}" />
+  {% elif relation == 'child' %}
+    <link rel="stylesheet" href="{% static 'css/familytree/forms/add_child.css' %}" />
+  {% elif relation == 'sibling' %}
+    <link rel="stylesheet" href="{% static 'css/familytree/forms/add_sibling.css' %}" />
+  {% elif relation == 'partner' %}
+    <link rel="stylesheet" href="{% static 'css/familytree/forms/add_partner.css' %}" />
+  {% endif %}
+{% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
-<h3 class="card-title mb-4 text-center">Add {{ relation|title }}</h3>
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6 col-lg-5">
-      <div class="card shadow-sm border-0">
-        <div class="card-body p-4">
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4">
+            {% if user.is_authenticated %}
+              <h3 class="card-title mb-4 text-center">Add a {{ relation|title }}</h3>
 
-          {% if user.is_authenticated %}
-            <h3 class="card-title mb-4 text-center">Add Family Member</h3>
-            
-            <form id="person-Form" method="post" enctype="multipart/form-data">
-              {% csrf_token %}
-              {{ form|crispy }}
+              <form id="person-Form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
 
-              <div class="d-grid mt-3">
-                <button id="submitButton" type="submit" class="btn btn-primary btn-lg">
-                  Submit
-                </button>
-                <a href="{% url 'family_view' main_person.id %}" class="btn btn-secondary mt-2">Cancel</a>
-              </div>
-            </form>
-
-          {% else %}
-            <p class="text-danger text-center">Sorry, you cannot access this page.</p>
-          {% endif %}
-
+                <div class="d-grid mt-3">
+                  <button id="submitButton" type="submit" class="btn btn-primary btn-lg">Submit</button>
+                  <a href="{% url 'family_view' main_person.id %}" class="btn btn-secondary mt-2">Cancel</a>
+                </div>
+              </form>
+            {% else %}
+              <p class="text-danger text-center">Sorry, you cannot access this page.</p>
+            {% endif %}
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 {% endblock %}

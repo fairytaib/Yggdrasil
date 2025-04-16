@@ -1,0 +1,49 @@
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+        url('/static/images/backgrounds/familytree/connection.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    font-family: 'Merriweather', serif;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.96);
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(0, 50, 0, 0.1);
+    border-right: 6px solid #4e7044;
+    border-left: 6px solid #4e7044;
+}
+
+.card-title {
+    color: #2f4f2f;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 1.7rem;
+}
+
+.btn-primary {
+    background-color: #4e7044;
+    border-color: #4e7044;
+}
+
+.btn-primary:hover {
+    background-color: #3a5c33;
+    border-color: #3a5c33;
+}
+
+.btn-secondary {
+    background-color: #cce3bb;
+    border-color: #cce3bb;
+    color: #324d2f;
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+    border-radius: 8px;
+    border: 1px solid #a8caa3;
+    padding: 0.5rem;
+}
