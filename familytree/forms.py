@@ -13,11 +13,13 @@ def validate_name_field(value, field_label="This field"):
     if not value:
         return value
 
-    pattern = r"^[a-zA-ZäöüÄÖÜß'\- ]+$"
+    pattern = r"^[a-zA-ZäöüÄÖÜß',\- ]+$"
 
     if not re.match(pattern, value):
         raise ValidationError(
-            f"{field_label} must not contain numbers or special characters.")
+            f"""
+            {field_label}may only contain letters,
+            spaces, hyphens, commas, and apostrophes.""")
     return value
 
 
