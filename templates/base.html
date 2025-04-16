@@ -56,7 +56,7 @@
                   <a class="nav-link {% if request.path == faq %}active{% endif %}" href="{% url 'faq' %}">FAQ</a>
                 </li>
                 {% if user.is_authenticated %}
-                  {% if person %}
+                  {% if person and person.id %}
                     {% url 'family_view' person.id as family_view_url %}
                     <li class="nav-item">
                       <a class="nav-link {% if request.path == family_view_url %}active{% endif %}" href="{{ family_view_url }}">View Family</a>

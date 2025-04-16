@@ -168,8 +168,9 @@ def delete_person(request, pov_id, person_id):
     if request.method == "POST":
         if is_deleting_pov:
             person.delete()
-            messages.success(request, "POV was deleted – returning to main view.")
-            return redirect('get_owner')  # nicht mehr zu gelöschtem POV weiterleiten
+            messages.success(request,
+                             "POV was deleted – returning to main view.")
+            return redirect('get_owner')
 
         person.delete()
         messages.success(request, "Person was successfully deleted.")

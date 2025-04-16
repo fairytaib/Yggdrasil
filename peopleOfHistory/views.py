@@ -11,7 +11,7 @@ def person_of_the_day_view(request):
         return render(
             request,
             'peopleOfHistory/people_of_history.html',
-            {'person': None})
+            {'person_of_history': None})
 
     today_str = date.today().isoformat()  # z. B. "2025-04-15"
     hash_digest = hashlib.md5(today_str.encode()).hexdigest()
@@ -23,5 +23,5 @@ def person_of_the_day_view(request):
     return render(
         request,
         'peopleOfHistory/people_of_history.html',
-        {'person': person_of_the_day}
+        {'person_of_history': person_of_the_day}
     )
