@@ -1,5 +1,6 @@
 from . import views
 from django.urls import path
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path("", views.get_owner, name="get_owner"),
@@ -8,6 +9,8 @@ urlpatterns = [
         views.add_family_member, name="add_family_member"
         ),
     path('add_self/', views.add_self, name='add_self'),
+    path('demo/', TemplateView.as_view(
+        template_name="demo/demo_view.html"), name='demo'),
     path('pov/<int:pov_id>/delete/<int:person_id>/',
          views.delete_person, name='delete_person'),
     path('pov/<int:pov_id>/edit/<int:person_id>/',

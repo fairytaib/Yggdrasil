@@ -28,8 +28,6 @@ urlpatterns = [
     path("datenschutz/",
          TemplateView.as_view(template_name="datenschutz.html"),
          name="datenschutz"),
-    path("demo/",
-         TemplateView.as_view(template_name="demo.html"), name="demo"),
     path("faq/",
          TemplateView.as_view(template_name="faq.html"), name="faq"),
     path("impressum/",
