@@ -10,7 +10,7 @@
 {% block content %}
   <div class="container mt-5">
     <div class="text-center">
-      <h2>Edit {{ person.first_name }}</h2>
+      <h2>You are editing: {{ person.first_name }}</h2>
       {% if 'placeholder' in person.featured_image.url %}
         <img class="profile-image" src="{% static 'images/user_default_images/default-image.png' %}" alt="placeholder image" />
       {% else %}
