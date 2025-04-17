@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/base/privacy_policy.css' %}" />
+{% endblock %}
+{% block content %}
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-10 page-section">
+        <h1 class="text-center">Privacy Policy</h1>
+
+        <p>Thank you for your interest in our family tree platform. Protecting your privacy is very important to us. Below we provide information about the handling of your data.</p>
+
+        <h5>1. Data Collection and Usage</h5>
+        <p>We collect personal data only when you voluntarily provide it while registering, logging in, or using our services.</p>
+
+        <h5>2. Purpose of Data Processing</h5>
+        <p>Your data is used to enable you to build and manage your private family tree. We do not share your data with third parties.</p>
+
+        <h5>3. Cookies</h5>
+        <p>We use essential cookies for login and session management. No tracking cookies are used.</p>
+
+        <h5>4. Data Storage</h5>
+        <p>Your data is securely stored on servers within the EU. We use SSL encryption for data transmission.</p>
+
+        <h5>5. Your Rights</h5>
+        <ul>
+          <li>Right to access your data</li>
+          <li>Right to rectification or deletion</li>
+          <li>Right to data portability</li>
+        </ul>
+
+        <h5>6. Contact</h5>
+        <p>
+          If you have any questions regarding data protection, contact us at: <br />
+          <strong>info@yggdrasil-family.com</strong>
+        </p>
+
+        <p class="mt-4 text-muted text-end">Last updated: April 2025</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

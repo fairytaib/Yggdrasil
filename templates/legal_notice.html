@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/base/legal_notice.css' %}" />
+{% endblock %}
+{% block content %}
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-10 page-section">
+        <h1 class="text-center">Legal Notice</h1>
+
+        <p>
+          <strong>Information according to § 5 TMG:</strong>
+        </p>
+        <p>
+          Yggdrasil – The Tree of Family<br />
+          Owner: Max Mustermann<br />
+          Am Traubengarten 1<br />
+          60435 Frankfurt am Main<br />
+          Germany
+        </p>
+
+        <p>
+          <strong>Contact:</strong>
+        </p>
+        <p>
+          Phone: +49 (0)123 4567890<br />
+          Email: info@yggdrasil-family.com
+        </p>
+
+        <p>
+          <strong>Responsible for content according to § 55 Abs. 2 RStV:</strong>
+        </p>
+        <p>
+          Max Mustermann<br />
+          Am Traubengarten 1<br />
+          60435 Frankfurt am Main
+        </p>
+
+        <h5>Liability for Content</h5>
+        <p>We strive for accurate and timely content but cannot guarantee it fully.</p>
+
+        <h5>Liability for Links</h5>
+        <p>We are not responsible for external content linked on this site.</p>
+
+        <h5>Copyright</h5>
+        <p>All original content is protected under German copyright law.</p>
+
+        <p class="mt-4 text-muted text-end">Last updated: April 2025</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
