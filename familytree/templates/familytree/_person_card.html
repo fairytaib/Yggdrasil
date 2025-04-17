@@ -17,7 +17,7 @@
     <a href="{% url 'view_details' person.id %}" class="btn btn-outline-primary btn-sm">View Details</a>
     <a href="{% url 'edit_person' pov_id person.id %}" class="btn btn-outline-primary btn-sm">Edit</a>
     {% if person.id != pov_id %}
-      <a href="{% url 'family_view' person.id %}" class="btn btn-outline-secondary btn-sm">Change POV</a>
+      <a href="{% url 'family_view' person.id %}" class="btn btn-outline-secondary btn-sm">Change Focus</a>
     {% endif %}
   </div>
 </div>
