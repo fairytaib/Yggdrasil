@@ -6,7 +6,9 @@
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/familytree/edit_person.css' %}" />
 {% endblock %}
-
+{% block form_media %}
+  {{ form.media }}
+{% endblock %}
 {% block content %}
   <div class="container mt-5">
     <div class="text-center">
