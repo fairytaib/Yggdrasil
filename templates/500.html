@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+  <title>Fehler 500</title>
+{% endblock %}
+
+{% block content %}
+  <div class="container text-center mt-5">
+    <h1 class="display-4">Internal server error (500)</h1>
+    <p class="lead">Something has gone wrong. We are working on it!</p>
+    <div class="d-flex flex-column align-items-center">
+      <img src="{% static 'images/logos/error.png' %}" alt="error" class="img-fluid mb-3" style="max-width: 300px; height: auto; border-radius: 12px;" />
+      <a class="btn btn-primary mt-3" href="{% url 'home' %}">To the homepage</a>
+    </div>
+  </div>
+{% endblock %}

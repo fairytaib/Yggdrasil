@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Page not found – 404</title>
+{% endblock %}
+
+{% block content %}
+  <div class="container text-center mt-5">
+    <h1 class="display-4">Oops - Page not found (404)</h1>
+    <p class="lead">Oops - page not found. Maybe the page no longer exists or the link was wrong.</p>
+
+    <div class="d-flex flex-column align-items-center">
+      <img src="{% static 'images/logos/error.png' %}" alt="error" class="img-fluid mb-3" style="max-width: 300px; height: auto; border-radius: 12px;" />
+      <a class="btn btn-primary" href="{% url 'home' %}">To the homepage</a>
+    </div>
+  </div>
+{% endblock %}
