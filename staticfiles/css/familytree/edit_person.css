@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+body {
+    background-image: linear-gradient(rgba(205, 251, 142, 0.544),
+            rgba(147, 250, 96, 0.601)), url('/static/images/backgrounds/people_of_history/papyrus_background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    font-family: 'Merriweather', serif;
+}
+
+form {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.card-title {
+    text-align: center;
+    font-size: 1.8rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    color: #2e4e1f;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+    border-radius: 10px;
+    border: 1px solid #a5d6a7;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-color: #559a58;
+    border-color: #5daa5b;
+    color: white;
+    font-weight: 500;
+    border-radius: 2rem;
+    padding: 0.6rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #4caf50;
+    border-color: #4caf50;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+.btn-secondary {
+    background-color: #e8f5e9;
+    border-color: #a5d6a7;
+    color: #2e7d32;
+    border-radius: 2rem;
+    padding: 0.6rem 1.5rem;
+}
+
+.btn-danger {
+    border-radius: 2rem;
+    padding: 0.6rem 1.5rem;
+}
+
+.btn-secondary:hover {
+    background-color: #c8e6c9;
+    border-color: #81c784;
+    color: #1b5e20;
+}
