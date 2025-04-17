@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}
+  <title>Yggdrasil</title>
+{% endblock %}
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/base/home.css' %}" />
 {% endblock %}
@@ -26,7 +29,7 @@
     </div>
   </div>
 
-  {% comment %} Expore Features Section {% endcomment %}
+  {% comment %}Expore Features Section{% endcomment %}
   <div class="container my-5 py-5 bg-light rounded" id="feature-section">
     <div class="row text-center mb-4">
       <div class="col">

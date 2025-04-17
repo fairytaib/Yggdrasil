@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block title %}
+  <title>View my Family</title>
+{% endblock %}
 {% comment %}Own CSS{% endcomment %}
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/familytree/family_view.css' %}" />

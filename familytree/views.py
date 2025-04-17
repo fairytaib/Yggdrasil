@@ -33,7 +33,6 @@ def add_self(request):
             person.save()
             form.save_m2m()
 
-            # Erzeuge FamilyTree und setze die Person als main_person
             family_tree, created = FamilyTree.objects.get_or_create(
                 owner=request.user)
             family_tree.person.add(person)

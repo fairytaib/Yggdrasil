@@ -2,7 +2,9 @@
 {%load static%}
 {% load i18n %}
 
-{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+{% block title %}
+  <title>Logout</title>
+{% endblock %}
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/account/logout.css' %}" />
 {% endblock %}
