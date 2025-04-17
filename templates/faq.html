@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/base/faq.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-10 page-section">
+        <h1 class="text-center mb-4">Frequently Asked Questions</h1>
+        <p class="text-center text-muted mb-5">Here you'll find answers to the most common questions about Yggdrasil.</p>
+
+        <div class="accordion" id="faqAccordion">
+          <!-- FAQ 1 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq-heading-1"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-1" aria-expanded="true" aria-controls="faq-collapse-1">What is Yggdrasil?</button></h2>
+            <div id="faq-collapse-1" class="accordion-collapse collapse show" aria-labelledby="faq-heading-1" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">Yggdrasil is a private, interactive family tree app inspired by the Norse Tree of Life. It helps you explore your roots and visualize your family across generations.</div>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq-heading-2"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-2" aria-expanded="false" aria-controls="faq-collapse-2">Is my data public or private?</button></h2>
+            <div id="faq-collapse-2" class="accordion-collapse collapse" aria-labelledby="faq-heading-2" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">Your data is 100% private. Only you can access and edit your family tree unless you explicitly choose to share it (feature in future version).</div>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq-heading-3"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-3" aria-expanded="false" aria-controls="faq-collapse-3">Can I add adopted or step-family members?</button></h2>
+            <div id="faq-collapse-3" class="accordion-collapse collapse" aria-labelledby="faq-heading-3" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">Yes! Yggdrasil supports flexible family structures, including biological, adoptive, and step-family relationships.</div>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq-heading-4"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-4" aria-expanded="false" aria-controls="faq-collapse-4">Is it free?</button></h2>
+            <div id="faq-collapse-4" class="accordion-collapse collapse" aria-labelledby="faq-heading-4" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">Yes, the core features of Yggdrasil are free. In the future, we plan to offer optional premium features (like collaborative editing or larger storage).</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

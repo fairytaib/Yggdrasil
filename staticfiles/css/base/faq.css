@@ -1,0 +1,30 @@
+.page-section {
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 1rem;
+    padding: 3rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    font-family: 'Merriweather', serif;
+    color: #4B3B2A;
+}
+
+.page-section h1 {
+    font-size: 2.5rem;
+    color: #ae8c1a;
+    margin-bottom: 2rem;
+}
+
+.accordion-button {
+    font-weight: 600;
+    background-color: #fffaf0;
+    color: #4B3B2A;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #f4e8c0;
+    color: #4B3B2A;
+}
+
+.accordion-body {
+    background-color: #fffdf7;
+    border-top: 1px solid #eee0c4;
+}

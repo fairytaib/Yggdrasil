@@ -1,0 +1,54 @@
+:root {
+    --contact-bg: rgba(255, 255, 255, 0.97);
+    --contact-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    --contact-accent: #ae8c1a;
+}
+
+.page-section {
+    background: var(--contact-bg);
+    border-radius: 1rem;
+    padding: 3rem;
+    box-shadow: var(--contact-shadow);
+    font-family: 'Merriweather', serif;
+    color: #4B3B2A;
+}
+
+.page-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--contact-accent);
+    text-align: center;
+}
+
+.page-section p.text-muted {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #4B3B2A;
+}
+
+.form-control {
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    padding: 0.75rem;
+    font-family: 'Merriweather', serif;
+}
+
+.btn-primary {
+    background-color: var(--contact-accent);
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #947312;
+}
+
+.alert {
+    font-family: 'Merriweather', serif;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}

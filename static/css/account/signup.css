@@ -1,0 +1,79 @@
+body {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.92),
+            rgba(255, 255, 255, 0.92));
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Merriweather', serif;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    font-family: 'Playfair Display', serif;
+    color: #2f4f2f;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.signup {
+    max-width: 500px;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.96);
+    padding: 2rem 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 12px 32px rgba(0, 50, 0, 0.08);
+    border-left: 6px solid #8bc34a44;
+}
+
+.signup p {
+    text-align: center;
+    font-size: 1rem;
+    color: #3c403b;
+    margin-bottom: 1.5rem;
+}
+
+.signup a {
+    color: #4caf50;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.signup input[type="text"],
+.signup input[type="email"],
+.signup input[type="password"] {
+    width: 100%;
+    border: 1px solid #cde6c7;
+    border-radius: 10px;
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    background-color: #f9fff8;
+}
+
+.signup button[type="submit"] {
+    width: 100%;
+    background-color: #66bb6a;
+    border: none;
+    color: white;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    border-radius: 2rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
+}
+
+.signup button[type="submit"]:hover {
+    background-color: #4caf50;
+}
+
+@media (max-width: 600px) {
+    .signup {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+}

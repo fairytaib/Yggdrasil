@@ -19,12 +19,13 @@ body {
 }
 
 
-#person-portrait{
+#person_of_history_portrait {
   height: 100%;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 
 }
+
 #text-container {
   background-color: rgba(255, 255, 255, 0.85);
   padding: 2rem 2.5rem;

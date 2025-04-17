@@ -1,0 +1,33 @@
+:root {
+    --legal-bg: rgba(255, 255, 255, 0.95);
+    --legal-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.page-section {
+    background: var(--legal-bg);
+    border-radius: 1rem;
+    padding: 3rem;
+    box-shadow: var(--legal-shadow);
+    font-family: 'Merriweather', serif;
+    color: #4B3B2A;
+}
+
+.page-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.page-section h5 {
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    color: #4B3B2A;
+}
+
+.page-section ul {
+    padding-left: 1.2rem;
+}
+
+.page-section ul li {
+    margin-bottom: 0.5rem;
+}

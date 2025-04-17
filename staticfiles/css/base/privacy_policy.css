@@ -1,0 +1,48 @@
+:root {
+    --privacy-bg: rgba(255, 255, 255, 0.96);
+    --privacy-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --privacy-accent: #ae8c1a;
+}
+
+.page-section {
+    background: var(--privacy-bg);
+    border-radius: 1rem;
+    padding: 3rem;
+    box-shadow: var(--privacy-shadow);
+    font-family: 'Merriweather', serif;
+    color: #4B3B2A;
+    line-height: 1.75;
+}
+
+.page-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--privacy-accent);
+    text-align: center;
+}
+
+.page-section h5 {
+    font-size: 1.3rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #4B3B2A;
+    font-weight: 600;
+}
+
+.page-section ul {
+    padding-left: 1.2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.page-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.page-section p {
+    margin-bottom: 1.2rem;
+}
+
+.page-section .text-muted {
+    font-size: 0.9rem;
+}

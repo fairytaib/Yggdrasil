@@ -3,8 +3,6 @@
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/people_of_history/people_of_history.css' %}" />
-  <link rel="stylesheet" href="{% static 'css/people_of_history/custom_base.css' %}" />
-  {% comment %}Font Awesome CDN{% endcomment %}
 {% endblock %}
 {% block content %}
   {% if person_of_history %}
@@ -20,7 +18,7 @@
     <div class="container text-center" id="main-container">
       <div class="row justify-content-center align-items-start">
         <div class="col-md-4">
-          <img src="{{ person_of_history.image.url }}" alt="{{ person_of_history.name }}" class="img-fluid mb-3" id="person_of_history-portrait" style="max-width: 300px;" />
+          <img src="{{ person_of_history.image.url }}" alt="{{ person_of_history.name }}" class="img-fluid mb-3" id="person_of_history_portrait" style="max-width: 300px;" />
         </div>
         <div class="col-md-7" id="text-container">
           <h3>{{ person_of_history.name }}</h3>
