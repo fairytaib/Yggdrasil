@@ -153,7 +153,7 @@ def edit_person(request, pov_id, person_id):
     return render(request, 'familytree/edit_person.html', {
         'form': form,
         'person': person,
-        'pov_id': pov_id
+        'pov_id': pov_id,
     })
 
 
@@ -202,12 +202,13 @@ def view_family(request, person_id):
 
 
 @login_required
-def view_details(request, person_id):
+def view_details(request, pov_id, person_id):
     """Display the details of a person."""
     person = get_object_or_404(Person, id=person_id, owner=request.user)
 
     context = {
         "person": person,
+        'pov_id': pov_id,
     }
 
     return render(request, "familytree/view_details.html", context)
