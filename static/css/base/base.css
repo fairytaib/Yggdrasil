@@ -48,6 +48,14 @@ body {
     text-decoration: underline;
 }
 
+.message-container {
+    position: absolute;
+    z-index: 1000; 
+    left: 50%;
+    top: 15%;
+    transform: translate(-50%, -50%);
+}
+
 footer {
     background-color: rgba(255, 248, 230, 0.95);
     padding: 1rem 1rem;
