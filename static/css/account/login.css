@@ -17,6 +17,12 @@ h3 {
     margin-top: 2rem;
 }
 
+.errorlist {
+    color: red;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
 .login {
     max-width: 500px;
     margin: 2rem auto;
