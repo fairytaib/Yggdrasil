@@ -50,33 +50,33 @@
       <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-white">
           <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logos/yggdrasil_logo.png' %}" alt="Yggdrasil Homepage" class="logo-image" /></a>
+            <a class="navbar-brand" href="{% url 'home' %}" aria-label="Yggdrasil logo"><img src="{% static 'images/logos/yggdrasil_logo.png' %}" alt="Yggdrasil Logo" class="logo-image" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
             <div class="collapse navbar-collapse" id="navbarText">
               <!-- Linke Seite -->
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link {% if request.path == home_url %}active{% endif %}" href="{% url 'home' %}">Home</a>
+                  <a class="nav-link {% if request.path == home_url %}active{% endif %}" href="{% url 'home' %}" aria-label="Home">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link {% if request.path == demo_url %}active{% endif %}" href="{% url 'demo' %}">Demo</a>
+                  <a class="nav-link {% if request.path == demo_url %}active{% endif %}" href="{% url 'demo' %}" aria-label="Demo">Demo</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link {% if request.path == people_of_history_url %}active{% endif %}" href="{{ people_of_history_url }}">People of History</a>
+                  <a class="nav-link {% if request.path == people_of_history_url %}active{% endif %}" href="{{ people_of_history_url }}" aria-label="People of history">People of History</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link {% if request.path == faq %}active{% endif %}" href="{% url 'faq' %}">FAQ</a>
+                  <a class="nav-link {% if request.path == faq %}active{% endif %}" href="{% url 'faq' %}" aria-label="Frequently asked questions">FAQ</a>
                 </li>
                 {% if user.is_authenticated %}
                   {% if person and person.id %}
                     {% url 'family_view' person.id as family_view_url %}
                     <li class="nav-item">
-                      <a class="nav-link {% if request.path == family_view_url %}active{% endif %}" href="{{ family_view_url }}">View Family</a>
+                      <a class="nav-link {% if request.path == family_view_url %}active{% endif %}" href="{{ family_view_url }}" aria-label="Fiew your Family">View your Family</a>
                     </li>
                   {% else %}
                     <li class="nav-item">
-                      <a class="nav-link {% if request.path == add_self_url %}active{% endif %}" href="{{ add_self_url }}">Start your family tree</a>
+                      <a class="nav-link {% if request.path == add_self_url %}active{% endif %}" href="{{ add_self_url }}" aria-label="Start your familytree">Start your familytree</a>
                     </li>
                   {% endif %}
                 {% endif %}
@@ -86,14 +86,14 @@
               <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 {% if user.is_authenticated %}
                   <li class="nav-item">
-                    <a class="nav-link {% if request.path == logout_url %}active{% endif %}" href="{% url 'account_logout' %}">Logout</a>
+                    <a class="nav-link {% if request.path == logout_url %}active{% endif %}" href="{% url 'account_logout' %}" aria-label="Logout">Logout</a>
                   </li>
                 {% else %}
                   <li class="nav-item">
-                    <a class="nav-link {% if request.path == signup_url %}active{% endif %}" href="{% url 'account_signup' %}">Register</a>
+                    <a class="nav-link {% if request.path == signup_url %}active{% endif %}" href="{% url 'account_signup' %}" aria-label="Register">Register</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link {% if request.path == login_url %}active{% endif %}" href="{% url 'account_login' %}">Login</a>
+                    <a class="nav-link {% if request.path == login_url %}active{% endif %}" href="{% url 'account_login' %}" aria-label="Login">Login</a>
                   </li>
                 {% endif %}
               </ul>
@@ -120,11 +120,11 @@
     </div>
     <footer class="footer text-center bg-white">
       <div class="container">
-        <p class="footer-text">© {{ year }} Yggdrasil – The Tree of Family. All rights reserved. Created by<a href="https://github.com/fairytaib" target="_blank" rel="noopener noreferrer">Sophjan Moubarrid</a></p>
+        <p class="footer-text">© {{ year }} Yggdrasil – The Tree of Family. All rights reserved. Created by<a href="https://github.com/fairytaib" target="_blank" rel="noopener noreferrer" aria-label="Link to Github">Sophjan Moubarrid</a></p>
         <nav class="footer-nav">
-          <a href="{% url 'legal_notice' %}">Legal Notice</a> |
-          <a href="{% url 'privacy_policy' %}">Privacy Policy</a> |
-          <a href="{% url 'contact' %}">Contact</a>
+          <a href="{% url 'legal_notice' %}" aria-label="Legal notice">Legal Notice</a> |
+          <a href="{% url 'privacy_policy' %}" aria-label="Privacy Policy">Privacy Policy</a> |
+          <a href="{% url 'contact' %}" aria-label="Contact">Contact</a>
         </nav>
       </div>
     </footer>

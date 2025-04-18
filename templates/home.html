@@ -20,7 +20,7 @@
       Discover your roots. Preserve your story. <br />
       A private space to build your family tree — and walk through it.
     </p>
-    <a href="{% url 'account_signup' %}" class="btn btn-primary hero-btn">Start Your Journey</a>
+    <a href="{% url 'account_signup' %}" class="btn btn-primary hero-btn" aria-label="Register">Start Your Journey</a>
   </div>
   <div class="container my-5 py-5">
     <div class="row justify-content-center">
@@ -77,7 +77,7 @@
 
     <div class="row text-center mt-4">
       <div class="col">
-        <a href="{% url 'demo' %}" class="btn bg-success btn-lg px-5">Try the Demo</a>
+        <a href="{% url 'demo' %}" class="btn bg-success btn-lg px-5" aria-label="Try the Demo">Try the Demo</a>
         <p class="text-muted mt-2" style="font-size: 0.9rem;">No sign-up needed. Just explore.</p>
       </div>
     </div>
@@ -98,8 +98,8 @@
   <div class="container my-5 py-5 text-center" id="end-container">
     <h2 class="mb-4">Start your Tree Today</h2>
     <p class="lead mb-4">Your story matters. And it begins with a single connection.</p>
-    <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg px-5 me-3">Create an Account</a>
-    <a href="{% url 'demo' %}" class="btn btn-secondary btn-lg px-5">Explore the Demo</a>
+    <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg px-5 me-3" aria-label="Register">Create an Account</a>
+    <a href="{% url 'demo' %}" class="btn btn-secondary btn-lg px-5" aria-label="Explore the demo">Explore the Demo</a>
     <p class="text-muted mt-3" style="font-size: 0.9rem;">No commitment. Just curiosity.</p>
   </div>
 {% endblock %}

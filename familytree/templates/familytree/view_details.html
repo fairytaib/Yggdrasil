@@ -68,7 +68,10 @@
             </div>
           {% endif %}
         </div>
-        <a href="{% url 'family_view' pov_id %}" class="btn btn-secondary" class="text-end">Back</a>
+        <div class="d-flex justify-content-end mt-1">
+          <a href="{% url 'family_view' pov_id %}" class="btn btn-secondary" aria-label="Go Back">Go Back</a>
+        </div>
+        
       </div>
     {% endif %}
   </div>

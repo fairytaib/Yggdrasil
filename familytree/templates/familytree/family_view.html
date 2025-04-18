@@ -19,10 +19,10 @@
       </div>
 
       {% if person.parents.all|length == 0 %}
-        <a href="{% url 'add_family_member' %}?relation=parent&person_id={{ person.id }}" class="btn btn-outline-success">Add Parent</a>
+        <a href="{% url 'add_family_member' %}?relation=parent&person_id={{ person.id }}" class="btn btn-outline-success" aria-label="Add Parent">Add Parent</a>
       {% elif person.parents.all|length == 1 %}
         <button class="btn btn-outline-success" onclick="toggleSection('parents-list')">Display Parents</button>
-        <a href="{% url 'add_family_member' %}?relation=parent&person_id={{ person.id }}" class="btn btn-outline-success">Add Parent</a>
+        <a href="{% url 'add_family_member' %}?relation=parent&person_id={{ person.id }}" class="btn btn-outline-success" aria-label="Add Parent">Add Parent</a>
       {% else %}
         <button class="btn btn-outline-success" onclick="toggleSection('parents-list')">Display Parents</button>
       {% endif %}
@@ -38,9 +38,9 @@
 
         {% if person.siblings|length > 0 %}
           <button class="btn btn-outline-success" onclick="toggleSection('sibling-list')">Display Siblings</button>
-          <a href="{% url 'add_family_member' %}?relation=sibling&person_id={{ person.id }}" class="btn btn-outline-success">Add Sibling</a>
+          <a href="{% url 'add_family_member' %}?relation=sibling&person_id={{ person.id }}" class="btn btn-outline-success" aria-label="Add Sibling">Add Sibling</a>
         {% else %}
-          <a href="{% url 'add_family_member' %}?relation=sibling&person_id={{ person.id }}" class="btn btn-outline-success">Add Sibling</a>
+          <a href="{% url 'add_family_member' %}?relation=sibling&person_id={{ person.id }}" class="btn btn-outline-success" aria-label="Add Sibling">Add Sibling</a>
         {% endif %}
       </div>
       {% comment %}Display Pov-Person{% endcomment %}
@@ -56,7 +56,7 @@
         {% if person.partner %}
           <button class="btn btn-outline-success" onclick="toggleSection('partner-list')">Display Partner</button>
         {% else %}
-          <a href="{% url 'add_family_member' %}?relation=partner&person_id={{ person.id }}" class="btn btn-outline-success">Add Partner</a>
+          <a href="{% url 'add_family_member' %}?relation=partner&person_id={{ person.id }}" class="btn btn-outline-success" aria-label="Add Partner">Add Partner</a>
         {% endif %}
       </div>
     </div>
@@ -71,16 +71,16 @@
 
       {% if person.children.all|length > 0 %}
         <button class="btn btn-outline-success" onclick="toggleSection('children-list')">Display Children</button>
-        <a href="{% url 'add_family_member' %}?relation=child&person_id={{ person.id }}" class="btn btn-outline-success">Add Child</a>
+        <a href="{% url 'add_family_member' %}?relation=child&person_id={{ person.id }}" class="btn btn-outline-success" aria-label="Add Child">Add Child</a>
       {% else %}
-        <a href="{% url 'add_family_member' %}?relation=child&person_id={{ person.id }}" class="btn btn-outline-success">Add Child</a>
+        <a href="{% url 'add_family_member' %}?relation=child&person_id={{ person.id }}" class="btn btn-outline-success" aria-label="Add Child">Add Child</a>
       {% endif %}
     </div>
     {% comment %}Redirect to add self if Person doesnt exist{% endcomment %}
   {% else %}
     <div id="no-person-container">
       <p>Please register yourself first.</p>
-      <a href="{% url 'add_self' %}" class="btn btn-outline-success">Add Family Member</a>
+      <a href="{% url 'add_self' %}" class="btn btn-outline-success" aria-label="Add Family Member">Add Family Member</a>
     </div>
   {% endif %}
 {% endblock %}
