@@ -18,9 +18,7 @@ h3 {
 }
 
 .errorlist {
-    color: red;
-    font-weight: bold;
-    margin-top: 5px;
+    color: #e14444;
 }
 
 .logout-message {
