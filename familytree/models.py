@@ -72,8 +72,9 @@ class Person(models.Model):
         User, on_delete=models.CASCADE,
         related_name='persons'
     )
-    featured_image = CloudinaryField('image', default='placeholder',
-                                     blank=True, null=True)
+    featured_image = CloudinaryField(
+        'image', default='placeholder',
+        blank=True, null=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     birth_place = models.CharField(max_length=100, blank=True)
@@ -121,3 +122,39 @@ class Person(models.Model):
         return Person.objects.filter(
             parents__in=self.parents.all()
             ).exclude(id=self.id).distinct()
+
+
+class FamilyRelation(models.Model):
+    """ A family relation model """
+    """ This model is used to create a relation between two persons """
+    RELATIONSHIP_CHOICES = [
+        ('parent', 'Parent'),
+        ('step-parent', 'Step Parent'),
+        ('foster-parent', 'Foster Parent'),
+        ('child', 'Child'),
+        ('step-child', 'Step Child'),
+        ('foster-child', 'Foster Child'),
+        ('sibling', 'Sibling'),
+        ('half-sibling', 'Half Sibling'),
+        ('step-sibling', 'Step Sibling'),
+        ('partner', 'Romantic Partner'),
+    ]
+    from_person = models.ForeignKey(
+        'Person', related_name='relations_from',
+        on_delete=models.CASCADE
+    )
+    to_person = models.ForeignKey(
+        'Person', related_name='relations_to',
+        on_delete=models.CASCADE
+    )
+    relation_type = models.CharField(
+        max_length=50, choices=RELATIONSHIP_CHOICES
+    )
+
+    class Meta:
+        unique_together = ('from_person', 'to_person', 'relation_type')
+
+        def __str__(self):
+            return f"{
+                self.from_person
+                } → {self.relation_type} → {self.to_person}"
