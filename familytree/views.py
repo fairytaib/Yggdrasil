@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Person, FamilyTree
+from .models import Person, FamilyTree, FamilyRelation
 from django.contrib import messages
-from .forms import PersonForm
+from .forms import PersonForm, FamilyRelationForm
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -49,81 +49,73 @@ def add_self(request):
 
 @login_required
 def add_family_member(request):
-    """Add a family member to the family tree."""
+    """Add a family member and the corresponding relation."""
     relation = request.GET.get('relation')
     person_id = request.GET.get('person_id')
     main_person = get_object_or_404(Person, id=person_id)
 
     if request.method == 'GET':
         if relation == "sibling" and not main_person.parents.exists():
-            messages.info(
-                request,
-                """Please add at least one parent first,
-                before you can add a sibling"""
-            )
-            return redirect(
-                f"{reverse(
-                    'add_family_member'
-                    )}?relation=parent&person_id={main_person.id}"
-            )
+            messages.info(request,
+                "Please add at least one parent first, before you can add a sibling.")
+            return redirect(f"{reverse('add_family_member')}?relation=parent&person_id={main_person.id}")
+
+    person_form = PersonForm(request.POST or None, request.FILES or None)
+    relation_form = FamilyRelationForm(
+        request.POST or None,
+        relation_context=relation  # ← wichtiger Punkt
+    )
 
     if request.method == 'POST':
-        form = PersonForm(request.POST, request.FILES)
-        if form.is_valid():
-            if relation == "partner" and main_person.partner:
-                form.add_error(None, "This person already has a partner.")
-            elif relation == "parent" and main_person.parents.count() >= 2:
-                form.add_error(
-                    None,
-                    "This person has already two parents reigstered.")
-            else:
-                new_person = form.save(commit=False)
-                new_person.owner = request.user
+        if person_form.is_valid() and relation_form.is_valid():
+            new_person = person_form.save(commit=False)
+            new_person.owner = request.user
+            new_person.save()
+            person_form.save_m2m()
+
+            # Save relation
+            relation_instance = relation_form.save(commit=False)
+            relation_instance.from_person = (
+                main_person if relation in [
+                    'child', 'partner', 'sibling'
+                    ] else new_person
+            )
+            relation_instance.to_person = (
+                new_person if relation in [
+                    'child', 'partner', 'sibling'
+                    ] else main_person
+            )
+            relation_instance.save()
+
+            if relation == "parent":
+                main_person.parents.add(new_person)
+            elif relation == "child":
+                new_person.parents.add(main_person)
+            elif relation == "partner":
+                main_person.partner = new_person
+                main_person.save()
+                new_person.partner = main_person
                 new_person.save()
-                form.save_m2m()
+            elif relation == "sibling":
+                for parent in main_person.parents.all():
+                    new_person.parents.add(parent)
 
-                family_tree, created = FamilyTree.objects.get_or_create(
-                    owner=request.user)
-                family_tree.person.add(new_person)
+            family_tree, _ = FamilyTree.objects.get_or_create(
+                owner=request.user
+                )
+            family_tree.person.add(new_person)
+            if family_tree.main_person is None:
+                family_tree.main_person = new_person
+                family_tree.save()
 
-                if family_tree.main_person is None:
-                    family_tree.main_person = new_person
-                    family_tree.save()
-
-                if relation == "parent":
-                    main_person.parents.add(new_person)
-                elif relation == "child":
-                    new_person.parents.add(main_person)
-                elif relation == "partner":
-                    main_person.partner = new_person
-                    main_person.save()
-                    new_person.partner = main_person
-                    new_person.save()
-                elif relation == "sibling":
-                    if not main_person.parents.exists():
-                        messages.error(
-                            request,
-                            "Please tell us about your parents first."
-                            )
-                        return redirect(
-                            f"{reverse(
-                                'add_family_member'
-                                )}?relation=parent&person_id={main_person.id}")
-                    else:
-                        for parent in main_person.parents.all():
-                            new_person.parents.add(parent)
-
-                return redirect('family_view', person_id=main_person.id)
-
-            return redirect('family_view', person_id=new_person.id)
-    else:
-        form = PersonForm()
+            return redirect('family_view', person_id=main_person.id)
 
     return render(request, 'familytree/add_family_member.html', {
-                            'form': form,
-                            'relation': relation,
-                            'main_person': main_person,
-                        })
+        'form': person_form,
+        'relation_form': relation_form,
+        'relation': relation,
+        'main_person': main_person,
+    })
 
 
 @login_required

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Person
+from .models import Person, FamilyRelation
 from datetime import date
 from django_select2.forms import Select2MultipleWidget
 from django.core.exceptions import ValidationError
@@ -140,3 +140,45 @@ class PersonForm(forms.ModelForm):
         """Validate the nickname."""
         nickname = self.cleaned_data.get('nickname')
         return validate_name_field(nickname, "Nickname")
+
+
+class FamilyRelationForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        relation_context = kwargs.pop('relation_context', None)
+        super().__init__(*args, **kwargs)
+
+        # Dynamische Auswahl basierend auf dem Beziehungs-Kontext
+        if relation_context == 'parent':
+            self.fields['relation_type'].choices = [
+                ('parent', 'Parent'),
+                ('step-parent', 'Step Parent'),
+                ('foster-parent', 'Foster Parent'),
+            ]
+        elif relation_context == 'child':
+            self.fields['relation_type'].choices = [
+                ('child', 'Child'),
+                ('foster-child', 'Foster Child'),
+            ]
+        elif relation_context == 'sibling':
+            self.fields['relation_type'].choices = [
+                ('sibling', 'Sibling'),
+                ('half-sibling', 'Half Sibling'),
+                ('step-sibling', 'Step Sibling'),
+            ]
+        elif relation_context == 'partner':
+            self.fields['relation_type'].choices = [
+                ('partner', 'Romantic Partner'),
+            ]
+
+    class Meta:
+        model = FamilyRelation
+        fields = ['relation_type']
+        labels = {
+            'relation_type': 'Relation to Main Person',
+        }
+        widgets = {
+            'relation_type': forms.Select(attrs={'class': 'form-control'}),
+        }
+        help_texts = {
+            'relation_type': 'Select the relation type.',
+        }

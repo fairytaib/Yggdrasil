@@ -30,11 +30,11 @@
               <form id="person-Form" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form|crispy }}
-
+                {{ relation_form.relation_type|as_crispy_field }}
                 <div class="d-grid mt-3">
                   <button id="submitButton" type="submit" class="btn btn-primary btn-lg" aria-label="Submit">Submit</button>
                   {% if relation == 'parent' %}
-                    <button id="unknownParentBtn" class="btn btn-warning mt-2" type="button" aria-label="Parent Unknown"">
+                    <button id="unknownParentBtn" class="btn btn-warning mt-2" type="button" aria-label="Parent Unknown">
                       Parent Unknown
                     </button>   
                   {% endif %}
