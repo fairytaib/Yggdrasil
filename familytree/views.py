@@ -63,7 +63,7 @@ def add_family_member(request):
     person_form = PersonForm(request.POST or None, request.FILES or None)
     relation_form = FamilyRelationForm(
         request.POST or None,
-        relation_context=relation  # ← wichtiger Punkt
+        relation_context=relation
     )
 
     if request.method == 'POST':
