@@ -108,6 +108,13 @@ def add_family_member(request):
                 family_tree.main_person = new_person
                 family_tree.save()
 
+            if 'save_and_add' in request.POST:
+                return redirect(
+                    f"{reverse(
+                        'add_family_member'
+                        )}?relation={relation}&person_id={main_person.id}"
+                        )
+
             return redirect('family_view', person_id=main_person.id)
 
     return render(request, 'familytree/add_family_member.html', {
