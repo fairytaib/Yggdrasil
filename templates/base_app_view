@@ -1,0 +1,39 @@
+{% load static %}
+{% url 'account_login' as login_url %}
+{% url 'account_signup' as signup_url %}
+{% url 'account_logout' as logout_url %}
+{% url 'add_self' as add_self_url %}
+{% url 'family_view' person.id as 'family_view_url' %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block meta %}
+      <!-- Default Meta Tags -->
+      <meta name="description" content="Create your family tree with Yggdrasil - private, secure and visual." />
+      <meta property="og:title" content="Yggdrasil - The Tree of Family" />
+      <meta property="og:description" content="Explore your family roots with a modern, data-secure family tree app." />
+      <meta property="og:image" content="{% static 'images/logos/yggdrasil_logo.png' %}" />
+      <meta property="og:type" content="website" />
+    {% endblock %}
+    {% block title %}
+
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logos/yggdrasil_logo.png' %}" />
+    {% comment %}Bootstrap CDN{% endcomment %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-DQvkBjpPgn7RC31MCQoOeC9TI2kdqa4+BSgNMNj8v77fdC77Kj5zpWFTJaaAoMbC" crossorigin="anonymous" />
+    {% comment %}Custom CSS{% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/familytree/base.css' %}" />
+    {% block extra_css %}
+    
+    {% endblock %}
+    {% comment %}HTMX CDN{% endcomment %}
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    {% comment %}jQuery CDN for Select2{% endcomment %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {% block form_media %}
+
+    {% endblock %}
+  </head>
