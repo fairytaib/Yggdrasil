@@ -1,0 +1,13 @@
+<form method="POST"
+  enctype="multipart/form-data"
+  hx-post="{% url 'edit_person' pov_id person.id %}"
+  hx-trigger="submit"
+  hx-swap="none"
+  hx-on::afterRequest="this.closest('#modal').dispatchEvent(new CustomEvent('person-updated', { detail: { id: '{{ person.id }}' }, bubbles: true }))">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <div class="modal-footer mt-3">
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="button" onclick="closeModal()" class="btn btn-secondary">Cancel</button>
+  </div>
+</form>
