@@ -211,3 +211,11 @@ def view_details(request, pov_id, person_id):
     }
 
     return render(request, "familytree/view_details.html", context)
+
+
+@login_required
+def full_family_tree(request):
+    family_tree = get_object_or_404(FamilyTree, owner=request.user)
+    return render(request, "familytree/entire_view.html", {
+        "family_tree": family_tree
+    })

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load tree_tags %}
+{% block title %}
+  <title>View my whole Family</title>
+{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/familytree/entire_view.css' %}" />
+{% endblock %}
+{% block content %}
+
+  <h2>Full Family Tree</h2>
+  <div class="tree">
+    {% show_family_tree family_tree.main_person %}
+  </div>
+
+{% endblock %}
+
+{% block javascript %}
+  
+{% endblock %}
