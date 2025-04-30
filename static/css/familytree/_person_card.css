@@ -10,6 +10,9 @@
   text-align: center;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   max-width: 300px;
+  max-height: 300px;
+  min-width: 200px;
+  min-height: 200px;
   transition: transform 0.2s ease;
 }
 
@@ -47,4 +50,11 @@
 .person-actions a {
   border-radius: 2rem;
   padding: 0.4rem 1rem;
+}
+
+.current-focus {
+  background-color: #f0c14b;
+  color: #111;
+  font-weight: bold;
+  text-decoration: none;
 }

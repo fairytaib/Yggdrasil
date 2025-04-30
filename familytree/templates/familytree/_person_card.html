@@ -18,6 +18,8 @@
     <a href="{% url 'edit_person' pov_id person.id %}" class="btn btn-outline-primary btn-sm" aria-label="Person">Edit</a>
     {% if person.id != pov_id %}
       <a href="{% url 'family_view' person.id %}" class="btn btn-outline-secondary btn-sm" aria-label="Change Focus">Change Focus</a>
+    {% else %}
+      <p class="current-focus">Current Focus</p>
     {% endif %}
   </div>
 </div>
