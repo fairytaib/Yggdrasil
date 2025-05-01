@@ -8,14 +8,17 @@
   <link rel="stylesheet" href="{% static 'css/familytree/entire_view.css' %}" />
 {% endblock %}
 {% block content %}
+  <div class="choose-view-container">
+    <a href="#" class="btn btn-light">Focused View</a>
+    <a href="{% url 'entire_view' %}" class="btn btn-dark">Entire View</a>
+  </div>
 
   <h2>Full Family Tree</h2>
   <div class="tree">
     {% show_family_tree family_tree.main_person %}
   </div>
-
 {% endblock %}
 
 {% block javascript %}
-  
+
 {% endblock %}
