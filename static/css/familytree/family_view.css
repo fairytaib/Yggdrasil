@@ -18,6 +18,11 @@ main{
     height: 100%;
 }
 
+.choose-view-container {
+    align-self: start;
+    margin: 6px 0 0 6px;
+}
+
 #parents-container, #children-container{
     display: flex;
     justify-content: center;
