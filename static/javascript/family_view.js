@@ -13,9 +13,9 @@ function toggleSection(id) {
     // and change the button text accordingly
     const section = document.getElementById(id);
     if (section.style.display === "none") {
-        section.style.display = "block";
+        section.classList.toggle("d-flex")
     } else {
-        section.style.display = "none";
+        section.classList.toggle("d-flex")
     }
 }
 
