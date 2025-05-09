@@ -9,22 +9,23 @@ body {
     background: linear-gradient(to bottom, #fdf7ec, #f3e5c1);
 }
 
-#parents-container, #children-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    gap: 10px;
+
+.choose-view-container {
+    align-self: start;
+    margin: 6px 0 0 6px;
 }
 
-#middle-section{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    gap: 10px;
+#parents-list, #children-list{
+    display: none;
 }
+
+#parents-container, #children-container{
+    margin: 5px 0 0 0;
+}
+
+.hidden{
+    display: none;
+}
+
 
 

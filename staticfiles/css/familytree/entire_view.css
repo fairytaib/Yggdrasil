@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+body {
+    background: linear-gradient(to bottom right, #fff7e6, #f3e7cb);
+    font-family: 'Georgia', serif;
+    color: #3e3e3e;
+}
+
+/* Container */
+.container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #5b3b0a;
+    text-align: center;
+    margin-bottom: 50px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #d2b48c;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.tree-level {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.tree-level::after {
+    content: "";
+    width: 80%;
+    height: 1px;
+    background: #d2b48c;
+    position: absolute;
+    top: -20px;
+    left: 10%;
+    opacity: 0.4;
+}
+
+.person-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: 20px;
+}
+
+/* person cards */
+.person-box {
+    background: #fffdf8;
+    border: 1px solid #d9c4a6;
+    padding: 15px 20px;
+    border-radius: 15px;
+    height: 180px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+}
+
+.person-box:hover {
+    background-color: #fff2db;
+    transform: scale(1.04);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.person-name a {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #2c2c2c;
+    text-decoration: none;
+}
+
+.person-name a:hover {
+    text-decoration: underline;
+}
+
+/* button section */
+.person-actions {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.person-actions .btn {
+    font-size: 0.8rem;
+    padding: 4px 6px;
+    border-radius: 8px;
+}
+
+.person-box.pov {
+    background-color: #e1f0ff;
+    border-color: #8ab6d6;
+}
+
+.person-box.partner {
+    background-color: #e7ffe7;
+    border-color: #83c783;
+}
+
+.person-box.child {
+    background-color: #f0f8ff;
+    border-color: #a6cde7;
+}
+
+.person-box.alt-line {
+    background-color: #fff7da;
+    border-color: #e0c36c;
+}
+
+@media (max-width: 768px) {
+    h2 {
+        font-size: 2rem;
+    }
+
+    .person-box {
+        min-width: 120px;
+        font-size: 14px;
+    }
+}

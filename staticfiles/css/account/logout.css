@@ -17,6 +17,10 @@ h3 {
     margin-top: 2rem;
 }
 
+.errorlist {
+    color: #e14444;
+}
+
 .logout-message {
     text-align: center;
     font-size: 1rem;

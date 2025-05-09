@@ -1,0 +1,55 @@
+body {
+    background-image: linear-gradient(rgba(255, 245, 230, 0.9),
+            rgba(255, 245, 230, 0.9)), url('/static/images/backgrounds/delete/soft-leaves.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Merriweather', serif;
+}
+
+.delete-container {
+    max-width: 600px;
+    margin: 4rem auto;
+    padding: 2.5rem;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.delete-container h3 {
+    font-size: 1.8rem;
+    font-family: 'Playfair Display', serif;
+    color: #8b4b4b;
+    margin-bottom: 2rem;
+}
+
+form button.btn-danger {
+    background-color: #c62828;
+    border: none;
+    color: white;
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+    margin-right: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+form button.btn-danger:hover {
+    background-color: #b71c1c;
+}
+
+form .btn-secondary {
+    background-color: #f3e5e5;
+    border: 1px solid #d4bcbc;
+    color: #8b4b4b;
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+}
+
+form .btn-secondary:hover {
+    background-color: #e1cdcd;
+    border-color: #c5aaaa;
+}
