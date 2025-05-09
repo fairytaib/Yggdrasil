@@ -41,7 +41,7 @@
         {% for pp in partner_parents %}
           <div class="person-box alt-line">
             <div class="person-name">
-              <a href="{% url 'classic_tree_view' pp.id %}">{{ pp.first_name }} {{ pp.last_name }} (Partners side)</a>
+              <a href="{% url 'classic_tree_view' pp.id %}">{{ pp.first_name }} {{ pp.last_name }} (parent of {{ partner.first_name }} {{ partner.last_name }})</a>
             </div>
             <div class="person-actions mt-2">
               <a href="{% url 'view_details' pov.id pp.id %}" class="btn btn-outline-primary btn-sm">View Details</a>
@@ -79,7 +79,7 @@
           </div>
         </div>
 
-        {% if partner %}
+        {% for partner in partners %}
           <div class="person-box partner">
             <div class="person-name">
               <a href="{% url 'classic_tree_view' partner.id %}">{{ partner.first_name }} {{ partner.last_name }}</a>
@@ -89,7 +89,7 @@
               <a href="{% url 'family_view' partner.id %}" class="btn btn-outline-secondary btn-sm">Focused View</a>
             </div>
           </div>
-        {% endif %}
+        {% endfor %}
       </div>
     </div>
 
