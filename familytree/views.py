@@ -92,10 +92,7 @@ def add_family_member(request):
             elif relation == "child":
                 new_person.parents.add(main_person)
             elif relation == "partner":
-                main_person.partner = new_person
-                main_person.save()
-                new_person.partner = main_person
-                new_person.save()
+                main_person.partners.add(new_person)
             elif relation == "sibling":
                 for parent in main_person.parents.all():
                     new_person.parents.add(parent)
@@ -192,7 +189,7 @@ def view_family(request, person_id):
         "persons": [],
     }
 
-    context["persons"].append(person.partner)
+    context["persons"].extend(person.partners.all())
     context["persons"].extend(person.parents.all())
     context["persons"].extend(person.children.all())
     context["persons"].extend(person.siblings())
