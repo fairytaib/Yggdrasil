@@ -15,7 +15,7 @@
       <div class="row">
         <div class="col align-self-start choose-view-container">
           <a href="#" class="btn btn-light">Focused View</a>
-          <a href="{% url 'entire_view' %}" class="btn btn-dark">Entire View</a>
+          <a href="{% url 'classic_tree_view' person.id %}" class="btn btn-dark">Entire View</a>
         </div>
       </div>
 
@@ -43,7 +43,7 @@
       <div class="row justify-content-center">
         {% comment %}Display Siblings{% endcomment %}
         <div class="col-4 d-flex align-self-center justify-content-center" id="siblings-container">
-          <div id="sibling-list" style="display: none; margin-top: 1rem;">
+          <div id="sibling-list" style="display: none;">
             {% for sibling in person.siblings.all %}
               {% include 'familytree/_person_card.html' with person=sibling pov_id=person.id %}
             {% endfor %}
@@ -65,7 +65,7 @@
 
         {% comment %}Display Partner{% endcomment %}
         <div class="col-4 align-self-center d-flex justify-content-center" id="partner-container">
-          <div id="partner-list" style="display: none; margin-top: 1rem;">
+          <div id="partner-list" style="display: none;">
             {% for partner in person.partners.all %}
               {% include 'familytree/_person_card.html' with person=partner pov_id=person.id %}
             {% endfor %}

@@ -22,6 +22,8 @@ urlpatterns = [
         ),
     path("pov/<int:pov_id>/view_details/<int:person_id>/",
          views.view_details, name="view_details"),
-    path("entire_view/", views.full_family_tree, name="entire_view"),
+    path("tree/<int:person_id>/",
+         views.classic_tree_view, name="classic_tree_view"),
+
 
 ]

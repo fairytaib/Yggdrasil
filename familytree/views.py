@@ -214,8 +214,26 @@ def view_details(request, pov_id, person_id):
 
 
 @login_required
-def full_family_tree(request):
-    family_tree = get_object_or_404(FamilyTree, owner=request.user)
-    return render(request, "familytree/entire_view.html", {
-        "family_tree": family_tree
-    })
+def classic_tree_view(request, person_id):
+    pov = get_object_or_404(Person, id=person_id, owner=request.user)
+
+    parents = pov.parents.all()
+    grandparents = Person.objects.none()
+    for parent in parents:
+        grandparents |= parent.parents.all()
+
+    partner = pov.partner
+    partner_parents = partner.parents.all() if partner else []
+
+    children = pov.children.all()
+
+    context = {
+        'pov': pov,
+        'parents': parents,
+        'grandparents': grandparents.distinct(),
+        'partner': partner,
+        'partner_parents': partner_parents,
+        'children': children
+    }
+
+    return render(request, "familytree/entire_view.html", context)
