@@ -11,14 +11,6 @@
 {% block content %}
   {% if person %}
     <div class="container-fluid">
-      {% comment %}Display View options{% endcomment %}
-      <div class="row">
-        <div class="col align-self-start choose-view-container">
-          <a href="#" class="btn btn-light">Focused View</a>
-          <a href="{% url 'classic_tree_view' person.id %}" class="btn btn-dark">Entire View</a>
-        </div>
-      </div>
-
       {% comment %}Display Parents{% endcomment %}
       <div class="row justify-content-center" id="parents-container">
         <div class="col-12 justify-content-center" id="parents-list">
