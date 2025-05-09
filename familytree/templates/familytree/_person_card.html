@@ -8,9 +8,6 @@
 
   <div class="person-info text-center">
     <h5>{{ person.first_name }} {{ person.last_name }}</h5>
-    {% if person.birth_date %}
-      <p class="text-muted">Born: {{ person.birth_date }}</p>
-    {% endif %}
   </div>
 
   <div class="person-actions">
@@ -21,7 +18,7 @@
       <a href="{% url 'family_view' person.id %}" class="btn btn-outline-secondary btn-sm" aria-label="Change Focus">Change Focus</a>
       
     {% else %}
-      <p class="current-focus">Current Focus</p>
+      <p class="current-focus align-self-center">Current Focus</p>
     {% endif %}
   </div>
 </div>

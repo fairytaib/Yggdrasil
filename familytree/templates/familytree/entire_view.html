@@ -41,7 +41,7 @@
         {% for pp in partner_parents %}
           <div class="person-box alt-line">
             <div class="person-name">
-              <a href="{% url 'classic_tree_view' pp.id %}">{{ pp.first_name }} {{ pp.last_name }} (parent of {{ partner.first_name }} {{ partner.last_name }})</a>
+              <a href="{% url 'classic_tree_view' pp.id %}">{{ pp.first_name }} {{ pp.last_name }}</a>
             </div>
             <div class="person-actions mt-2">
               <a href="{% url 'view_details' pov.id pp.id %}" class="btn btn-outline-primary btn-sm">View Details</a>
@@ -66,7 +66,11 @@
     <!-- POV & Partner -->
     <div class="tree-level">
       <div class="title">
-        <h3>You and your Partner</h3>
+        {% if partners|length > 0 %}
+          <h3>You and your Partners</h3>
+        {% else %}
+          <h3>You and your Partner</h3>
+        {% endif %}
       </div>
       <div class="person-container">
         <div class="person-box pov">
