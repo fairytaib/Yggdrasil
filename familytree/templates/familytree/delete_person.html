@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
   <title>Delete Person</title>
 {% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/familytree/delete_person.css' %}" />
+{% endblock %}
 {% block content %}
-<div class="container mt-5">
-  <h3>Are you sure you want to delete {{ person.first_name }} {{ person.last_name }}?</h3>
-  <form method="POST">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger" aria-label="Yes delete">Yes, delete</button>
-    <a href="{% url 'edit_person' pov_id person.id %}" class="btn btn-secondary" aria-label="Cancel">Cancel</a>
-  </form>
-</div>
+  <div class="delete-container">
+    <h3>Are you sure you want to delete {{ person.first_name }} {{ person.last_name }}?</h3>
+    <form method="POST">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger" aria-label="Yes delete">Yes, delete</button>
+      <a href="{% url 'edit_person' pov_id person.id %}" class="btn btn-secondary" aria-label="Cancel">Cancel</a>
+    </form>
+  </div>
 {% endblock %}
