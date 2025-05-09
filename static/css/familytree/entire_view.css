@@ -35,6 +35,7 @@ h2::after {
 
 .tree-level {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
     gap: 30px;
@@ -53,12 +54,20 @@ h2::after {
     opacity: 0.4;
 }
 
+.person-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
 /* person cards */
 .person-box {
     background: #fffdf8;
     border: 1px solid #d9c4a6;
     padding: 15px 20px;
     border-radius: 15px;
+    height: 180px;
     min-width: 160px;
     max-width: 200px;
     text-align: center;
