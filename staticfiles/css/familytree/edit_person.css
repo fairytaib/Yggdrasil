@@ -4,7 +4,7 @@
 
 body {
     background-image: linear-gradient(rgba(205, 251, 142, 0.544),
-            rgba(147, 250, 96, 0.601)), url('/static/images/backgrounds/people_of_history/papyrus_background.png');
+            rgba(147, 250, 96, 0.601)), url('/static/images/backgrounds/people_of_history/papyrus_background.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;

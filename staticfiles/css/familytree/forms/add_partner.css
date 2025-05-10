@@ -4,7 +4,7 @@
 
 body {
     background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
-        url('/static/images/backgrounds/familytree/growing-fruits.png');
+        url('/static/images/backgrounds/familytree/growing-fruits.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;

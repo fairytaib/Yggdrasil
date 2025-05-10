@@ -3,7 +3,7 @@
 }
 
 .hero-section {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/static/images/backgrounds/home/leaves.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/static/images/backgrounds/home/leaves.webp');
     backdrop-filter: blur(8px);
     background-size: cover;
     background-repeat: no-repeat;
@@ -34,7 +34,7 @@
 }
 
 #feature-section {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/static/images/backgrounds/home/trunk.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/static/images/backgrounds/home/trunk.webp');
     backdrop-filter: blur(8px);
     background-size: cover;
     background-repeat: no-repeat;
@@ -59,7 +59,7 @@
 }
 
 #end-container{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/static/images/backgrounds/home/roots.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/static/images/backgrounds/home/roots.webp');
     backdrop-filter: blur(8px);
     background-size: cover;
     background-repeat: no-repeat;

@@ -1,7 +1,7 @@
 {% load static %}
 <div class="person-card shadow-sm">
   {% if "placeholder" in person.featured_image.url %}
-    <img class="profile-image" src="{% static 'images/user_default_images/default-image.png' %}" alt="placeholder image" />
+    <img class="profile-image" src="{% static 'images/user_default_images/default-image.webp' %}" alt="placeholder image" />
   {% else %}
     <img class="profile-image" src="{{ person.featured_image.url }}" alt="{{ person.first_name }}" />
   {% endif %}
