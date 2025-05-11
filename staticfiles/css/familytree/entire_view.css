@@ -74,6 +74,10 @@ h2::after {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .person-box:hover {
@@ -110,6 +114,7 @@ h2::after {
 .person-box.pov {
     background-color: #e1f0ff;
     border-color: #8ab6d6;
+    
 }
 
 .person-box.partner {

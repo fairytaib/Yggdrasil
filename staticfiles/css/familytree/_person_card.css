@@ -9,7 +9,7 @@
   margin: 1rem;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  min-width: 300px;
   height: fit-content;
   transition: transform 0.2s ease;
 }
@@ -19,8 +19,8 @@
 }
 
 .profile-image {
-  width: 100px;
-  height: 100px;
+  max-width: 100px;
+  max-height: 100px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 1rem;
@@ -30,7 +30,7 @@
 .person-info h5 {
   font-family: 'Playfair Display', serif;
   font-size: 1.25rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .person-info p {
@@ -51,8 +51,12 @@
 }
 
 .current-focus {
-  background-color: #f0c14b;
+  background-color: #f0c14bd8;
+  padding: 1px;
+  margin: 0;
+  width: 60%;
   color: #111;
   font-weight: bold;
   text-decoration: none;
+  border-radius: 5px;
 }
