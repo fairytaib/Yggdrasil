@@ -5,9 +5,20 @@
 }
 
 body {
-    background: linear-gradient(to bottom, #fdf7ec, #f3e5c1);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url('/static/images/backgrounds/familytree/background.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
 }
 
+main>.container-fluid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .choose-view-container {
     align-self: start;

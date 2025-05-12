@@ -2,7 +2,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Underdog&display=swap');
+
+--root{
+  --main-font: "Playfair", cursive;
+  --secondary-font: "Merriweather", serif;
+}
+
 .person-card {
+  position: relative;
+  align-self: center;
   background-color: #f5ebd4;
   border-radius: 16px;
   border: 0.5px solid #00000033;
@@ -22,17 +31,29 @@
   transform: translateY(-5px);
 }
 
-.edit-icon{
-  position:relative;
-  left: 150px;
-  bottom: 50px;
-  padding: 4px;
+.edit-icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 36px;
+  height: 36px;
   background-color: #ececec80;
-  border-radius: 10px;
-  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #000;
   font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
+.edit-icon:hover {
+  background-color: #dcdcdc;
+  transform: scale(1.05);
+}
+
 
 .profile-image {
   max-width: 100px;
@@ -44,7 +65,7 @@
 }
 
 .person-info h5 {
-  font-family: 'Playfair Display', serif;
+  font-family: --main-font;
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
 }
