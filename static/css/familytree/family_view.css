@@ -22,6 +22,16 @@ body {
     margin: 5px 0 0 0;
 }
 
+.person-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 2rem auto;
+  max-width: 100%;
+}
+
 .hidden{
     display: none;
 }

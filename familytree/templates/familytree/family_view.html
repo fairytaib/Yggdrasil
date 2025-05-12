@@ -5,6 +5,8 @@
 {% endblock %}
 {% comment %}Own CSS{% endcomment %}
 {% block extra_css %}
+  
+  {% comment %} Own CSS {% endcomment %}
   <link rel="stylesheet" href="{% static 'css/familytree/family_view.css' %}" />
   <link rel="stylesheet" href="{% static 'css/familytree/_person_card.css' %}" />
 {% endblock %}
@@ -13,7 +15,7 @@
     <div class="container-fluid">
       {% comment %}Display Parents{% endcomment %}
       <div class="row justify-content-center" id="parents-container">
-        <div class="col-12 justify-content-center" id="parents-list">
+        <div class="col-12 justify-content-center" id="parents-list" class="person-list">
           {% for parent in person.parents.all %}
             {% include 'familytree/_person_card.html' with person=parent pov_id=person.id %}
           {% endfor %}
@@ -33,7 +35,7 @@
       <div class="row justify-content-center">
         {% comment %}Display Siblings{% endcomment %}
         <div class="col-4 d-flex align-self-center justify-content-center" id="siblings-container">
-          <div id="sibling-list" style="display: none;">
+          <div id="sibling-list" style="display: none;" class="person-list">
             {% for sibling in person.siblings.all %}
               {% include 'familytree/_person_card.html' with person=sibling pov_id=person.id %}
             {% endfor %}
@@ -47,7 +49,7 @@
             {% endif %}
           </div>
         </div>
-
+       
         <div class="col-4 d-flex justify-content-center" id="middle-section">
           {% comment %}Display Pov-Person{% endcomment %}
           {% include 'familytree/_person_card.html' with person=person pov_id=person.id %}
@@ -55,7 +57,7 @@
 
         {% comment %}Display Partners{% endcomment %}
         <div class="col-4 align-self-center d-flex justify-content-center" id="partner-container">
-          <div id="partner-list" style="display: none;">
+          <div id="partner-list" style="display: none;" class="person-list">
             {% for partner in person.partners.all %}
               {% include 'familytree/_person_card.html' with person=partner pov_id=person.id %}
             {% endfor %}
@@ -73,7 +75,7 @@
 
       {% comment %}Display Children{% endcomment %}
       <div class="row justify-content-center" id="children-container">
-        <div class="col justify-content-center" id="children-list">
+        <div class="col justify-content-center" id="children-list" class="person-list">
           {% for child in person.children.all %}
             {% include 'familytree/_person_card.html' with person=child pov_id=person.id %}
           {% endfor %}

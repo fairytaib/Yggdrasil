@@ -10,13 +10,28 @@
   margin: 1rem;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  min-width: 300px;
+  width: 300px;
   height: fit-content;
   transition: transform 0.2s ease;
+  flex: 1 1 300px;
+  max-width: 350px;
+
 }
 
 .person-card:hover {
   transform: translateY(-5px);
+}
+
+.edit-icon{
+  position:relative;
+  left: 150px;
+  bottom: 50px;
+  padding: 4px;
+  background-color: #ececec80;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #000;
+  font-size: 1.2rem;
 }
 
 .profile-image {
@@ -42,13 +57,9 @@
 
 .person-actions {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 0.5rem;
-}
-
-.person-actions a {
-  border-radius: 2rem;
-  padding: 0.4rem 1rem;
 }
 
 .current-focus {

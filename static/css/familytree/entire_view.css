@@ -93,6 +93,17 @@ h2::after {
     text-decoration: none;
 }
 
+.current-focus {
+    background-color: #f0c14bd8;
+    padding: 1px;
+    margin: 0;
+    width: 60%;
+    color: #111;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
 /* button section */
 .person-actions {
     margin-top: 10px;
@@ -110,7 +121,7 @@ h2::after {
 .person-box.pov {
     background-color: #e1f0ff;
     border-color: #8ab6d6;
-    
+
 }
 
 .person-box.partner {
