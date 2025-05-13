@@ -19,17 +19,12 @@
   margin: 1rem;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  width: 30%;
-  height: fit-content;
-  transition: transform 0.2s ease;
   flex: 1 1 300px;
-  max-width: 350px;
+  min-width: 350px;
+  height: 300px;;
 
 }
 
-.person-card:hover {
-  transform: translateY(-5px);
-}
 
 .edit-icon {
   position: absolute;
@@ -73,14 +68,17 @@
 .person-info p {
   font-size: 0.9rem;
   color: #777;
-  margin-bottom: 1rem;
+  margin-bottom: 0.3rem;
+  text-align: left;
 }
 
 .person-actions {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
+  margin-top: 0.75rem;
 }
 
 .current-focus {
@@ -93,3 +91,32 @@
   text-decoration: none;
   border-radius: 5px;
 }
+
+.person-button {
+  background-color: #a97c37;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem;
+  font-size: 0.95rem;
+
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.person-button:hover {
+  background-color: #8f672f;
+  transform: translateY(-2px);
+}
+
+.person-button.secondary {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.person-button.secondary:hover {
+  background-color: #ccc;
+}
+
+

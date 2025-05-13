@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -25,27 +25,26 @@ main>.container-fluid {
     margin: 6px 0 0 6px;
 }
 
-#parents-list, #children-list{
+#parents-list,
+#children-list {
     display: none;
 }
 
-#parents-container, #children-container{
+#parents-container,
+#children-container {
     margin: 5px 0 0 0;
 }
 
 .person-list {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-  margin: 2rem auto;
-  max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem auto;
+    max-width: 100%;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
-
-
-

@@ -14,10 +14,10 @@
   </div>
 
   <div class="person-actions">
-    <a href="{% url 'view_details' pov_id person.id %}" class="btn btn-primary btn-sm" aria-label="View Details">View Details</a>
-    <a href="{% url 'classic_tree_view' person.id %}" class="btn btn-secondary btn-sm">View Family Tree</a>
+    <a href="{% url 'view_details' pov_id person.id %}" class="btn btn-primary btn-sm person-button" aria-label="View Details">View Details</a>
+    <a href="{% url 'classic_tree_view' person.id %}" class="btn btn-secondary btn-sm person-button">View Family Tree</a>
     {% if person.id != pov_id %}
-      <a href="{% url 'family_view' person.id %}" class="btn btn-secondary btn-sm" aria-label="Change Focus">Focus this person</a>
+      <a href="{% url 'family_view' person.id %}" class="btn btn-secondary btn-sm person-button" aria-label="Change Focus">Focus this person</a>
     {% endif %}
   </div>
 </div>
