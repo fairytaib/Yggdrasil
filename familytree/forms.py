@@ -38,6 +38,7 @@ class PersonForm(forms.ModelForm):
 
         labels = {
             'featured_image': 'Profile Picture',
+            'death_date': 'Date of Death (if person has passed away)',
         }
 
         widgets = {
