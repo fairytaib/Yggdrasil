@@ -12,14 +12,14 @@
 .person-card {
   position: relative;
   align-self: center;
-  background-color: #f5ebd4;
+  background-color: #dfbb69;
   border-radius: 16px;
   border: 0.5px solid #00000033;
-  padding: 1.5rem;
+  padding: 10px;
   margin: 1rem;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  width: 30%;
   height: fit-content;
   transition: transform 0.2s ease;
   flex: 1 1 300px;
