@@ -10,7 +10,7 @@
 
 {% block content %}
   <div class="container text-center">
-    <h2 class="mb-5">Your Family Tree</h2>
+    <h2 class="mb-5">{{pov.first_name}}'s Family Tree</h2>
 
     <!-- Grandparents -->
     <div class="tree-level">
@@ -97,7 +97,7 @@
             </div>
             <div class="person-actions mt-2">
               <a href="{% url 'view_details' pov.id partner.id %}" class="btn btn-outline-primary">View Details</a>
-              <a href="{% url 'classic_tree_view' partner.id %}">View Familytree</a>
+              <a href="{% url 'classic_tree_view' partner.id %}" class="btn btn-outline-secondary">View Familytree</a>
               <a href="{% url 'family_view' partner.id %}" class="btn btn-outline-secondary">Focused View</a>
             </div>
           </div>
@@ -118,7 +118,7 @@
             </div>
             <div class="person-actions mt-2">
               <a href="{% url 'view_details' pov.id c.id %}" class="btn btn-outline-primary">View Details</a>
-              <a href="{% url 'classic_tree_view' c.id %}">View Familytree</a>
+              <a href="{% url 'classic_tree_view' c.id %}" class="btn btn-outline-secondary">View Familytree</a>
               <a href="{% url 'family_view' c.id %}" class="btn btn-outline-secondary">Focused View</a>
             </div>
           </div>
