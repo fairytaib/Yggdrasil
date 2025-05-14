@@ -13,58 +13,62 @@
     <h2 class="mb-5">{{pov.first_name}}'s Family Tree</h2>
 
     <!-- Grandparents -->
-    <div class="tree-level">
-      <div class="title">
-        <h3>Grandparents</h3>
-      </div>
-      <div class="person-container">
-        {% for gp in grandparents %}
-          <div class="person-box">
-            <div class="person-name">
-              <p>{{ gp.first_name }} {{ gp.last_name }}</p>
+    {%if grandparents|length > 0%}
+      <div class="tree-level">
+        <div class="title">
+          <h3>Grandparents</h3>
+        </div>
+        <div class="person-container">
+          {% for gp in grandparents %}
+            <div class="person-box">
+              <div class="person-name">
+                <p>{{ gp.first_name }} {{ gp.last_name }}</p>
+              </div>
+              <div class="person-actions mt-2">
+                <a href="{% url 'view_details' pov.id gp.id %}" class="btn btn-outline-primary">View Details</a>
+                <a href="{% url 'classic_tree_view' gp.id %}" class="btn btn-outline-secondary">View Familytree</a>
+                <a href="{% url 'family_view' gp.id %}" class="btn btn-outline-secondary">Focused View</a>
+              </div>
             </div>
-            <div class="person-actions mt-2">
-              <a href="{% url 'view_details' pov.id gp.id %}" class="btn btn-outline-primary">View Details</a>
-              <a href="{% url 'classic_tree_view' gp.id %}" class="btn btn-outline-secondary">View Familytree</a>
-              <a href="{% url 'family_view' gp.id %}" class="btn btn-outline-secondary">Focused View</a>
-            </div>
-          </div>
-        {% endfor %}
+          {% endfor %}
+        </div>
       </div>
-    </div>
+    {% endif %}
 
     <!-- Parents -->
-    <div class="tree-level">
-      <div class="title">
-        <h3>Parents</h3>
+    {%if partner_parents|length > 0 or parents|length > 0%}
+      <div class="tree-level">
+        <div class="title">
+          <h3>Parents</h3>
+        </div>
+        <div class="person-container">
+          {% for pp in partner_parents %}
+            <div class="person-box alt-line">
+              <div class="person-name">
+                <p>{{ pp.first_name }} {{ pp.last_name }} (partners side)</p>
+              </div>
+              <div class="person-actions mt-2">
+                <a href="{% url 'view_details' pov.id pp.id %}" class="btn btn-outline-primary">View Details</a>
+                <a href="{% url 'classic_tree_view' pp.id %}" class="btn btn-outline-secondary">View Familytree</a>
+                <a href="{% url 'family_view' pp.id %}" class="btn btn-outline-secondary">Focused View</a>
+              </div>
+            </div>
+          {% endfor %}
+          {% for p in parents %}
+            <div class="person-box">
+              <div class="person-name">
+                <p>{{ p.first_name }} {{ p.last_name }}</p>
+              </div>
+              <div class="person-actions mt-2">
+                <a href="{% url 'view_details' pov.id p.id %}" class="btn btn-outline-primary">View Details</a>
+                <a href="{% url 'classic_tree_view' p.id %}" class="btn btn-outline-secondary">View Familytree</a>
+                <a href="{% url 'family_view' p.id %}" class="btn btn-outline-secondary">Focused View</a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
       </div>
-      <div class="person-container">
-        {% for pp in partner_parents %}
-          <div class="person-box alt-line">
-            <div class="person-name">
-              <p>{{ pp.first_name }} {{ pp.last_name }} (partners side)</p>
-            </div>
-            <div class="person-actions mt-2">
-              <a href="{% url 'view_details' pov.id pp.id %}" class="btn btn-outline-primary">View Details</a>
-              <a href="{% url 'classic_tree_view' pp.id %}" class="btn btn-outline-secondary">View Familytree</a>
-              <a href="{% url 'family_view' pp.id %}" class="btn btn-outline-secondary">Focused View</a>
-            </div>
-          </div>
-        {% endfor %}
-        {% for p in parents %}
-          <div class="person-box">
-            <div class="person-name">
-              <p>{{ p.first_name }} {{ p.last_name }}</p>
-            </div>
-            <div class="person-actions mt-2">
-              <a href="{% url 'view_details' pov.id p.id %}" class="btn btn-outline-primary">View Details</a>
-              <a href="{% url 'classic_tree_view' p.id %}" class="btn btn-outline-secondary">View Familytree</a>
-              <a href="{% url 'family_view' p.id %}" class="btn btn-outline-secondary">Focused View</a>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
+    {% endif %}
 
     <!-- POV & Partner -->
     <div class="tree-level">
@@ -104,26 +108,29 @@
         {% endfor %}
       </div>
     </div>
-
+    
     <!-- Children -->
-    <div class="tree-level">
-      <div class="title">
-        <h3>Children</h3>
-      </div>
-      <div class="person-container">
-        {% for c in children %}
-          <div class="person-box child">
-            <div class="person-name">
-              <p>{{ c.first_name }} {{ c.last_name }}</p>
+    {%if children|length > 0%}
+      <div class="tree-level">
+        <div class="title">
+          <h3>Children</h3>
+        </div>
+        <div class="person-container">
+          {% for c in children %}
+            <div class="person-box child">
+              <div class="person-name">
+                <p>{{ c.first_name }} {{ c.last_name }}</p>
+              </div>
+              <div class="person-actions mt-2">
+                <a href="{% url 'view_details' pov.id c.id %}" class="btn btn-outline-primary">View Details</a>
+                <a href="{% url 'classic_tree_view' c.id %}" class="btn btn-outline-secondary">View Familytree</a>
+                <a href="{% url 'family_view' c.id %}" class="btn btn-outline-secondary">Focused View</a>
+              </div>
             </div>
-            <div class="person-actions mt-2">
-              <a href="{% url 'view_details' pov.id c.id %}" class="btn btn-outline-primary">View Details</a>
-              <a href="{% url 'classic_tree_view' c.id %}" class="btn btn-outline-secondary">View Familytree</a>
-              <a href="{% url 'family_view' c.id %}" class="btn btn-outline-secondary">Focused View</a>
-            </div>
-          </div>
-        {% endfor %}
+          {% endfor %}
+        </div>
       </div>
-    </div>
+    {% endif %}
   </div>
+  
 {% endblock %}
