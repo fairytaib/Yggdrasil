@@ -24,10 +24,10 @@
 
       <div class="row justify-content-center" id="parent-display-buttons">
         {% if person.parents.all|length < 1 %}
-          <a href="{% url 'add_family_member' %}?relation=parent&person_id={{ person.id }}" class="btn btn-success m-2 col-5" aria-label="Add Parent">Add Parent</a>
+          <a href="{% url 'add_family_member' %}?relation=parent&person_id={{ person.id }}" class="add-button m-2 col-5" aria-label="Add Parent"><i class="bi bi-patch-plus-fill"></i></a>
         {% else %}
           <button class="btn btn-success col-5 m-2" onclick="toggleSection('parents-list', 'parent-display-buttons')">Display Parents</button>
-          <a href="{% url 'add_family_member' %}?relation=parent&person_id={{ person.id }}" class="btn btn-success col-5 m-2" aria-label="Add Parent">Add Parent</a>
+          <a href="{% url 'add_family_member' %}?relation=parent&person_id={{ person.id }}" class="add-button col-5 m-2" aria-label="Add Parent"><i class="bi bi-patch-plus-fill"></i></a>
         {% endif %}
       </div>
 
@@ -43,9 +43,9 @@
           <div id="siblings-display-buttons">
             {% if person.siblings|length > 0 %}
               <button class="btn btn-success m-2" onclick="toggleSection('sibling-list', 'siblings-display-buttons')">Display Siblings</button>
-              <a href="{% url 'add_family_member' %}?relation=sibling&person_id={{ person.id }}" class="btn btn-success m-2" aria-label="Add Sibling">Add Sibling</a>
+              <a href="{% url 'add_family_member' %}?relation=sibling&person_id={{ person.id }}" class="add-button m-2" aria-label="Add Sibling"><i class="bi bi-patch-plus-fill"></i></a>
             {% else %}
-              <a href="{% url 'add_family_member' %}?relation=sibling&person_id={{ person.id }}" class="btn btn-success m-2" aria-label="Add Sibling">Add Sibling</a>
+              <a href="{% url 'add_family_member' %}?relation=sibling&person_id={{ person.id }}" class="add-button m-2" aria-label="Add Sibling"><i class="bi bi-patch-plus-fill"></i></a>
             {% endif %}
           </div>
         </div>
@@ -65,9 +65,9 @@
           <div id="partner-display-buttons">
             {% if person.partners.all|length > 0 %}
               <button class="btn btn-success" onclick="toggleSection('partner-list', 'partner-display-buttons')">Display Partner</button>
-              <a href="{% url 'add_family_member' %}?relation=partner&person_id={{ person.id }}" class="btn btn-success" aria-label="Add Partner">Add Partner</a>
+              <a href="{% url 'add_family_member' %}?relation=partner&person_id={{ person.id }}" class="add-button" aria-label="Add Partner"><i class="bi bi-patch-plus-fill"></i></a>
             {% else %}
-              <a href="{% url 'add_family_member' %}?relation=partner&person_id={{ person.id }}" class="btn btn-success" aria-label="Add Partner">Add Partner</a>
+              <a href="{% url 'add_family_member' %}?relation=partner&person_id={{ person.id }}" class="add-button" aria-label="Add Partner"><i class="bi bi-patch-plus-fill"></i></a>
             {% endif %}
           </div>
         </div>
@@ -84,9 +84,9 @@
       <div class="row justify-content-center" id="children-display-buttons">
         {% if person.children.all|length > 0 %}
           <button class="btn btn-success col-5 m-2" onclick="toggleSection('children-list', 'children-display-buttons')">Display Children</button>
-          <a href="{% url 'add_family_member' %}?relation=child&person_id={{ person.id }}" class="btn btn-success col-5 m-2" aria-label="Add Child">Add Child</a>
+          <a href="{% url 'add_family_member' %}?relation=child&person_id={{ person.id }}" class="add-button col-5 m-2" aria-label="Add Child"><i class="bi bi-patch-plus-fill"></i></a>
         {% else %}
-          <a href="{% url 'add_family_member' %}?relation=child&person_id={{ person.id }}" class="btn btn-success col-5 m-2" aria-label="Add Child">Add Child</a>
+          <a href="{% url 'add_family_member' %}?relation=child&person_id={{ person.id }}" class="add-button col-5 m-2" aria-label="Add Child"><i class="bi bi-patch-plus-fill"></i></a>
         {% endif %}
       </div>
     </div>

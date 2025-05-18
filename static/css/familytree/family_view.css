@@ -20,6 +20,19 @@ main>.container-fluid {
     align-items: center;
 }
 
+.add-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    height: 100%;
+}
+
+.bi-patch-plus-fill{
+    color: #fff;
+    font-size: 2rem;
+}
+
 .choose-view-container {
     align-self: start;
     margin: 6px 0 0 6px;

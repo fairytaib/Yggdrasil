@@ -10,10 +10,10 @@
 
 {% block content %}
   <div class="container text-center">
-    <h2 class="mb-5">{{pov.first_name}}'s Family Tree</h2>
+    <h2 class="mb-5">{{ pov.first_name }}'s Family Tree</h2>
 
     <!-- Grandparents -->
-    {%if grandparents|length > 0%}
+    {% if grandparents|length > 0 %}
       <div class="tree-level">
         <div class="title">
           <h3>Grandparents</h3>
@@ -36,7 +36,7 @@
     {% endif %}
 
     <!-- Parents -->
-    {%if partner_parents|length > 0 or parents|length > 0%}
+    {% if partner_parents|length > 0 or parents|length > 0 %}
       <div class="tree-level">
         <div class="title">
           <h3>Parents</h3>
@@ -108,9 +108,9 @@
         {% endfor %}
       </div>
     </div>
-    
+
     <!-- Children -->
-    {%if children|length > 0%}
+    {% if children|length > 0 %}
       <div class="tree-level">
         <div class="title">
           <h3>Children</h3>
@@ -132,5 +132,4 @@
       </div>
     {% endif %}
   </div>
-  
 {% endblock %}
