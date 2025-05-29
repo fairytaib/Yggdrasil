@@ -5,33 +5,9 @@
 }
 
 body {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-        url('/static/images/backgrounds/familytree/background.webp');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
+    background: linear-gradient(to bottom, #fdf7ec, #f3e5c1);
 }
 
-main>.container-fluid {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.add-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-self: center;
-    height: 100%;
-}
-
-.bi-patch-plus-fill{
-    color: #fff;
-    font-size: 2rem;
-}
 
 .choose-view-container {
     align-self: start;
@@ -48,16 +24,15 @@ main>.container-fluid {
     margin: 5px 0 0 0;
 }
 
-.person-list {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-    margin: 2rem auto;
-    max-width: 100%;
-}
-
 .hidden {
     display: none;
 }
+
+/* #middle-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 10px;
+} */

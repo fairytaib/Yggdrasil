@@ -9,8 +9,16 @@
 
   <div class="person-info text-center">
     <h5>{{ person.first_name }} {{ person.last_name }}</h5>
-    <p>Nickname: {{person.nickname}}</p>
-    <p>Birthday: {{person.birthday}}</p>
+    {% if person.nickname%}
+      <p>Nickname: {{person.nickname}}</p>
+    {%else%}
+    <p>No Nickname</p>
+    {% endif %}
+    {% if person.birthday%}
+      <p>Birthday: {{person.birthday}}</p>
+    {% else %}
+      <p>Birthday unknown</p>
+    {% endif %}
   </div>
 
   <div class="person-actions">
