@@ -3,84 +3,94 @@
 {% block title %}
   <title>View my Family</title>
 {% endblock %}
-{% comment %}Own CSS{% endcomment %}
+
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/familytree/family_view.css' %}" />
   <link rel="stylesheet" href="{% static 'css/familytree/_person_card.css' %}" />
 {% endblock %}
+
 {% block content %}
   {% if person %}
-    <div class="container-fluid">
-      <h1>View your direct relations</h1>
+    <div class="container py-4">
 
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Select relationship</button>
-        <ul class="dropdown-menu">
-          <li>
-            <button class="dropdown-item" data-value="parents">Parents</button>
-          </li>
-          <li>
-            <button class="dropdown-item" data-value="siblings">Siblings</button>
-          </li>
-          <li>
-            <button class="dropdown-item" data-value="partner">Partner</button>
-          </li>
-          <li>
-            <button class="dropdown-item" data-value="children">Children</button>
-          </li>
-        </ul>
+      <h1 class="text-center mb-4">View your direct relations</h1>
+
+      <div class="d-flex justify-content-center mb-4">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Select relationship
+          </button>
+          <ul class="dropdown-menu">
+            <li><button class="dropdown-item" data-value="parents">Parents</button></li>
+            <li><button class="dropdown-item" data-value="siblings">Siblings</button></li>
+            <li><button class="dropdown-item" data-value="partner">Partner</button></li>
+            <li><button class="dropdown-item" data-value="children">Children</button></li>
+          </ul>
+        </div>
       </div>
 
-      {% include 'familytree/_person_card.html' with person=person pov_id=person.id %}
+      <div class="d-flex justify-content-center mb-5">
+        {% include 'familytree/_person_card.html' with person=person pov_id=person.id %}
+      </div>
 
-      <div class="" id="parents-list" data-relation="parents" style="display:none;">
-        <h2>Those are your parents</h2>
-        <div class="flexbox">
+      <div id="parents-list" data-relation="parents" style="display:none;">
+        <h2 class="text-center mb-3">Those are your parents</h2>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
           {% for parent in person.parents.all %}
             {% include 'familytree/_person_card.html' with person=parent pov_id=person.id %}
+          {% empty %}
+            <p>No parents found.</p>
           {% endfor %}
         </div>
       </div>
 
       <div id="sibling-list" data-relation="siblings" style="display:none;">
-        <h2>Those are your siblings</h2>
-        <div class="flexbox">
+        <h2 class="text-center mb-3">Those are your siblings</h2>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
           {% for sibling in person.siblings.all %}
             {% include 'familytree/_person_card.html' with person=sibling pov_id=person.id %}
+          {% empty %}
+            <p>No siblings found.</p>
           {% endfor %}
         </div>
       </div>
 
       <div id="partner-list" data-relation="partner" style="display:none;">
-        {% if person.partners.count == 1 %}
-          <p>This is your partner.</p>
-        {% else %}
-          <h2>Those are your Partners.</h2>
-        {% endif %}
-        <div class="flexbox">
+        <h2 class="text-center mb-3">
+          {% if person.partners.count == 1 %}
+            This is your partner.
+          {% else %}
+            Those are your partners.
+          {% endif %}
+        </h2>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
           {% for partner in person.partners.all %}
             {% include 'familytree/_person_card.html' with person=partner pov_id=person.id %}
+          {% empty %}
+            <p>No partners found.</p>
           {% endfor %}
         </div>
       </div>
 
       <div id="children-list" data-relation="children" style="display:none;">
-        <h2>Those are your children</h2>
-        <div class="flexbox">
+        <h2 class="text-center mb-3">Those are your children</h2>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
           {% for child in person.children.all %}
             {% include 'familytree/_person_card.html' with person=child pov_id=person.id %}
+          {% empty %}
+            <p>No children found.</p>
           {% endfor %}
         </div>
       </div>
     </div>
   {% else %}
-    <div id="no-person-container">
+    <div id="no-person-container" class="text-center">
       <p>Please register yourself first.</p>
       <a href="{% url 'add_self' %}" class="btn btn-outline-success" aria-label="Add Family Member">Add Family Member</a>
     </div>
   {% endif %}
 {% endblock %}
-{% comment %}JavaScript for toggling sections{% endcomment %}
+
 {% block javascript %}
   <script src="{% static 'javascript/family_view.js' %}"></script>
 {% endblock %}
