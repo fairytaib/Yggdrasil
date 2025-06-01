@@ -8,6 +8,12 @@ body {
     background: linear-gradient(to bottom, #fdf7ec, #f3e5c1);
 }
 
+.flexbox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 .hidden {
     display: none;
 }

@@ -34,27 +34,43 @@
       {% include 'familytree/_person_card.html' with person=person pov_id=person.id %}
 
       <div class="" id="parents-list" data-relation="parents" style="display:none;">
-        {% for parent in person.parents.all %}
-          {% include 'familytree/_person_card.html' with person=parent pov_id=person.id %}
-        {% endfor %}
+        <h2>Those are your parents</h2>
+        <div class="flexbox">
+          {% for parent in person.parents.all %}
+            {% include 'familytree/_person_card.html' with person=parent pov_id=person.id %}
+          {% endfor %}
+        </div>
       </div>
 
       <div id="sibling-list" data-relation="siblings" style="display:none;">
-        {% for sibling in person.siblings.all %}
-          {% include 'familytree/_person_card.html' with person=sibling pov_id=person.id %}
-        {% endfor %}
+        <h2>Those are your siblings</h2>
+        <div class="flexbox">
+          {% for sibling in person.siblings.all %}
+            {% include 'familytree/_person_card.html' with person=sibling pov_id=person.id %}
+          {% endfor %}
+        </div>
       </div>
 
       <div id="partner-list" data-relation="partner" style="display:none;">
-        {% for partner in person.partners.all %}
-          {% include 'familytree/_person_card.html' with person=partner pov_id=person.id %}
-        {% endfor %}
+        {% if person.partners.count == 1 %}
+          <p>This is your partner.</p>
+        {% else %}
+          <h2>Those are your Partners.</h2>
+        {% endif %}
+        <div class="flexbox">
+          {% for partner in person.partners.all %}
+            {% include 'familytree/_person_card.html' with person=partner pov_id=person.id %}
+          {% endfor %}
+        </div>
       </div>
 
       <div id="children-list" data-relation="children" style="display:none;">
-        {% for child in person.children.all %}
-          {% include 'familytree/_person_card.html' with person=child pov_id=person.id %}
-        {% endfor %}
+        <h2>Those are your children</h2>
+        <div class="flexbox">
+          {% for child in person.children.all %}
+            {% include 'familytree/_person_card.html' with person=child pov_id=person.id %}
+          {% endfor %}
+        </div>
       </div>
     </div>
   {% else %}
