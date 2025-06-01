@@ -11,87 +11,52 @@
 {% block content %}
   {% if person %}
     <div class="container-fluid">
-      {% comment %}Display Parents{% endcomment %}
-      <div class="row justify-content-center" id="parents-container">
-        <div class="col-12 justify-content-center" id="parents-list">
-          {% for parent in person.parents.all %}
-            {% include 'familytree/_person_card.html' with person=parent pov_id=person.id %}
-          {% endfor %}
-        </div>
+      <h1>View your direct relations</h1>
 
-        <div class="row justify-content-center" id="parent-display-buttons">
-          {% if person.parents.all|length < 1 %}
-            <div class="col-2">
-              <a href="{% url 'add_family_member' %}?relation=parent&person_id={{ person.id }}" class="btn btn-outline-success m-2" aria-label="Add Parent">Add Parent</a>
-            </div>
-          {% else %}
-            <button class="btn btn-outline-success col-2 m-2" onclick="toggleSection('parents-list', 'parent-display-buttons')">Display Parents</button>
-            <a href="{% url 'add_family_member' %}?relation=parent&person_id={{ person.id }}" class="btn btn-outline-success col-2 m-2" aria-label="Add Parent">Add Parent</a>
-          {% endif %}
-        </div>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Select relationship</button>
+        <ul class="dropdown-menu">
+          <li>
+            <button class="dropdown-item" data-value="parents">Parents</button>
+          </li>
+          <li>
+            <button class="dropdown-item" data-value="siblings">Siblings</button>
+          </li>
+          <li>
+            <button class="dropdown-item" data-value="partner">Partner</button>
+          </li>
+          <li>
+            <button class="dropdown-item" data-value="children">Children</button>
+          </li>
+        </ul>
       </div>
 
-      {% comment %}Display middle-section{% endcomment %}
-      <div class="row justify-content-center">
-        {% comment %}Display Siblings{% endcomment %}
-        <div class="col-4 d-flex align-self-center justify-content-center" id="siblings-container">
-          <div id="sibling-list" style="display: none;">
-            {% for sibling in person.siblings.all %}
-              {% include 'familytree/_person_card.html' with person=sibling pov_id=person.id %}
-            {% endfor %}
-          </div>
-          <div id="siblings-display-buttons">
-            {% if person.siblings|length > 0 %}
-              <button class="btn btn-outline-success m-2" onclick="toggleSection('sibling-list', 'siblings-display-buttons')">Display Siblings</button>
-              <a href="{% url 'add_family_member' %}?relation=sibling&person_id={{ person.id }}" class="btn btn-outline-success m-2" aria-label="Add Sibling">Add Sibling</a>
-            {% else %}
-              <a href="{% url 'add_family_member' %}?relation=sibling&person_id={{ person.id }}" class="btn btn-outline-success m-2" aria-label="Add Sibling">Add Sibling</a>
-            {% endif %}
-          </div>
-        </div>
+      {% include 'familytree/_person_card.html' with person=person pov_id=person.id %}
 
-        <div class="col-4 d-flex justify-content-center" id="middle-section">
-          {% comment %}Display Pov-Person{% endcomment %}
-          {% include 'familytree/_person_card.html' with person=person pov_id=person.id %}
-        </div>
-
-        {% comment %}Display Partner{% endcomment %}
-        <div class="col-4 align-self-center d-flex justify-content-center" id="partner-container">
-          <div id="partner-list" style="display: none;">
-            {% for partner in person.partners.all %}
-              {% include 'familytree/_person_card.html' with person=partner pov_id=person.id %}
-            {% endfor %}
-          </div>
-          <div id="partner-display-buttons">
-            {% if person.partner|length < 1 %}
-              <a href="{% url 'add_family_member' %}?relation=partner&person_id={{ person.id }}" class="btn btn-outline-success" aria-label="Add Partner">Add Partner</a>
-            {% else %}
-              <button class="btn btn-outline-success" onclick="toggleSection('partner-list', 'partner-display-buttons')">Display Partner</button>
-              <a href="{% url 'add_family_member' %}?relation=partner&person_id={{ person.id }}" class="btn btn-outline-success" aria-label="Add Partner">Add Partner</a>
-            {% endif %}
-          </div>
-        </div>
+      <div class="" id="parents-list" data-relation="parents" style="display:none;">
+        {% for parent in person.parents.all %}
+          {% include 'familytree/_person_card.html' with person=parent pov_id=person.id %}
+        {% endfor %}
       </div>
 
-      {% comment %}Display Children{% endcomment %}
-      <div class="row justify-content-center" id="children-container">
-        <div class="col justify-content-center" id="children-list">
-          {% for child in person.children.all %}
-            {% include 'familytree/_person_card.html' with person=child pov_id=person.id %}
-          {% endfor %}
-        </div>
+      <div id="sibling-list" data-relation="siblings" style="display:none;">
+        {% for sibling in person.siblings.all %}
+          {% include 'familytree/_person_card.html' with person=sibling pov_id=person.id %}
+        {% endfor %}
       </div>
-      <div class="row justify-content-center" id="children-display-buttons">
-        {% if person.children.all|length > 0 %}
-          <button class="btn btn-outline-success col-2 m-2" onclick="toggleSection('children-list', 'children-display-buttons')">Display Children</button>
-          <a href="{% url 'add_family_member' %}?relation=child&person_id={{ person.id }}" class="btn btn-outline-success col-2 m-2" aria-label="Add Child">Add Child</a>
-        {% else %}
-          <a href="{% url 'add_family_member' %}?relation=child&person_id={{ person.id }}" class="btn btn-outline-success col-2 m-2" aria-label="Add Child">Add Child</a>
-        {% endif %}
+
+      <div id="partner-list" data-relation="partner" style="display:none;">
+        {% for partner in person.partners.all %}
+          {% include 'familytree/_person_card.html' with person=partner pov_id=person.id %}
+        {% endfor %}
+      </div>
+
+      <div id="children-list" data-relation="children" style="display:none;">
+        {% for child in person.children.all %}
+          {% include 'familytree/_person_card.html' with person=child pov_id=person.id %}
+        {% endfor %}
       </div>
     </div>
-
-    {% comment %}Redirect to add self if Person doesnt exist{% endcomment %}
   {% else %}
     <div id="no-person-container">
       <p>Please register yourself first.</p>
