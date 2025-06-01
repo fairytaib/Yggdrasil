@@ -60,9 +60,6 @@
                   <a class="nav-link {% if request.path == home_url %}active{% endif %}" href="{% url 'home' %}" aria-label="Home">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link {% if request.path == demo_url %}active{% endif %}" href="{% url 'demo' %}" aria-label="Demo">Demo</a>
-                </li>
-                <li class="nav-item">
                   <a class="nav-link {% if request.path == people_of_history_url %}active{% endif %}" href="{{ people_of_history_url }}" aria-label="People of history">People of History</a>
                 </li>
                 <li class="nav-item">
