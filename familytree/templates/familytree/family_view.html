@@ -12,19 +12,24 @@
 {% block content %}
   {% if person %}
     <div class="container py-4">
-
       <h1 class="text-center mb-4">View your direct relations</h1>
 
       <div class="d-flex justify-content-center mb-4">
         <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Select relationship
-          </button>
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Select relationship</button>
           <ul class="dropdown-menu">
-            <li><button class="dropdown-item" data-value="parents">Parents</button></li>
-            <li><button class="dropdown-item" data-value="siblings">Siblings</button></li>
-            <li><button class="dropdown-item" data-value="partner">Partner</button></li>
-            <li><button class="dropdown-item" data-value="children">Children</button></li>
+            <li>
+              <button class="dropdown-item" data-value="parents">Parents</button>
+            </li>
+            <li>
+              <button class="dropdown-item" data-value="siblings">Siblings</button>
+            </li>
+            <li>
+              <button class="dropdown-item" data-value="partner">Partner</button>
+            </li>
+            <li>
+              <button class="dropdown-item" data-value="children">Children</button>
+            </li>
           </ul>
         </div>
       </div>
@@ -38,9 +43,8 @@
         <div class="d-flex flex-wrap justify-content-center gap-3">
           {% for parent in person.parents.all %}
             {% include 'familytree/_person_card.html' with person=parent pov_id=person.id %}
-          {% empty %}
-            <p>No parents found.</p>
           {% endfor %}
+          <a href="{% url 'add_family_member' %}?relation=parent&person_id={{ person.id }}" class="add-button col-2 m-2" aria-label="Add Parent"><i class="bi bi-plus-circle"></i></a>
         </div>
       </div>
 
@@ -49,9 +53,8 @@
         <div class="d-flex flex-wrap justify-content-center gap-3">
           {% for sibling in person.siblings.all %}
             {% include 'familytree/_person_card.html' with person=sibling pov_id=person.id %}
-          {% empty %}
-            <p>No siblings found.</p>
           {% endfor %}
+          <a href="{% url 'add_family_member' %}?relation=sibling&person_id={{ person.id }}" class="btn btn-outline-success m-2" aria-label="Add Sibling"><i class="bi bi-plus-circle"></i></a>
         </div>
       </div>
 
@@ -66,9 +69,8 @@
         <div class="d-flex flex-wrap justify-content-center gap-3">
           {% for partner in person.partners.all %}
             {% include 'familytree/_person_card.html' with person=partner pov_id=person.id %}
-          {% empty %}
-            <p>No partners found.</p>
           {% endfor %}
+          <a href="{% url 'add_family_member' %}?relation=partner&person_id={{ person.id }}" class="btn btn-outline-success" aria-label="Add Partner"><i class="bi bi-plus-circle"></i></a>
         </div>
       </div>
 
@@ -77,9 +79,8 @@
         <div class="d-flex flex-wrap justify-content-center gap-3">
           {% for child in person.children.all %}
             {% include 'familytree/_person_card.html' with person=child pov_id=person.id %}
-          {% empty %}
-            <p>No children found.</p>
           {% endfor %}
+          <a href="{% url 'add_family_member' %}?relation=child&person_id={{ person.id }}" class="btn btn-outline-success col-2 m-2" aria-label="Add Child"><i class="bi bi-plus-circle"></a>
         </div>
       </div>
     </div>

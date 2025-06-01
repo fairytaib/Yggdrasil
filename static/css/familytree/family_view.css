@@ -9,14 +9,26 @@
 }
 
 body {
-    background: linear-gradient(to bottom, #fdf7ec, #f3e5c1);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+        url('/static/images/backgrounds/familytree/fam-view-background.webp');
 }
 
-h1 {
+h1,h2 {
     text-align: center;
     margin: 20px 0;
     font-family: 'Merriweather', serif;
-    color: #333;
+    color: #ededed;
+}
+
+.add-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+}
+
+.bi-plus-circle{
+    color: #dfbb69
 }
 
 .hidden {
