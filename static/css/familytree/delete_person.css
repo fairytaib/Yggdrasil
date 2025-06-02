@@ -16,6 +16,7 @@ body {
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     text-align: center;
+    justify-self: center;
 }
 
 .delete-container h3 {
