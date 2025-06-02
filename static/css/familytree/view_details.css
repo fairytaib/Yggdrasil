@@ -4,8 +4,20 @@
 
 
 body {
-    background-color: #fdf7ec;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+        url('/static/images/backgrounds/familytree/view-detail.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
 }
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    word-spacing: 3px;
+}
+
 .detail-container {
     display: flex;
     justify-content: center;

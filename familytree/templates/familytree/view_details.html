@@ -25,40 +25,71 @@
             <p>
               <strong>Nickname:</strong> {{ person.nickname }}
             </p>
+            {% else %}
+            <p>
+              <strong>Nickname:</strong> No Nickname
           {% endif %}
           {% if person.birth_place %}
             <p>
               <strong>Birthplace:</strong> {{ person.birth_place }}
             </p>
+          {% else %}
+            <p>
+              <strong>Birthplace:</strong> Unknown
+            </p>
           {% endif %}
+          
           {% if person.birth_country %}
             <p>
               <strong>Birth Country:</strong> {{ person.get_birth_country_display }}
             </p>
+          {% else %}
+            <p>
+              <strong>Birth Country:</strong> Unknown
+            </p>
           {% endif %}
           {% if person.language %}
             <p>
-              <strong>Languages:</strong> {{ person.get_language_display }}
+              <strong>Languages spoken:</strong> {{ person.get_language_display }}
+            </p>
+          {% else %}
+            <p>
+              <strong>Languages spoken:</strong> Unknown
             </p>
           {% endif %}
           {% if person.birth_date %}
             <p>
               <strong>Birth Date:</strong> {{ person.birth_date }}
             </p>
+          {% else %}
+            <p>
+              <strong>Birth Date:</strong> Unknown
+            </p>
           {% endif %}
+          
           {% if person.death_date %}
             <p>
               <strong>Death Date:</strong> {{ person.death_date }}
             </p>
+    
           {% endif %}
           {% if person.occupation %}
             <p>
               <strong>Occupation:</strong> {{ person.occupation }}
             </p>
+          {% else %}
+            <p>
+              <strong>Occupation:</strong> Unknown
+            </p>
+          
           {% endif %}
           {% if person.hobbies %}
             <p>
               <strong>Hobbies:</strong> {{ person.hobbies }}
+            </p>
+          {% else %}
+            <p>
+              <strong>Hobbies:</strong> Unknown
             </p>
           {% endif %}
           {% if person.bio %}

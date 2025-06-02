@@ -21,7 +21,7 @@
     {% endif %}
   </div>
 
-  <div class="person-actions">
+  <div class="person-actions mt-4">
     <a href="{% url 'view_details' pov_id person.id %}" class="btn btn-sm person-button" aria-label="View Details">View Details</a>
     <a href="{% url 'classic_tree_view' person.id %}" class="btn btn-sm person-button">Family Tree</a>
     {% if person.id != pov_id %}
