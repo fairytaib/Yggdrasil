@@ -117,9 +117,8 @@ class PersonFormTest(TestCase):
         data['last_name'] = '  al-Fihri  '
         form = PersonForm(data=data)
         self.assertTrue(form.is_valid())
-        cleaned = form.clean()
-        self.assertEqual(cleaned['first_name'], 'Fatima')
-        self.assertEqual(cleaned['last_name'], 'al-Fihri')
+        self.assertEqual(form.cleaned_data['first_name'], 'Fatima')
+        self.assertEqual(form.cleaned_data['last_name'], 'al-Fihri')
 
     def test_birth_date_in_future_is_invalid(self):
         """Birth date cannot be in the future."""
