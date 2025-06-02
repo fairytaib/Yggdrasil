@@ -1,6 +1,6 @@
 body {
-    background-image: linear-gradient(rgba(255, 245, 230, 0.9),
-            rgba(255, 245, 230, 0.9)), url('/static/images/backgrounds/delete/soft-leaves.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url('/static/images/backgrounds/familytree/soft-leaves.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -19,9 +19,10 @@ body {
 }
 
 .delete-container h3 {
-    font-size: 1.8rem;
+    font-size: 2rem;
+    font-weight: bold;
     font-family: 'Playfair Display', serif;
-    color: #8b4b4b;
+    color: #aa6262;
     margin-bottom: 2rem;
 }
 
