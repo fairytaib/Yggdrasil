@@ -4,7 +4,7 @@ from familytree.forms import FamilyRelationForm
 from familytree.models import FamilyRelation
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import SimpleUploadedFile
-from familytree.models import Person, FamilyTree
+from familytree.models import Person, FamilyTree, FamilyRelation
 from django.urls import reverse
 from datetime import date, timedelta
 import io
@@ -291,3 +291,232 @@ class AddSelfViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertFormError(response, "form", "first_name",
                              "This field is required.")
+
+
+class AddFamilyMemberViewTest(TestCase):
+    """Test suite for the add_family_member view."""
+
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(username="tester",
+                                             password="testpass")
+        self.client.login(username="tester", password="testpass")
+
+        self.main_person = Person.objects.create(
+            owner=self.user, first_name="Ali", last_name="Main"
+        )
+
+    def get_url(self, relation="parent"):
+        return reverse(
+            "add_family_member") + f"?relation={
+                relation}&person_id={self.main_person.id}"
+
+    def test_redirect_if_not_authenticated(self):
+        self.client.logout()
+        response = self.client.get(self.get_url())
+        self.assertEqual(response.status_code, 302)
+
+    def test_get_redirects_to_add_parent_if_sibling_and_no_parents(self):
+        """Should redirect to parent form if
+        trying to add sibling with no parents."""
+        response = self.client.get(self.get_url(relation="sibling"))
+        self.assertRedirects(
+            response,
+            reverse("add_family_member") + f"?relation=parent&person_id={
+                self.main_person.id}"
+        )
+
+    def test_get_renders_form_for_valid_relation(self):
+        """Renders both forms for valid GET request."""
+        # Add a parent to allow sibling creation
+        parent = Person.objects.create(owner=self.user,
+                                       first_name="Parent", last_name="One")
+        self.main_person.parents.add(parent)
+
+        response = self.client.get(self.get_url("sibling"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "<form")
+        self.assertTemplateUsed(response, "familytree/add_family_member.html")
+
+    def test_post_creates_child_correctly(self):
+        """POST with relation=child should link new person as child."""
+        data = {
+            "first_name": "Hassan",
+            "last_name": "Junior",
+            "relation_type": "child",
+        }
+        url = self.get_url("child")
+        response = self.client.post(url, data, follow=True)
+
+        self.assertEqual(Person.objects.count(), 2)
+        new_person = Person.objects.get(first_name="Hassan")
+        self.assertIn(self.main_person, new_person.parents.all())
+        self.assertRedirects(response, reverse("family_view",
+                                               args=[self.main_person.id]))
+
+    def test_post_creates_partner_correctly(self):
+        """POST with relation=partner should link both as partners."""
+        data = {
+            "first_name": "Layla",
+            "last_name": "Partner",
+            "relation_type": "partner",
+        }
+        url = self.get_url("partner")
+        response = self.client.post(url, data, follow=True)
+
+        self.assertEqual(Person.objects.count(), 2)
+        new_person = Person.objects.get(first_name="Layla")
+        self.assertIn(new_person, self.main_person.partners.all())
+        self.assertRedirects(response, reverse("family_view",
+                                               args=[self.main_person.id]))
+
+    def test_post_with_save_and_add_redirects_back_to_form(self):
+        """POST with 'save_and_add' should reload the add form."""
+        data = {
+            "first_name": "Zayd",
+            "last_name": "Repeat",
+            "relation_type": "child",
+            "save_and_add": "1"
+        }
+        url = self.get_url("child")
+        response = self.client.post(url, data)
+        expected_redirect = reverse(
+            "add_family_member") + f"?relation=child&person_id={
+                self.main_person.id}"
+        self.assertRedirects(response, expected_redirect)
+
+
+class EditPersonViewTest(TestCase):
+    """Test suite for the edit_person view."""
+
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(username="editor",
+                                             password="pass123")
+        self.other_user = User.objects.create_user(username="stranger",
+                                                   password="pass123")
+
+        self.client.login(username="editor", password="pass123")
+
+        self.person = Person.objects.create(
+            owner=self.user, first_name="Fatima", last_name="al-Fihri"
+        )
+        self.url = reverse("edit_person",
+                           args=[self.person.id, self.person.id])
+
+    def test_redirect_if_not_logged_in(self):
+        """Should redirect to login if user is not authenticated."""
+        self.client.logout()
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 302)
+        self.assertIn("/accounts/login/", response.url)
+
+    def test_get_renders_form_for_owner(self):
+        """GET request should render edit form with initial data."""
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Fatima")
+        self.assertTemplateUsed(response, "familytree/edit_person.html")
+
+    def test_post_updates_person_data(self):
+        """POST with valid data should update the person and redirect."""
+        updated_data = {
+            "first_name": "Fatima",
+            "last_name": "Bint Muhammad",
+            "birth_place": "Fez",
+            "birth_country": "MA",
+        }
+        response = self.client.post(self.url, updated_data, follow=True)
+
+        self.person.refresh_from_db()
+        self.assertEqual(self.person.last_name, "Bint Muhammad")
+        self.assertRedirects(response, reverse("family_view",
+                                               args=[self.person.id]))
+        self.assertContains(response, "Person updated successfully!")
+
+    def test_post_with_invalid_data_shows_errors(self):
+        """POST with invalid data should not update and show errors."""
+        invalid_data = {
+            "first_name": "",  # required
+            "last_name": "NoFirstName"
+        }
+        response = self.client.post(self.url, invalid_data)
+        self.assertEqual(response.status_code, 200)
+        self.assertFormError(response, "form", "first_name",
+                             "This field is required.")
+
+    def test_user_cannot_edit_another_users_person(self):
+        """User should not be able to edit another user's person."""
+        other_person = Person.objects.create(
+            owner=self.other_user, first_name="Private", last_name="Person"
+        )
+        url = reverse("edit_person", args=[other_person.id, other_person.id])
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 404)
+
+
+class DeletePersonViewTest(TestCase):
+    """Test suite for the delete_person view."""
+
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(
+            username="deleter", password="pass123")
+        self.other_user = User.objects.create_user(
+            username="hacker", password="pass123")
+
+        self.client.login(username="deleter", password="pass123")
+
+        self.main_person = Person.objects.create(
+            owner=self.user, first_name="Main", last_name="Person"
+        )
+        self.related_person = Person.objects.create(
+            owner=self.user, first_name="Related", last_name="Person"
+        )
+
+    def get_url(self, pov_id, person_id):
+        return reverse("delete_person", args=[pov_id, person_id])
+
+    def test_redirect_if_not_logged_in(self):
+        """Non-authenticated users should be redirected to login."""
+        self.client.logout()
+        url = self.get_url(self.main_person.id, self.related_person.id)
+        response = self.client.get(url)
+        self.assertRedirects(response, f"/accounts/login/?next={url}")
+
+    def test_get_renders_confirmation_page(self):
+        """GET should show the delete confirmation page."""
+        url = self.get_url(self.main_person.id, self.related_person.id)
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Are you sure")
+
+    def test_post_deletes_non_pov_person_and_redirects_to_family_view(self):
+        """Should delete person and redirect back to family view."""
+        url = self.get_url(self.main_person.id, self.related_person.id)
+        response = self.client.post(url, follow=True)
+
+        self.assertFalse(Person.objects.filter(
+            id=self.related_person.id).exists())
+        self.assertRedirects(response, reverse(
+            "family_view", args=[self.main_person.id]))
+        self.assertContains(response, "Person was successfully deleted.")
+
+    def test_post_deletes_pov_and_redirects_to_get_owner(self):
+        """If POV is deleted, redirect to get_owner view
+        which redirects to add_self."""
+        url = self.get_url(self.main_person.id, self.main_person.id)
+        response = self.client.post(url, follow=True)
+
+        self.assertFalse(Person.objects.filter(
+            id=self.main_person.id).exists())
+        self.assertTemplateUsed(response, "familytree/add_self.html")
+
+    def test_user_cannot_delete_other_users_person(self):
+        """A user must not be able to delete someone else's person."""
+        other_person = Person.objects.create(
+            owner=self.other_user, first_name="Private", last_name="Data"
+        )
+        url = self.get_url(self.main_person.id, other_person.id)
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 404)
