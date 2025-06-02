@@ -78,7 +78,7 @@ h3 {
 /* person cards */
 .person-box {
     font-family: 'Merriweather', serif;
-    background: #fffdf8;
+    background: #e1d299;
     border: 1px solid #d9c4a6;
     padding: 15px 20px;
     border-radius: 15px;
@@ -96,19 +96,19 @@ h3 {
 
 .person-box:hover {
     background-color: #fff2db;
-    transform: scale(1.04);
+    transform: scale(1.01);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .person-name p {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: #2c2c2c;
     text-decoration: none;
 }
 
 .person-name .birthday-display {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     color: #777;
     margin-bottom: 0.3rem;
     text-align: center;
@@ -128,7 +128,6 @@ h3 {
 /* button section */
 .person-actions {
     padding: 10px;
-    background-color: #f5f5c4aa;
     border-radius: 10px;
     margin-top: 10px;
     display: flex;
@@ -136,7 +135,8 @@ h3 {
 }
 
 .person-actions .btn {
-    font-size: 0.9rem;
+    font-size: 1rem;
+    font-weight: bold;
     padding: 4px 6px;
     border-radius: 8px;
 }
@@ -144,20 +144,6 @@ h3 {
 .person-box.pov {
     border: #f2010183 solid 3px;
 
-}
-
-.person-box.partner {
-    border-color: #83c783;
-}
-
-.person-box.child {
-    background-color: #f0f8ff;
-    border-color: #a6cde7;
-}
-
-.person-box.alt-line {
-    background-color: #fff7da;
-    border-color: #e0c36c;
 }
 
 .deactivated{   
