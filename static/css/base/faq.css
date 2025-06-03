@@ -1,3 +1,7 @@
+body {
+    background: linear-gradient(to bottom, rgb(26 77 8 / 71%), rgb(77 47 5 / 87%)), url('/static/images/backgrounds/home/corny-backgrorund.webp');
+}
+
 .page-section {
     background: rgba(255, 255, 255, 0.96);
     border-radius: 1rem;
