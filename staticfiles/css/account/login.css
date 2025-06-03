@@ -1,6 +1,5 @@
 body {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.9),
-            rgba(255, 255, 255, 0.9));
+    background: linear-gradient(to bottom, rgb(26 77 8 / 71%), rgb(77 47 5 / 87%)), url('/static/images/backgrounds/home/corny-backgrorund.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -13,8 +12,13 @@ h3 {
     font-size: 2rem;
     font-family: 'Playfair Display', serif;
     font-weight: bold;
-    color: #ae8c1a;
+    color: #f1c01d;
     margin-top: 2rem;
+}
+
+p, a {
+    color: #ffffff;
+    font-size: 1.1rem;
 }
 
 .errorlist {
@@ -23,7 +27,7 @@ h3 {
 
 .login {
     max-width: 500px;
-    margin: 2rem auto;
+    margin: 1rem auto;
     background-color: rgba(255, 255, 255, 0.95);
     padding: 2rem 2.5rem;
     border-radius: 20px;
