@@ -139,6 +139,8 @@ class FamilyRelation(models.Model):
         ('half-sibling', 'Half Sibling'),
         ('step-sibling', 'Step Sibling'),
         ('partner', 'Romantic Partner'),
+        ('ex-partner', 'Ex Romantic Partner'),
+        ('deceased', 'Deceased Partner'),
     ]
     from_person = models.ForeignKey(
         'Person', related_name='relations_from',

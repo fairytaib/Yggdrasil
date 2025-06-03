@@ -169,6 +169,8 @@ class FamilyRelationForm(forms.ModelForm):
         elif relation_context == 'partner':
             self.fields['relation_type'].choices = [
                 ('partner', 'Romantic Partner'),
+                ('ex-partner', 'Ex Romantic Partner'),
+                ('deceased', 'Deceased Partner'),
             ]
 
     class Meta:
