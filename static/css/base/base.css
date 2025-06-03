@@ -65,6 +65,11 @@ footer {
     border-top: 1px solid #ddd5c5;
 }
 
+footer p {
+    color: rgb(0, 0, 0);
+    font-size: 1rem;
+}
+
 footer a {
     color: #b66a3b;
     margin: 0 0.5rem;
