@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+
 body {
-    background: linear-gradient(to bottom right, #fff7e6, #f3e7cb);
-    font-family: 'Georgia', serif;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+        url('/static/images/backgrounds/familytree/background.webp');
     color: #3e3e3e;
 }
 
@@ -16,7 +18,7 @@ h2 {
     font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     font-weight: bold;
-    color: #5b3b0a;
+    color: #dfbb69;
     text-align: center;
     margin-bottom: 50px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -31,6 +33,16 @@ h2::after {
     background-color: #d2b48c;
     margin: 10px auto 0;
     border-radius: 2px;
+}
+
+h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ededed;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .tree-level {
@@ -56,6 +68,7 @@ h2::after {
 
 .person-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     position: relative;
@@ -64,74 +77,79 @@ h2::after {
 
 /* person cards */
 .person-box {
-    background: #fffdf8;
+    font-family: 'Merriweather', serif;
+    background: #e1d299;
     border: 1px solid #d9c4a6;
     padding: 15px 20px;
     border-radius: 15px;
-    height: 180px;
-    width: 200px;
+    min-height: 200px;
+    width: 350px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
 }
 
 .person-box:hover {
     background-color: #fff2db;
-    transform: scale(1.04);
+    transform: scale(1.01);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-.person-name a {
-    font-size: 1.1rem;
+.person-name p {
+    font-size: 1.5rem;
     font-weight: bold;
     color: #2c2c2c;
     text-decoration: none;
 }
 
-.person-name a:hover {
-    text-decoration: underline;
+.person-name .birthday-display {
+    font-size: 1.1rem;
+    color: #777;
+    margin-bottom: 0.3rem;
+    text-align: center;
+}
+
+.current-focus {
+    background-color: #f0c14bd8;
+    padding: 1px;
+    margin: 0;
+    width: 60%;
+    color: #111;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
 }
 
 /* button section */
 .person-actions {
+    padding: 10px;
+    border-radius: 10px;
     margin-top: 10px;
     display: flex;
-    flex-direction: column;
     gap: 6px;
 }
 
 .person-actions .btn {
-    font-size: 0.8rem;
+    font-size: 1rem;
+    font-weight: bold;
     padding: 4px 6px;
     border-radius: 8px;
 }
 
 .person-box.pov {
-    background-color: #e1f0ff;
-    border-color: #8ab6d6;
-    
+    border: #f2010183 solid 3px;
+
 }
 
-.person-box.partner {
-    background-color: #e7ffe7;
-    border-color: #83c783;
+.deactivated{   
+    opacity: 0.5;
+    pointer-events: none;
 }
-
-.person-box.child {
-    background-color: #f0f8ff;
-    border-color: #a6cde7;
-}
-
-.person-box.alt-line {
-    background-color: #fff7da;
-    border-color: #e0c36c;
-}
-
 @media (max-width: 768px) {
     h2 {
         font-size: 2rem;

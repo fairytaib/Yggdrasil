@@ -2,21 +2,52 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Underdog&display=swap');
+
+--root{
+  --main-font: "Playfair", cursive;
+  --secondary-font: "Merriweather", serif;
+}
+
 .person-card {
-  background-color: #f5ebd4;
+  position: relative;
+  align-self: center;
+  background-color: #dfbb69;
   border-radius: 16px;
-  padding: 1.5rem;
+  border: 0.5px solid #00000033;
+  padding: 10px;
   margin: 1rem;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  min-width: 300px;
-  height: fit-content;
-  transition: transform 0.2s ease;
+  width: 370px;
+  height: 300px;
+
 }
 
-.person-card:hover {
-  transform: translateY(-5px);
+
+.edit-icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 36px;
+  height: 36px;
+  background-color: #ececec80;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
+.edit-icon:hover {
+  background-color: #dcdcdc;
+  transform: scale(1.05);
+}
+
 
 .profile-image {
   max-width: 100px;
@@ -28,7 +59,7 @@
 }
 
 .person-info h5 {
-  font-family: 'Playfair Display', serif;
+  font-family: --main-font;
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
 }
@@ -36,27 +67,44 @@
 .person-info p {
   font-size: 0.9rem;
   color: #777;
-  margin-bottom: 1rem;
+  margin-bottom: 0.3rem;
+  text-align: left;
 }
 
 .person-actions {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.75rem;
 }
 
-.person-actions a {
-  border-radius: 2rem;
-  padding: 0.4rem 1rem;
+.person-button {
+  background-color: #a97c37;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.current-focus {
-  background-color: #f0c14bd8;
-  padding: 1px;
-  margin: 0;
-  width: 60%;
-  color: #111;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 5px;
+.person-button:hover {
+  background-color: #8f672f;
+  transform: translateY(-2px);
 }
+
+.person-button.secondary {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.person-button.secondary:hover {
+  background-color: #ccc;
+}
+
+
