@@ -22,11 +22,11 @@ p {
     display: flex;
     justify-content: center;
     padding: 3rem 1rem;
-    
+
 }
 
 .detail-card {
-    background-color: white;
+    background: linear-gradient(to bottom, rgb(26 77 8 / 71%), rgb(77 47 5 / 87%)), url('/static/images/backgrounds/home/corny-backgrorund.webp');
     padding: 2rem 2.5rem;
     border-radius: 16px;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
@@ -50,7 +50,8 @@ p {
 }
 
 .detail-info p {
-    font-size: 1.05rem;
+    color: white;
+    font-size: 1.3rem;
     line-height: 1.6;
     margin-bottom: 0.75rem;
 }
@@ -62,6 +63,8 @@ p {
 
 .bio-section h5 {
     font-family: 'Playfair Display', serif;
+    color: var(--primary-color);
     font-weight: bold;
     margin-bottom: 0.5rem;
+    font-size: 1.5rem;
 }
