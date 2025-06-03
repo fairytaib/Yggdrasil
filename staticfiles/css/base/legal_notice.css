@@ -3,6 +3,10 @@
     --legal-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
+body {
+    background: linear-gradient(to bottom, rgb(26 77 8 / 71%), rgb(77 47 5 / 87%)), url('/static/images/backgrounds/home/corny-backgrorund.webp');
+}
+
 .page-section {
     background: var(--legal-bg);
     border-radius: 1rem;
