@@ -1,7 +1,9 @@
 :root {
     --sub-color: #e8bc2c;
 }
-
+body {
+    background: linear-gradient(to bottom, rgba(39, 137, 4, 0.567), rgba(111, 66, 2, 0.6)), url('/static/images/backgrounds/home/corny-backgrorund.webp');
+}
 .hero-section {
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/static/images/backgrounds/home/leaves.webp');
     backdrop-filter: blur(8px);
