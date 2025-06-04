@@ -7,6 +7,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from familytree.models import Person, FamilyTree, FamilyRelation
 from django.urls import reverse
 from datetime import date, timedelta
+from django.utils import timezone
 import io
 
 
@@ -645,8 +646,8 @@ class ViewDetailsTest(TestCase):
         self.assertContains(response, "Fatima")
 
 
-class ClassicTreeViewTest(TestCase):
-    """Test suite for the classic_tree_view."""
+class EntireTreeViewTest(TestCase):
+    """Test suite for the entire view."""
 
     def setUp(self):
         self.client = Client()
@@ -679,7 +680,73 @@ class ClassicTreeViewTest(TestCase):
         """Should render the classic_tree template and pass correct context."""
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "familytree/classic_tree.html")
+        self.assertTemplateUsed(response, "familytree/entire_view.html")
         self.assertIn("person", response.context)
-        self.assertEqual(response.context["person"], self.pov)
+        self.assertEqual(response.context["pov"], self.pov)
         self.assertContains(response, "Ismail")
+
+
+class PersonFormEdgeCaseTests(TestCase):
+    """Edge-case tests for validation logic in PersonForm."""
+
+    def setUp(self):
+        self.valid_data = {
+            'first_name': 'Zaynab',
+            'last_name': 'Rahman',
+            'birth_place': 'Cairo',
+            'birth_country': 'Egypt',
+            'birth_date': '2000-01-01',
+        }
+
+    def test_clean_death_date_future_fails(self):
+        """
+        Should raise a validation error if death_date is in the future.
+        """
+        data = self.valid_data.copy()
+        future = timezone.now().date() + timedelta(days=10)
+        data['death_date'] = future
+        data['birth_date'] = '1990-01-01'
+        form = PersonForm(data=data)
+        self.assertFalse(form.is_valid())
+        self.assertIn(
+            "Death date cannot be in the future.", form.errors['death_date'])
+
+    def test_clean_death_date_before_birth_fails(self):
+        """
+        Should raise a validation error if death_date is before birth_date.
+        """
+        data = self.valid_data.copy()
+        data['birth_date'] = '2000-01-01'
+        data['death_date'] = '1990-01-01'
+        form = PersonForm(data=data)
+        self.assertFalse(form.is_valid())
+        self.assertIn(
+            "Death date cannot be before birth date.", form.errors[
+                'death_date'])
+
+    def test_clean_featured_image_invalid_format(self):
+        """
+        Should raise a validation error if uploaded file is not a valid image.
+        """
+        bad_image = SimpleUploadedFile(
+            "test.txt", b"invalid image content", content_type="text/plain")
+        data = self.valid_data.copy()
+        form = PersonForm(data=data, files={'featured_image': bad_image})
+        form.is_valid()
+        self.assertIn(
+            "Uploaded file is not a valid image.", form.errors.get(
+                'featured_image', []))
+
+    def test_clean_birth_place_invalid_characters(self):
+        """
+        Should raise a validation error
+        if birth_place contains invalid characters.
+        """
+        data = self.valid_data.copy()
+        data['birth_place'] = "123!@#"
+        form = PersonForm(data=data)
+        form.is_valid()
+        error_msg = form.errors['birth_place'][0]
+        self.assertIn("Birth place may only contain", error_msg)
+        self.assertIn("letters", error_msg)
+        self.assertIn("apostrophes", error_msg)
