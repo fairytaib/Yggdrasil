@@ -204,7 +204,9 @@ class FamilyRelationFormTest(TestCase):
         """Form initialized with 'partner' context should
         only allow partner relation."""
         form = FamilyRelationForm(relation_context='partner')
-        expected_choices = [('partner', 'Romantic Partner')]
+        expected_choices = [('partner', 'Romantic Partner'),
+                            ('ex-partner', 'Ex Romantic Partner'),
+                            ('deceased', 'Deceased Partner')]
         self.assertEqual(form.fields[
             'relation_type'].choices, expected_choices)
 
