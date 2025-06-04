@@ -7,7 +7,9 @@
 {% url 'privacy_policy' as privacy_policy_url %}
 {% url 'legal_notice' as legal_notice_url %}
 {% url 'home' as home_url %}
-{% url 'family_view' person.id as 'family_view_url' %}
+{% if person and person.id %}
+  {% url 'family_view' person.id as family_view_url %}
+{% endif %}
 {% url 'person_of_the_day' as people_of_history_url %}
 
 <!DOCTYPE html>

@@ -23,16 +23,20 @@
             <div class="person-box">
               <div class="person-name">
                 <p>{{ gp.first_name }} {{ gp.last_name }}</p>
-                {%if gp.birth_date%}
-                  <p class="birthday-display">{{gp.birth_date}}{%if gp.death_date%} - {{gp.death_date}}{%endif%}</p>
+                {% if gp.birth_date %}
+                  <p class="birthday-display">
+                    {{ gp.birth_date }}{% if gp.death_date %}
+                      - {{ gp.death_date }}
+                    {% endif %}
+                  </p>
                 {% else %}
                   <p class="birthday-display">Birthday unknown</p>
                 {% endif %}
               </div>
               <div class="person-actions mt-2">
-                <a href="{% url 'view_details' pov.id gp.id %}" class="btn ">View Details</a>
-                <a href="{% url 'classic_tree_view' gp.id %}" class="btn ">View Familytree</a>
-                <a href="{% url 'family_view' gp.id %}" class="btn ">Focused View</a>
+                <a href="{% url 'view_details' pov.id gp.id %}" class="btn">View Details</a>
+                <a href="{% url 'classic_tree_view' gp.id %}" class="btn">View Familytree</a>
+                <a href="{% url 'family_view' gp.id %}" class="btn">Focused View</a>
               </div>
             </div>
           {% endfor %}
@@ -51,16 +55,20 @@
             <div class="person-box alt-line">
               <div class="person-name">
                 <p>{{ pp.first_name }} {{ pp.last_name }} (partners side)</p>
-                {%if pp.birth_date%}
-                  <p class="birthday-display">{{pp.birth_date}}{%if pp.death_date%} - {{pp.death_date}}{%endif%}</p>
+                {% if pp.birth_date %}
+                  <p class="birthday-display">
+                    {{ pp.birth_date }}{% if pp.death_date %}
+                      - {{ pp.death_date }}
+                    {% endif %}
+                  </p>
                 {% else %}
                   <p class="birthday-display">Birthday unknown</p>
                 {% endif %}
               </div>
               <div class="person-actions mt-2">
-                <a href="{% url 'view_details' pov.id pp.id %}" class="btn ">View Details</a>
-                <a href="{% url 'classic_tree_view' pp.id %}" class="btn ">View Familytree</a>
-                <a href="{% url 'family_view' pp.id %}" class="btn ">Focused View</a>
+                <a href="{% url 'view_details' pov.id pp.id %}" class="btn">View Details</a>
+                <a href="{% url 'classic_tree_view' pp.id %}" class="btn">View Familytree</a>
+                <a href="{% url 'family_view' pp.id %}" class="btn">Focused View</a>
               </div>
             </div>
           {% endfor %}
@@ -68,16 +76,20 @@
             <div class="person-box">
               <div class="person-name">
                 <p>{{ p.first_name }} {{ p.last_name }}</p>
-                {%if p.birth_date%}
-                  <p class="birthday-display">{{p.birth_date}}{%if p.death_date%} - {{p.death_date}}{%endif%}</p>
+                {% if p.birth_date %}
+                  <p class="birthday-display">
+                    {{ p.birth_date }}{% if p.death_date %}
+                      - {{ p.death_date }}
+                    {% endif %}
+                  </p>
                 {% else %}
                   <p class="birthday-display">Birthday unknown</p>
                 {% endif %}
               </div>
               <div class="person-actions mt-2">
-                <a href="{% url 'view_details' pov.id p.id %}" class="btn ">View Details</a>
-                <a href="{% url 'classic_tree_view' p.id %}" class="btn ">View Familytree</a>
-                <a href="{% url 'family_view' p.id %}" class="btn ">Focused View</a>
+                <a href="{% url 'view_details' pov.id p.id %}" class="btn">View Details</a>
+                <a href="{% url 'classic_tree_view' p.id %}" class="btn">View Familytree</a>
+                <a href="{% url 'family_view' p.id %}" class="btn">Focused View</a>
               </div>
             </div>
           {% endfor %}
@@ -99,19 +111,21 @@
       <div class="person-container">
         <div class="person-box pov">
           <div class="person-name">
-            <p>
-              {{ pov.first_name }} {{ pov.last_name }}
-              {%if pov.birth_date%}
-                  <p class="birthday-display">{{pov.birth_date}}{%if pov.death_date%} - {{pov.death_date}}{%endif%}</p>
-                {% else %}
-                  <p class="birthday-display">Birthday unknown</p>
+            {{ pov.first_name }} {{ pov.last_name }}
+            {% if pov.birth_date %}
+              <p class="birthday-display">
+                {{ pov.birth_date }}{% if pov.death_date %}
+                  - {{ pov.death_date }}
                 {% endif %}
-            </p>
+              </p>
+            {% else %}
+              <p class="birthday-display">Birthday unknown</p>
+            {% endif %}
           </div>
           <div class="person-actions mt-2">
-            <a href="{% url 'view_details' pov.id pov.id %}" class="btn ">View Details</a>
+            <a href="{% url 'view_details' pov.id pov.id %}" class="btn">View Details</a>
             <a href="{% url 'classic_tree_view' pov.id %}" class="btn btn-outline-secondary deactivated">View Familytree</a>
-            <a href="{% url 'family_view' pov.id %}" class="btn ">Focused View</a>
+            <a href="{% url 'family_view' pov.id %}" class="btn">Focused View</a>
           </div>
         </div>
 
@@ -119,16 +133,20 @@
           <div class="person-box partner">
             <div class="person-name">
               <p>{{ partner.first_name }} {{ partner.last_name }}</p>
-              {%if partner.birth_date%}
-                  <p class="birthday-display">{{partner.birth_date}}{%if partner.death_date%} - {{partner.death_date}}{%endif%}</p>
-                {% else %}
-                  <p class="birthday-display">Birthday unknown</p>
-                {% endif %}
+              {% if partner.birth_date %}
+                <p class="birthday-display">
+                  {{ partner.birth_date }}{% if partner.death_date %}
+                    - {{ partner.death_date }}
+                  {% endif %}
+                </p>
+              {% else %}
+                <p class="birthday-display">Birthday unknown</p>
+              {% endif %}
             </div>
             <div class="person-actions mt-2">
-              <a href="{% url 'view_details' pov.id partner.id %}" class="btn ">View Details</a>
-              <a href="{% url 'classic_tree_view' partner.id %}" class="btn ">View Familytree</a>
-              <a href="{% url 'family_view' partner.id %}" class="btn ">Focused View</a>
+              <a href="{% url 'view_details' pov.id partner.id %}" class="btn">View Details</a>
+              <a href="{% url 'classic_tree_view' partner.id %}" class="btn">View Familytree</a>
+              <a href="{% url 'family_view' partner.id %}" class="btn">Focused View</a>
             </div>
           </div>
         {% endfor %}
@@ -146,16 +164,20 @@
             <div class="person-box child">
               <div class="person-name">
                 <p>{{ c.first_name }} {{ c.last_name }}</p>
-                {%if c.birth_date%}
-                  <p class="birthday-display">{{c.birth_date}}{%if c.death_date%} - {{c.death_date}}{%endif%}</p>
+                {% if c.birth_date %}
+                  <p class="birthday-display">
+                    {{ c.birth_date }}{% if c.death_date %}
+                      - {{ c.death_date }}
+                    {% endif %}
+                  </p>
                 {% else %}
                   <p class="birthday-display">Birthday unknown</p>
                 {% endif %}
               </div>
               <div class="person-actions mt-2">
-                <a href="{% url 'view_details' pov.id c.id %}" class="btn ">View Details</a>
-                <a href="{% url 'classic_tree_view' c.id %}" class="btn ">View Familytree</a>
-                <a href="{% url 'family_view' c.id %}" class="btn ">Focused View</a>
+                <a href="{% url 'view_details' pov.id c.id %}" class="btn">View Details</a>
+                <a href="{% url 'classic_tree_view' c.id %}" class="btn">View Familytree</a>
+                <a href="{% url 'family_view' c.id %}" class="btn">Focused View</a>
               </div>
             </div>
           {% endfor %}
