@@ -56,9 +56,15 @@ def add_family_member(request):
 
     if request.method == 'GET':
         if relation == "sibling" and not main_person.parents.exists():
-            messages.info(request,
-                "Please add at least one parent first, before you can add a sibling.")
-            return redirect(f"{reverse('add_family_member')}?relation=parent&person_id={main_person.id}")
+            messages.info(
+                request,
+                """Please add at least one
+                parent first, before you can add a sibling."""
+                )
+            return redirect(
+                f"{reverse(
+                    'add_family_member'
+                    )}?relation=parent&person_id={main_person.id}")
 
     person_form = PersonForm(request.POST or None, request.FILES or None)
     relation_form = FamilyRelationForm(
