@@ -122,7 +122,7 @@ class PersonForm(forms.ModelForm):
         last_name = self.cleaned_data.get('last_name')
         return validate_name_field(last_name, "Last name")
 
-    def birth_place(self):
+    def clean_birth_place(self):
         """Validate the birth place."""
         birth_place = self.cleaned_data.get('birth_place')
         return validate_name_field(birth_place, "Birth place")
