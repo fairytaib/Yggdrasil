@@ -97,6 +97,27 @@ class PersonModelTest(TestCase):
         self.assertEqual(self.person.bio, "I am me!")
 
 
+class FamilyRelationModelTest(TestCase):
+    """Test suite for the FamilyRelation model."""
+
+    def setUp(self):
+        self.user = User.objects.create_user(username="user", password="pass")
+        self.person1 = Person.objects.create(
+            owner=self.user, first_name="Ali", last_name="A")
+        self.person2 = Person.objects.create(
+            owner=self.user, first_name="Zaynab", last_name="B")
+
+    def test_str_representation(self):
+        """Test the __str__ method of FamilyRelation."""
+        relation = FamilyRelation.objects.create(
+            from_person=self.person1,
+            to_person=self.person2,
+            relation_type="partner"
+        )
+        expected = "Ali A → partner → Zaynab B"
+        self.assertEqual(str(relation), expected)
+
+
 class PersonFormTest(TestCase):
     """Test suite for the PersonForm."""
 
@@ -257,6 +278,18 @@ class FamilyRelationFormTest(TestCase):
         self.assertIn('relation_type', form.errors)
 
 
+class GetOwnerViewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(
+            username="nobody", password="test")
+        self.client.login(username="nobody", password="test")
+
+    def test_redirects_to_add_self_if_tree_does_not_exist(self):
+        response = self.client.get(reverse("get_owner"))
+        self.assertRedirects(response, reverse("add_self"))
+
+
 class AddSelfViewTest(TestCase):
     """Tests for the add_self view."""
 
@@ -409,6 +442,24 @@ class AddFamilyMemberViewTest(TestCase):
             "add_family_member") + f"?relation=child&person_id={
                 self.main_person.id}"
         self.assertRedirects(response, expected_redirect)
+
+    def test_post_creates_sibling_with_common_parents(self):
+        parent = Person.objects.create(
+            owner=self.user, first_name="Parent", last_name="One")
+        self.main_person.parents.add(parent)
+
+        data = {
+            "first_name": "Zaynab",
+            "last_name": "Sibling",
+            "relation_type": "sibling",
+        }
+        url = self.get_url("sibling")
+        response = self.client.post(url, data, follow=True)
+
+        sibling = Person.objects.get(first_name="Zaynab")
+        self.assertIn(parent, sibling.parents.all())
+        self.assertRedirects(response, reverse(
+            "family_view", args=[self.main_person.id]))
 
 
 class EditPersonViewTest(TestCase):
@@ -832,3 +883,38 @@ class PersonFormEdgeCaseTests(TestCase):
             self.assertIn("Birth place may only contain", error_msg)
             self.assertIn("letters", error_msg)
             self.assertIn("apostrophes", error_msg)
+
+
+class ClassicTreeViewEdgeTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(username="user", password="test")
+        self.client.login(username="user", password="test")
+
+    def test_grandparents_and_partner_parents_are_included(self):
+        # Großeltern
+        grandfather = Person.objects.create(
+            owner=self.user, first_name="Grand", last_name="Father")
+        father = Person.objects.create(
+            owner=self.user, first_name="Father", last_name="Dad")
+        father.parents.add(grandfather)
+
+        # POV
+        pov = Person.objects.create(
+            owner=self.user, first_name="POV", last_name="Main")
+        pov.parents.add(father)
+
+        # Partner mit Eltern
+        partner_parent = Person.objects.create(
+            owner=self.user, first_name="PartnerDad", last_name="X")
+        partner = Person.objects.create(
+            owner=self.user, first_name="Partner", last_name="Y")
+        partner.parents.add(partner_parent)
+        pov.partners.add(partner)
+
+        url = reverse("classic_tree_view", args=[pov.id])
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("grandparents", response.context)
+        self.assertIn(grandfather, response.context["grandparents"])
+        self.assertIn(partner_parent, response.context["partner_parents"])
