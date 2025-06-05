@@ -129,16 +129,6 @@ def add_family_member(request):
 
 
 @login_required
-def get_family_members(request):
-    """Display the users family members"""
-    family_tree = get_object_or_404(FamilyTree, owner=request.user,
-                                    main_person=request.user)
-    family_members = Person.objects.filter(family_tree=family_tree)
-    return render(request, 'familytree/family_view.html',
-                  {'family_members': family_members})
-
-
-@login_required
 def edit_person(request, pov_id, person_id):
     """Edit a person in the family tree."""
     person = get_object_or_404(Person, id=person_id, owner=request.user)
