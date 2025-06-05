@@ -154,10 +154,10 @@ class FamilyRelation(models.Model):
         max_length=50, choices=RELATIONSHIP_CHOICES
     )
 
-    class Meta:
-        unique_together = ('from_person', 'to_person', 'relation_type')
-
-        def __str__(self):
-            return f"{
+    def __str__(self):
+        return f"{
                 self.from_person
                 } → {self.relation_type} → {self.to_person}"
+
+    class Meta:
+        unique_together = ('from_person', 'to_person', 'relation_type')
