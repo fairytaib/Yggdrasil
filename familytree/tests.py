@@ -759,16 +759,76 @@ class PersonFormEdgeCaseTests(TestCase):
             "Uploaded file is not a valid image.", form.errors.get(
                 'featured_image', []))
 
-    def test_clean_birth_place_invalid_characters(self):
-        """
-        Should raise a validation error
-        if birth_place contains invalid characters.
-        """
+    def test_clean_featured_image_none_returns_none(self):
+        """If no image is uploaded, should return None without error."""
+        data = {
+            "first_name": "Fatima",
+            "last_name": "al-Fihri",
+            "gender": "female"
+        }
+        form = PersonForm(data=data)  # no image provided
+        self.assertTrue(form.is_valid())
+        self.assertIsNone(form.cleaned_data.get('featured_image'))
+
+    def test_clean_featured_image_valid_jpg(self):
+        """A valid JPG image should be accepted."""
+        from PIL import Image
+        import tempfile
+
+        image = Image.new('RGB', (100, 100))
+        temp_file = tempfile.NamedTemporaryFile(suffix='.jpg')
+        image.save(temp_file, format='JPEG')
+        temp_file.seek(0)
+
+        uploaded = SimpleUploadedFile(
+            name='test.jpg',
+            content=temp_file.read(),
+            content_type='image/jpeg'
+        )
+
+        data = {
+            "first_name": "Fatima",
+            "last_name": "al-Fihri",
+            "gender": "female"
+        }
+
+        form = PersonForm(data=data, files={'featured_image': uploaded})
+        self.assertTrue(form.is_valid())
+        self.assertIn('featured_image', form.cleaned_data)
+
+    def test_clean_featured_image_unsupported_format(self):
+        """Unsupported image formats (e.g. BMP)
+        should raise ValidationError."""
+        from PIL import Image
+        import tempfile
+
+        image = Image.new('RGB', (100, 100))
+        temp_file = tempfile.NamedTemporaryFile(suffix='.bmp')
+        image.save(temp_file, format='BMP')
+        temp_file.seek(0)
+
+        uploaded = SimpleUploadedFile(
+            name='test.bmp',
+            content=temp_file.read(),
+            content_type='image/bmp'
+        )
+
         data = self.valid_data.copy()
-        data['birth_place'] = "123!@#"
-        form = PersonForm(data=data)
-        form.is_valid()
-        error_msg = form.errors['birth_place'][0]
-        self.assertIn("Birth place may only contain", error_msg)
-        self.assertIn("letters", error_msg)
-        self.assertIn("apostrophes", error_msg)
+        form = PersonForm(data=data, files={'featured_image': uploaded})
+        self.assertFalse(form.is_valid())
+        self.assertIn("Only jpeg, png, gif, jpg, webp images are allowed.",
+                      form.errors.get('featured_image', []))
+
+        def test_clean_birth_place_invalid_characters(self):
+            """
+            Should raise a validation error
+            if birth_place contains invalid characters.
+            """
+            data = self.valid_data.copy()
+            data['birth_place'] = "123!@#"
+            form = PersonForm(data=data)
+            form.is_valid()
+            error_msg = form.errors['birth_place'][0]
+            self.assertIn("Birth place may only contain", error_msg)
+            self.assertIn("letters", error_msg)
+            self.assertIn("apostrophes", error_msg)
