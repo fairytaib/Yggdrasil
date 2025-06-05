@@ -555,13 +555,13 @@ class ViewFamilyTest(TestCase):
         self.user = User.objects.create_user(username="user", password="pass")
         self.client.login(username="user", password="pass")
 
-        # Setup main person
+        # Setup main person (Signal legt FamilyTree automatisch an)
         self.pov = Person.objects.create(
-            owner=self.user, first_name="Amina", last_name="Core")
+            owner=self.user, first_name="Amina", last_name="Core"
+        )
 
-        # Setup family tree
-        self.tree = FamilyTree.objects.create(
-            owner=self.user, main_person=self.pov)
+        # FamilyTree wird durch Signal erstellt, also hier nur referenzieren:
+        self.tree = FamilyTree.objects.get(owner=self.user)
         self.tree.person.add(self.pov)
 
     def get_url(self):
