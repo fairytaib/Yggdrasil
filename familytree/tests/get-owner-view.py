@@ -19,7 +19,6 @@ class GetOwnerViewTest(TestCase):
         main = Person.objects.create(
             owner=self.user, first_name="A", last_name="B"
         )
-        # FamilyTree wird durch das Signal automatisch erstellt!
         tree = FamilyTree.objects.get(owner=self.user)
         tree.main_person = main
         tree.save()

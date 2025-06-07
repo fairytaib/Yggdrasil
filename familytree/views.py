@@ -64,7 +64,7 @@ def add_family_member(request):
             return redirect(
                 f"{reverse(
                     'add_family_member'
-                    )}?relation=parent&person_id={main_person.id}")
+                   )}?relation=parent&person_id={main_person.id}")
 
     person_form = PersonForm(request.POST or None, request.FILES or None)
     relation_form = FamilyRelationForm(

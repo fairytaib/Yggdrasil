@@ -6,7 +6,7 @@ from cloudinary.models import CloudinaryField
 from django.core.exceptions import ValidationError
 from datetime import date
 
-# ==== Modelltests ====
+# ==== Modeltests ====
 
 
 class PersonOfHistoryModelTest(TestCase):
