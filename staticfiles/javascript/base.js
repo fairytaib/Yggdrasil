@@ -1,4 +1,4 @@
-//Close Bootstrap Message after 3 seconds 
+//Close Bootstrap Message after 2 seconds 
 setTimeout(function () {
     let alertNode = document.querySelector('.alert');
     if (alertNode) {
