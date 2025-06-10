@@ -11,6 +11,39 @@
 {% endblock %}
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/base/home.css' %}" />
+  {% comment %} Import important styles directly in the template to ensure they are loaded correctly and increase performance. {% endcomment %}
+  <style>
+    .hero-section {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/static/images/backgrounds/home/leaves.webp');
+      backdrop-filter: blur(8px);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
+      padding: 6rem 2rem;
+      border-radius: 1rem;
+    }
+    
+    .hero-title {
+      color: white;
+      font-size: 3rem;
+      font-weight: bold;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: var(--sub-color);
+      max-width: 600px;
+      margin: 1rem auto;
+    }
+    
+    .hero-btn {
+      margin-top: 2rem;
+      padding: 0.75rem 2rem;
+      font-size: 1.2rem;
+      border-radius: 2rem;
+    }
+  </style>
 {% endblock %}
 
 {% block content %}
@@ -98,7 +131,7 @@
     <h2 class="mb-4">Start your Tree Today</h2>
     <p class="lead mb-4">Your story matters. And it begins with a single connection.</p>
     <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg px-5 me-3" aria-label="Register">Create an Account</a>
-    
+
     <p class="text-muted mt-3" style="font-size: 0.9rem;">No commitment. Just curiosity.</p>
   </div>
 {% endblock %}
