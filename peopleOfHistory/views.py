@@ -20,8 +20,15 @@ def person_of_the_day_view(request):
     index = hash_int % len(all_persons)
     person_of_the_day = all_persons[index]
 
+    image_url = person_of_the_day.image.url
+    if image_url.startswith("http://"):
+        image_url = image_url.replace("http://", "https://")
+
     return render(
         request,
         'peopleOfHistory/people_of_history.html',
-        {'person_of_history': person_of_the_day}
+        {
+            'person_of_history': person_of_the_day,
+            'secure_image_url': image_url
+        }
     )

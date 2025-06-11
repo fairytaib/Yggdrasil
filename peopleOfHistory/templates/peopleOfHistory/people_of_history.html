@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block meta %}
- <meta name="description" content="Every day a new important person from history.">
- <meta property="og:title" content="Person of the day - Yggdrasil" />
- <meta property="og:description" content="Discover historical personalities and their family backgrounds." />
+  <meta name="description" content="Every day a new important person from history." />
+  <meta property="og:title" content="Person of the day - Yggdrasil" />
+  <meta property="og:description" content="Discover historical personalities and their family backgrounds." />
 {% endblock %}
 {% block title %}
   <title>People of History</title>
@@ -21,13 +21,11 @@
         </div>
       </div>
     </div>
-    
+
     <div class="container text-center" id="main-container">
       <div class="row justify-content-center align-items-start">
         <div class="col-12 col-lg-4 mr-3">
-          {% with secure_url=person_of_history.image.url|replace:"http://":"https://" %}
-            <img src="{{ person_of_history.image.url }}" alt="{{ person_of_history.name }}" class="img-fluid mb-3" id="person_of_history_portrait" style="max-width: 300px;" />
-          {% endwith %}
+          <img src="{{ person_of_history.image.url }}" alt="{{ person_of_history.name }}" class="img-fluid mb-3" id="person_of_history_portrait" style="max-width: 300px;" loading="lazy" decoding="async" />
         </div>
         <div class="col-12 col-lg-7" id="text-container">
           <h3>{{ person_of_history.name }}</h3>
