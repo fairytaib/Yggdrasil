@@ -3,7 +3,6 @@
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
 {% url 'add_self' as add_self_url %}
-{% url 'contact' as contact_url %}
 {% url 'privacy_policy' as privacy_policy_url %}
 {% url 'legal_notice' as legal_notice_url %}
 {% url 'home' as home_url %}
@@ -120,8 +119,7 @@
         </p>
         <nav class="footer-nav">
           <a href="{% url 'legal_notice' %}" aria-label="Legal notice">Legal Notice</a> |
-          <a href="{% url 'privacy_policy' %}" aria-label="Privacy Policy">Privacy Policy</a> |
-          <a href="{% url 'contact' %}" aria-label="Contact">Contact</a>
+          <a href="{% url 'privacy_policy' %}" aria-label="Privacy Policy">Privacy Policy</a>
         </nav>
       </div>
     </footer>
