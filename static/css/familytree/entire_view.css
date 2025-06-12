@@ -134,6 +134,7 @@ h3 {
     font-weight: 600;
     padding: 4px 6px;
     border-radius: 8px;
+    align-self: center;
 }
 
 .person-actions .btn:hover {
@@ -150,6 +151,7 @@ h3 {
     opacity: 0.5;
     pointer-events: none;
 }
+
 @media (max-width: 768px) {
     h2 {
         font-size: 2rem;
