@@ -130,8 +130,14 @@
   <div class="container my-5 py-5 text-center" id="end-container">
     <h2 class="mb-4">Start your Tree Today</h2>
     <p class="lead mb-4">Your story matters. And it begins with a single connection.</p>
-    <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg px-5 me-3" aria-label="Register">Create an Account</a>
-
+    
+      <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg px-5 me-3" aria-label="Register">{% if user.is_authenticated %}
+        Start your Familytree
+      {% else %}
+        Create an Account
+      {% endif %}
+    </a>
+    
     <p class="text-muted mt-3" style="font-size: 0.9rem;">No commitment. Just curiosity.</p>
   </div>
 {% endblock %}
