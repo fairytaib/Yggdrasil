@@ -6,6 +6,12 @@
 {% endblock %}
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/familytree/forms/add_self.css' %}" />
+  {% comment %} Hide death date for registering self {% endcomment %}
+  <style>
+    #div_id_death_date{
+      display: none;
+    }
+  </style>
 {% endblock %}
 {% block form_media %}
   {{ form.media }}
