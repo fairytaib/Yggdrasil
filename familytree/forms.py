@@ -37,7 +37,7 @@ class PersonForm(forms.ModelForm):
         )
 
         labels = {
-            'featured_image': 'Profile Picture',
+            'featured_image': 'Profile Picture (JPEG, PNG, JPG or WEBP)',
             'death_date': 'Date of Death (if person has passed away)',
         }
 
@@ -86,7 +86,7 @@ class PersonForm(forms.ModelForm):
         except Exception:
             raise ValidationError("Uploaded file is not a valid image.")
 
-        allowed_types = ['jpeg', 'png', 'gif', 'jpg', 'webp']
+        allowed_types = ['jpeg', 'png', 'jpg', 'webp']
         if img.format.lower() not in allowed_types:
             raise ValidationError(
                 f"Only {', '.join(allowed_types)} images are allowed.")
