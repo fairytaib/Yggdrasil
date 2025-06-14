@@ -16,6 +16,21 @@ h1,h2 {
     color: #ededed;
 }
 
+.dropdown {
+    gap: 4px;
+}
+
+.dropdown-toggle {
+    width: fit-content;
+    align-self: center;
+}
+
+.dropdown>p{
+    color: #ededed;
+    font-family: 'Merriweather', serif;
+    font-size: 1rem;
+}
+
 .add-button{
     display: flex;
     justify-content: center;
