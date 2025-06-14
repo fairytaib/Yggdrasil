@@ -63,3 +63,17 @@ p {
     margin-bottom: 0.5rem;
     font-size: 1.5rem;
 }
+
+.button-container{
+    gap: 1rem;
+}
+
+.btn{
+    color: white;
+    background-color: #4b3b2a;
+}
+
+.btn:hover{
+    color: white;
+    background-color: rgba(45, 137, 11, 0.514)
+}
