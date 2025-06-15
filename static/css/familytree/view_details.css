@@ -13,6 +13,29 @@ p {
     word-spacing: 3px;
 }
 
+.edit-icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 36px;
+    height: 36px;
+    background-color: #fffdfdc3;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.edit-icon:hover {
+    background-color: #dcdcdc;
+    transform: scale(1.05);
+}
+
 .detail-container {
     display: flex;
     justify-content: center;
@@ -21,6 +44,7 @@ p {
 }
 
 .detail-card {
+    position: relative;
     background: linear-gradient(to bottom, rgb(26 77 8 / 71%), rgb(77 47 5 / 87%)), url('/static/images/backgrounds/home/corny-backgrorund.webp');
     padding: 2rem 2.5rem;
     border-radius: 16px;
@@ -64,16 +88,16 @@ p {
     font-size: 1.5rem;
 }
 
-.button-container{
+.button-container {
     gap: 1rem;
 }
 
-.btn{
+.btn {
     color: white;
     background-color: #4b3b2a;
 }
 
-.btn:hover{
+.btn:hover {
     color: white;
     background-color: rgba(45, 137, 11, 0.514)
 }
