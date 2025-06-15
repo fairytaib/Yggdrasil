@@ -16,6 +16,18 @@ h1,h2 {
     color: #ededed;
 }
 
+.modalButton {
+    font-size: 1.1rem;
+    color: white;
+    background-color: black;
+}
+
+/* Disable Bootstraps default Hover animation */
+.modalButton:hover {
+    color: white;
+    background-color: black;
+}
+
 .dropdown {
     gap: 4px;
 }

@@ -12,8 +12,11 @@
 
 {% block content %}
   <!-- Button trigger modal -->
-  <button type="button" class="btn modal" data-bs-toggle="modal" data-bs-target="#tutorialModal"><i class="bi bi-info-circle-fill"></i></button>
-
+  <div class="container-fluid mt-2">
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn modalButton" data-bs-toggle="modal" data-bs-target="#tutorialModal"><i class="bi bi-info-circle-fill"></i> Info</button>
+    </div>
+  </div>
   <!-- Modal -->
   <div class="modal fade" id="tutorialModal" tabindex="-1" role="dialog" aria-labelledby="tutorial" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -22,20 +25,21 @@
           <h5 class="modal-title" id="tutorialModalLabel">How does this work?</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
-        <div class="modal-body">
-          This page allows you to explore and manage your family tree in an interactive way.
-
+        <div class="modal-body">This page allows you to explore and manage your family tree in an interactive way.
+          <br>
+          <br>
           - View your relationships: Once registered, you can view your direct relationships such as parents, siblings, partners, and children. Use the dropdown menu to choose which group of relatives you want to see.
-
+          <br>
+          <br>
           - Add family members: Each section gives you the option to add more people by clicking the plus (+) icon.
-
+          <br>
+          <br>
           - Edit or delete entries: Click on a person’s card to view their details, make changes or delete them.
-
-          - Automatic connections: When you add a relation (e.g., a parent), related connections (like siblings) are updated automatically to keep your tree consistent.
-        </div>
+          <br>
+          <br>
+          - Automatic connections: When you add a relation (e.g., a parent), related connections (like siblings) are updated automatically to keep your tree consistent.</div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn modalButton" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
