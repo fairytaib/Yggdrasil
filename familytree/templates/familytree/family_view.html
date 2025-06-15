@@ -11,6 +11,36 @@
 {% endblock %}
 
 {% block content %}
+  <!-- Button trigger modal -->
+  <button type="button" class="btn modal" data-bs-toggle="modal" data-bs-target="#tutorialModal"><i class="bi bi-info-circle-fill"></i></button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="tutorialModal" tabindex="-1" role="dialog" aria-labelledby="tutorial" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tutorialModalLabel">How does this work?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          This page allows you to explore and manage your family tree in an interactive way.
+
+          - View your relationships: Once registered, you can view your direct relationships such as parents, siblings, partners, and children. Use the dropdown menu to choose which group of relatives you want to see.
+
+          - Add family members: Each section gives you the option to add more people by clicking the plus (+) icon.
+
+          - Edit or delete entries: Click on a person’s card to view their details, make changes or delete them.
+
+          - Automatic connections: When you add a relation (e.g., a parent), related connections (like siblings) are updated automatically to keep your tree consistent.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   {% if person %}
     <div class="container py-4">
       <h1 class="text-center mb-4">View your direct relations</h1>
@@ -23,7 +53,7 @@
         <div class="dropdown d-flex justify-content-center flex-column">
           <p id="description">Want to see your family? Just hit the button!</p>
           <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Select relationship</button>
-          
+
           <ul class="dropdown-menu">
             <li>
               <button class="dropdown-item" data-value="parents">Parents</button>
