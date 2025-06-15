@@ -220,6 +220,8 @@ def classic_tree_view(request, person_id):
     for partner in partners:
         partner_parents |= partner.parents.all()
 
+    siblings = pov.siblings()
+
     children = pov.children.all()
 
     context = {
@@ -227,6 +229,7 @@ def classic_tree_view(request, person_id):
         'parents': parents,
         'grandparents': grandparents.distinct(),
         'partners': partners,
+        'siblings': siblings,
         'partner_parents': partner_parents.distinct(),
         'children': children
     }

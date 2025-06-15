@@ -97,6 +97,39 @@
       </div>
     {% endif %}
 
+    <!-- Siblings -->
+    
+    {% if siblings|length > 0 or parents|length > 0 %}
+      <div class="tree-level">
+        <div class="title">
+          <h3>Siblings</h3>
+        </div>
+        <div class="person-container">
+          {% for sibling in siblings %}
+            <div class="person-box alt-line">
+              <div class="person-name">
+                <p>{{ sibling.first_name }} {{ sibling.last_name }}</p>
+                {% if sibling.birth_date %}
+                  <p class="birthday-display">
+                    {{ sibling.birth_date }}{% if sibling.death_date %}
+                      - {{ sibling.death_date }}
+                    {% endif %}
+                  </p>
+                {% else %}
+                  <p class="birthday-display">Birthday unknown</p>
+                {% endif %}
+              </div>
+              <div class="person-actions mt-2">
+                <a href="{% url 'view_details' pov.id sibling.id %}" class="btn">View Details</a>
+                <a href="{% url 'classic_tree_view' sibling.id %}" class="btn">View Familytree</a>
+                <a href="{% url 'family_view' sibling.id %}" class="btn">Focused View</a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
     <!-- POV & Partner -->
     <div class="tree-level">
       <div class="title">

@@ -1,6 +1,7 @@
 {% load static %}
 <div class="person-card shadow-sm">
   <a href="{% url 'edit_person' pov_id person.id %}" class="edit-icon" aria-label="Edit Person"><i class="bi bi-pencil"></i></a>
+  
   {% if 'placeholder' in person.featured_image.url %}
     <img class="profile-image" src="{% static 'images/user_default_images/default-image.webp' %}" alt="placeholder image" />
   {% else %}
