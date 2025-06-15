@@ -126,8 +126,8 @@ class Person(models.Model):
 
 
 class FamilyRelation(models.Model):
-    """ A family relation model """
-    """ This model is used to create a relation between two persons """
+    """ A family relation model.
+    This model is used to create a relation between two persons """
     RELATIONSHIP_CHOICES = [
         ('parent', 'Parent'),
         ('step-parent', 'Step Parent'),

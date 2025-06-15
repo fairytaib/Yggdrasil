@@ -6,8 +6,6 @@ from cloudinary.models import CloudinaryField
 from django.core.exceptions import ValidationError
 from datetime import date
 
-# ==== Modeltests ====
-
 
 class PersonOfHistoryModelTest(TestCase):
 
@@ -74,8 +72,6 @@ class PersonOfHistoryModelTest(TestCase):
         with self.assertRaises(ValidationError):
             person.full_clean()
 
-
-# ==== Viewtests ====
 
 class PersonOfTheDayViewTest(TestCase):
 
