@@ -6,9 +6,37 @@
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/familytree/entire_view.css' %}" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
 {% endblock %}
 
 {% block content %}
+  <!-- Button trigger modal -->
+  <div class="container-fluid mt-2">
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn modalButton" data-bs-toggle="modal" data-bs-target="#tutorialModal"><i class="bi bi-info-circle-fill"></i> Info</button>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="tutorialModal" tabindex="-1" role="dialog" aria-labelledby="tutorial" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tutorialModalLabel">How does this work?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          In this view, you can explore your family tree in an interactive way.
+          <br><br>
+          - View your relationships: Once registered, you can view your direct relationships such as grandparents, parents, siblings, partners, and children.
+          <br><br>
+          - You can always switch between Perspectives by clicking the "View Familytree" or "Focused View" buttons for any person in your tree.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn modalButton" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="container text-center mt-3">
     <h2 class="mb-5">{{ pov.first_name }}'s Family Tree</h2>
 
@@ -98,7 +126,7 @@
     {% endif %}
 
     <!-- Siblings -->
-    
+
     {% if siblings|length > 0 or parents|length > 0 %}
       <div class="tree-level">
         <div class="title">
