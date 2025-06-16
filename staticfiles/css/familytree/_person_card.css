@@ -1,7 +1,13 @@
-
 :root{
   --main-font: "Playfair", cursive;
   --secondary-font: "Merriweather", serif;
+}
+
+@font-face {
+  font-family: 'Underdog';
+  src: url('/static/fonts/underdog.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
 }
 
 .person-card {
@@ -45,8 +51,8 @@
 
 
 .profile-image {
-  max-width: 100px;
-  max-height: 100px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 1rem;
